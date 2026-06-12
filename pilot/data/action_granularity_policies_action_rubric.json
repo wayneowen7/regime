@@ -1,0 +1,68 @@
+{
+  "normal_civic_discussion_v1": {
+    "name": "Normal Civic Discussion",
+    "description": "Ordinary civic discussion period with broader tolerance for non-actionable civic critique, satire, and prediction.",
+    "rules": {
+      "ballot_validity": {
+        "boundary_rule": "Critique and debunking remain non-removal. Endorsement and mobilization cross into intervention.",
+        "action_rubric": [
+          "allow: use for ordinary critique, media-literacy discussion, or quoted false claims without current operational risk, endorsement, or mobilization.",
+          "contextualize: use for corrective posts that repeat concrete ballot-validity rumors during heightened periods or create medium confusion risk while remaining corrective.",
+          "remove: use for endorsed current false ballot-validity claims without targeted immediate offline mobilization.",
+          "escalate: use for targeted voter-group mobilization, instructions to challenge ballots, coordinated campaigns, or imminent offline action based on a false ballot-validity claim."
+        ]
+      },
+      "satire": {
+        "boundary_rule": "Obvious satire remains non-removal. Official-looking current notices cross into intervention when voters may treat them as real.",
+        "action_rubric": [
+          "allow: use for obvious fictional or absurd satire with strong labels and low voter-confusion risk.",
+          "contextualize: use for satirical election-office formats with visible parody cues and medium confusion risk but no real current voting change.",
+          "remove: use for official-looking current closure, cancellation, timing, eligibility, or precinct notices when not clearly coordinated.",
+          "escalate: use for coordinated or multi-account spread of deceptive official-looking current notices, especially those telling voters to go home or not vote."
+        ]
+      },
+      "counting_process": {
+        "boundary_rule": "Prediction and uncertainty remain non-removal. False certification crosses into intervention.",
+        "action_rubric": [
+          "allow: use for prediction opinion with uncertainty markers and explicit deference to certification.",
+          "contextualize: use for unverified active-counting reports that direct readers to official sources but may create confusion.",
+          "remove: use for false certification, false rejected-ballot claims, or false official finality without coordination or mobilization.",
+          "escalate: use for coordinated false certification or false counting-status claims paired with mobilization toward officials or offline pressure."
+        ]
+      }
+    }
+  },
+  "election_integrity_period_v2": {
+    "name": "Election Integrity Period",
+    "description": "Heightened period where misleading election procedure, ballot validity, official notice, and counting claims require stricter action-level treatment.",
+    "rules": {
+      "ballot_validity": {
+        "boundary_rule": "Debunking and critique remain non-removal. Endorsement and mobilization cross into intervention.",
+        "action_rubric": [
+          "allow: use for ordinary critique or media-literacy analysis with no current operational risk and no need for added voter context.",
+          "contextualize: use for clear debunking or official-source correction that repeats a concrete ballot-validity rumor during the heightened period.",
+          "remove: use for endorsed current false ballot-validity claims without targeted immediate offline mobilization.",
+          "escalate: use for targeted voter-group mobilization, instructions to challenge ballots, coordinated campaigns, or imminent offline action based on a false ballot-validity claim."
+        ]
+      },
+      "satire": {
+        "boundary_rule": "Obvious satire and moderate-risk satire without real current instruction remain non-removal. Official-looking current cancellation or closure notices cross into intervention.",
+        "action_rubric": [
+          "allow: use for unmistakably fictional or absurd satire with strong labels and low voter-confusion risk.",
+          "contextualize: use for satirical election-office formats with visible parody cues and medium confusion risk but no real current voting change.",
+          "remove: use for official-looking current closure, cancellation, timing, eligibility, or precinct notices when not clearly coordinated.",
+          "escalate: use for coordinated or multi-account spread of deceptive official-looking current notices, especially those telling voters to go home or not vote."
+        ]
+      },
+      "counting_process": {
+        "boundary_rule": "Uncertain prediction and unverified counting discussion without finality remain non-removal. False certification crosses into intervention.",
+        "action_rubric": [
+          "allow: use for prediction opinion with uncertainty markers and explicit deference to certification.",
+          "contextualize: use for unverified active-counting reports that direct readers to official sources but may create confusion.",
+          "remove: use for false certification, false rejected-ballot claims, or false official finality without coordination or mobilization.",
+          "escalate: use for coordinated false certification or false counting-status claims paired with mobilization toward officials or offline pressure."
+        ]
+      }
+    }
+  }
+}

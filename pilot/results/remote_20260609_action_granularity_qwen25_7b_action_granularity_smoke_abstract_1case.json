@@ -1,0 +1,127 @@
+{
+  "model": "qwen2.5:7b",
+  "top_k": 3,
+  "memory_view": "operational",
+  "policy_view": "full",
+  "stale_warning": true,
+  "conditions": [
+    "policy_only",
+    "naive_memory",
+    "regime_aware"
+  ],
+  "rows": {
+    "policy_only": [
+      {
+        "case_id": "AG-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "remove",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post spreads a harmful false claim about ballot validity, which is not allowed under the policy rule for 'ballot_validity'.",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\n  \"decision\": \"remove\",\n  \"rationale\": \"The post spreads a harmful false claim about ballot validity, which is not allowed under the policy rule for 'ballot_validity'.\",\n  \"used_precedents\": []\n}"
+      }
+    ],
+    "naive_memory": [
+      {
+        "case_id": "AG-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "AG-B-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post quotes the rumor for educational purposes and explains its manipulative nature, aligning with media-literacy discussion that critiques false claims without endorsement.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "AG-B-001",
+          "AG-B-003",
+          "AG-B-002"
+        ],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"The post quotes the rumor for educational purposes and explains its manipulative nature, aligning with media-literacy discussion that critiques false claims without endorsement.\",\n  \"used_precedents\": [\"AG-B-001\"]\n}"
+      }
+    ],
+    "regime_aware": [
+      {
+        "case_id": "AG-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "AG-B-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post involves media-literacy education and quotes a rumor to explain its manipulation, aligning with the policy's allowance for critical discussion of false claims.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "AG-B-001",
+          "AG-B-002",
+          "AG-B-005"
+        ],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"The post involves media-literacy education and quotes a rumor to explain its manipulation, aligning with the policy's allowance for critical discussion of false claims.\",\n  \"used_precedents\": [\"AG-B-001\"]\n}"
+      }
+    ]
+  },
+  "summaries": {
+    "policy_only": {
+      "n": 1,
+      "policy_adherence_rate": 0.0,
+      "decision_family_adherence_rate": 0.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    },
+    "naive_memory": {
+      "n": 1,
+      "policy_adherence_rate": 1.0,
+      "decision_family_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    },
+    "regime_aware": {
+      "n": 1,
+      "policy_adherence_rate": 1.0,
+      "decision_family_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    }
+  }
+}

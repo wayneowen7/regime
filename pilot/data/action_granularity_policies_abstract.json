@@ -1,0 +1,20 @@
+{
+  "normal_civic_discussion_v1": {
+    "name": "Normal Civic Discussion",
+    "description": "Ordinary civic discussion period with broad tolerance for critique, satire, prediction, and non-actionable political speech.",
+    "rules": {
+      "ballot_validity": "Allow educational or critical discussion. Intervene when content spreads harmful false claims about whether ballots count.",
+      "satire": "Allow satire and commentary, but act on content that could mislead voters about election access.",
+      "counting_process": "Allow opinion and analysis about counting. Intervene when content misstates official election results or counting status."
+    }
+  },
+  "election_integrity_period_v2": {
+    "name": "Election Integrity Period",
+    "description": "Heightened period where misleading election procedure, ballot validity, official notice, and counting claims require stricter treatment.",
+    "rules": {
+      "ballot_validity": "False ballot validity claims are high priority during the integrity period. Preserve corrective education but intervene on harmful misinformation.",
+      "satire": "Satire is allowed when it is clearly not deceptive. Intervene on official-looking or confusing election notices.",
+      "counting_process": "Claims about active counting and certification require care. Intervene on false claims about official status or rejected ballots."
+    }
+  }
+}

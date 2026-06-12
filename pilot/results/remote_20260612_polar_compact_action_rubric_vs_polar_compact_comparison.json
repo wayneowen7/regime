@@ -1,0 +1,202 @@
+{
+  "baseline_name": "action_rubric",
+  "candidate_name": "polar_compact",
+  "baseline_n_cases": 12,
+  "candidate_n_cases": 12,
+  "baseline_n_rows": 72,
+  "candidate_n_rows": 72,
+  "overall": {
+    "policy_only_boundary_error_rate": {
+      "baseline": 0.3333333333333333,
+      "candidate": 0.3333333333333333,
+      "delta": 0.0
+    },
+    "policy_only_exact_action_error_rate": {
+      "baseline": 0.3333333333333333,
+      "candidate": 0.3333333333333333,
+      "delta": 0.0
+    },
+    "policy_only_decision_family_error_rate": {
+      "baseline": 0.041666666666666664,
+      "candidate": 0.16666666666666666,
+      "delta": 0.125
+    },
+    "policy_only_action_granularity_error_rate": {
+      "baseline": 0.2916666666666667,
+      "candidate": 0.16666666666666666,
+      "delta": -0.125
+    },
+    "action_granularity_rescue_rate": {
+      "baseline": 0.8333333333333334,
+      "candidate": 1.0,
+      "delta": 0.166666666667
+    },
+    "boundary_instability_rate": {
+      "baseline": 0.08333333333333333,
+      "candidate": 0.3333333333333333,
+      "delta": 0.25
+    },
+    "current_guidance_rescue_rate": {
+      "baseline": 0.7142857142857143,
+      "candidate": 1.0,
+      "delta": 0.285714285714
+    },
+    "stale_guidance_harm_rate": {
+      "baseline": 0.2727272727272727,
+      "candidate": 0.3,
+      "delta": 0.027272727273
+    },
+    "invalid_used_precedent_rate": {
+      "baseline": 0.0,
+      "candidate": 0.0,
+      "delta": 0.0
+    }
+  },
+  "overall_interpretation": "patch_worsens_or_confuses_boundary",
+  "family_comparison": {
+    "education_critique_quote_vs_endorsement_or_mobilization": {
+      "policy_only_boundary_error_rate": {
+        "baseline": 0.25,
+        "candidate": 0.0,
+        "delta": -0.25
+      },
+      "policy_only_exact_action_error_rate": {
+        "baseline": 0.25,
+        "candidate": 0.0,
+        "delta": -0.25
+      },
+      "policy_only_decision_family_error_rate": {
+        "baseline": 0.0,
+        "candidate": 0.0,
+        "delta": 0.0
+      },
+      "policy_only_action_granularity_error_rate": {
+        "baseline": 0.25,
+        "candidate": 0.0,
+        "delta": -0.25
+      },
+      "action_granularity_rescue_rate": {
+        "baseline": 1.0,
+        "candidate": 0.0,
+        "delta": -1.0
+      },
+      "boundary_instability_rate": {
+        "baseline": 0.0,
+        "candidate": 0.0,
+        "delta": 0.0
+      },
+      "current_guidance_rescue_rate": {
+        "baseline": 1.0,
+        "candidate": 0.0,
+        "delta": -1.0
+      },
+      "stale_guidance_harm_rate": {
+        "baseline": 0.0,
+        "candidate": 0.0,
+        "delta": 0.0
+      },
+      "invalid_used_precedent_rate": {
+        "baseline": 0.0,
+        "candidate": 0.0,
+        "delta": 0.0
+      },
+      "interpretation": "patch_partial_rescue"
+    },
+    "obvious_satire_vs_deceptive_notice": {
+      "policy_only_boundary_error_rate": {
+        "baseline": 0.5,
+        "candidate": 0.625,
+        "delta": 0.125
+      },
+      "policy_only_exact_action_error_rate": {
+        "baseline": 0.5,
+        "candidate": 0.625,
+        "delta": 0.125
+      },
+      "policy_only_decision_family_error_rate": {
+        "baseline": 0.125,
+        "candidate": 0.375,
+        "delta": 0.25
+      },
+      "policy_only_action_granularity_error_rate": {
+        "baseline": 0.375,
+        "candidate": 0.25,
+        "delta": -0.125
+      },
+      "action_granularity_rescue_rate": {
+        "baseline": 0.5,
+        "candidate": 1.0,
+        "delta": 0.5
+      },
+      "boundary_instability_rate": {
+        "baseline": 0.25,
+        "candidate": 0.75,
+        "delta": 0.5
+      },
+      "current_guidance_rescue_rate": {
+        "baseline": 0.3333333333333333,
+        "candidate": 1.0,
+        "delta": 0.666666666667
+      },
+      "stale_guidance_harm_rate": {
+        "baseline": 0.6666666666666666,
+        "candidate": 0.3333333333333333,
+        "delta": -0.333333333333
+      },
+      "invalid_used_precedent_rate": {
+        "baseline": 0.0,
+        "candidate": 0.0,
+        "delta": 0.0
+      },
+      "interpretation": "patch_worsens_or_confuses_boundary"
+    },
+    "prediction_opinion_vs_false_certification": {
+      "policy_only_boundary_error_rate": {
+        "baseline": 0.25,
+        "candidate": 0.375,
+        "delta": 0.125
+      },
+      "policy_only_exact_action_error_rate": {
+        "baseline": 0.25,
+        "candidate": 0.375,
+        "delta": 0.125
+      },
+      "policy_only_decision_family_error_rate": {
+        "baseline": 0.0,
+        "candidate": 0.125,
+        "delta": 0.125
+      },
+      "policy_only_action_granularity_error_rate": {
+        "baseline": 0.25,
+        "candidate": 0.25,
+        "delta": 0.0
+      },
+      "action_granularity_rescue_rate": {
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "boundary_instability_rate": {
+        "baseline": 0.0,
+        "candidate": 0.25,
+        "delta": 0.25
+      },
+      "current_guidance_rescue_rate": {
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "stale_guidance_harm_rate": {
+        "baseline": 0.25,
+        "candidate": 0.6666666666666666,
+        "delta": 0.416666666667
+      },
+      "invalid_used_precedent_rate": {
+        "baseline": 0.0,
+        "candidate": 0.0,
+        "delta": 0.0
+      },
+      "interpretation": "patch_worsens_or_confuses_boundary"
+    }
+  }
+}

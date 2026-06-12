@@ -1,0 +1,1011 @@
+{
+  "model": "llama3.2:latest",
+  "top_k": 3,
+  "memory_view": "operational",
+  "policy_view": "full",
+  "stale_warning": true,
+  "conditions": [
+    "policy_only",
+    "naive_memory",
+    "regime_aware"
+  ],
+  "rows": {
+    "policy_only": [
+      {
+        "case_id": "BS-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"allow\",\"used_precedents\":[]}"
+      },
+      {
+        "case_id": "BS-T-002",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "False voting procedure claim, as it may cause confusion and misinformation about the actual voting schedule.",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"False voting procedure claim, as it may cause confusion and misinformation about the actual voting schedule.\",\"used_precedents\":[]}"
+      },
+      {
+        "case_id": "BS-T-003",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"allow\",\"used_precedents\":[]}"
+      },
+      {
+        "case_id": "BS-T-004",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "remove",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Satire is not allowed when it promotes misinformation or confusion about voting procedures.",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"Satire is not allowed when it promotes misinformation or confusion about voting procedures.\",\"used_precedents\":[]}"
+      },
+      {
+        "case_id": "BS-T-005",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "restrict",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-T-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 1,
+        "unknown_used_precedent_ids": [
+          "BS-T-001"
+        ],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"restrict\",\"used_precedents\":[\"BS-T-001\"]}"
+      },
+      {
+        "case_id": "BS-T-006",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "allow",
+        "model_decision": "restrict",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [
+          "BS-T-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 1,
+        "unknown_used_precedent_ids": [
+          "BS-T-001"
+        ],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"restrict\",\"used_precedents\":[\"BS-T-001\"]}"
+      },
+      {
+        "case_id": "BS-T-007",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"allow\",\"used_precedents\":[]}"
+      },
+      {
+        "case_id": "BS-T-008",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "restrict",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-T-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 1,
+        "unknown_used_precedent_ids": [
+          "BS-T-001"
+        ],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"restrict\",\"used_precedents\":[\"BS-T-001\"]}"
+      },
+      {
+        "case_id": "BS-T-009",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "allow",
+        "model_decision": "restrict",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [
+          "BS-T-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 1,
+        "unknown_used_precedent_ids": [
+          "BS-T-001"
+        ],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"restrict\",\"used_precedents\":[\"BS-T-001\"]}"
+      },
+      {
+        "case_id": "BS-T-010",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"allow\",\"used_precedents\":[]}"
+      },
+      {
+        "case_id": "BS-T-011",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "False ballot validity claims should be removed or escalated.",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"False ballot validity claims should be removed or escalated.\",\"used_precedents\":[]}"
+      },
+      {
+        "case_id": "BS-T-012",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "contextualize",
+        "model_decision": "restrict",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\"decision\":\"restrict\",\"used_precedents\":[]}"
+      }
+    ],
+    "naive_memory": [
+      {
+        "case_id": "BS-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "contextualize",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": false,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-002"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 1,
+        "stale_rationale_precedent_ids": [
+          "BS-S-003"
+        ],
+        "rationale": "Future reform discussion is allowed in ordinary civic debate, but current voting procedure claims should be reviewed.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-002",
+          "BS-S-003",
+          "BS-S-001"
+        ],
+        "raw_response": "{\n  \"decision\": \"contextualize\",\n  \"rationale\": \"Future reform discussion is allowed in ordinary civic debate, but current voting procedure claims should be reviewed.\",\n  \"used_precedents\": [\"BS-S-002\"]\n}"
+      },
+      {
+        "case_id": "BS-T-002",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-001",
+          "BS-S-003"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Current timing instructions during an election should be removed.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-001",
+          "BS-S-003",
+          "BS-S-002"
+        ],
+        "raw_response": "{\n  \"decision\": \"remove\",\n  \"rationale\": \"Current timing instructions during an election should be removed.\",\n  \"used_precedents\": [\n    \"BS-S-001\",\n    \"BS-S-003\"\n  ]\n}"
+      },
+      {
+        "case_id": "BS-T-003",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "remove",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 2,
+        "stale_rationale_precedent_ids": [
+          "BS-S-003",
+          "BS-S-001"
+        ],
+        "rationale": "Current voting procedure claims should be removed when they may mislead voters.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-002",
+          "BS-S-003",
+          "BS-S-001"
+        ],
+        "raw_response": "{\n  \"decision\": \"remove\",\n  \"rationale\": \"Current voting procedure claims should be removed when they may mislead voters.\",\n  \"used_precedents\": []\n}"
+      },
+      {
+        "case_id": "BS-T-004",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "remove",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [
+          "BS-S-004"
+        ],
+        "invalid_used_precedent_count": 1,
+        "invalid_used_precedent_ids": [
+          "BS-S-004"
+        ],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 1,
+        "stale_rationale_precedent_ids": [
+          "BS-S-004"
+        ],
+        "rationale": "Official-looking cancellation notices can mislead voters during the integrity period.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-005",
+          "BS-S-006",
+          "BS-S-004"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"Official-looking cancellation notices can mislead voters during the integrity period.\",\"used_precedents\":[\"BS-S-004\"]}"
+      },
+      {
+        "case_id": "BS-T-005",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Official-looking cancellation notices can mislead voters during the integrity period.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-004",
+          "BS-S-005",
+          "BS-S-006"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"Official-looking cancellation notices can mislead voters during the integrity period.\"}"
+      },
+      {
+        "case_id": "BS-T-006",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "allow",
+        "model_decision": "remove",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Official-looking cancellation notices can mislead voters during the integrity period.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-006",
+          "BS-S-005",
+          "BS-S-004"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"Official-looking cancellation notices can mislead voters during the integrity period.\"}"
+      },
+      {
+        "case_id": "BS-T-007",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-008",
+          "BS-S-009"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Predictions that defer to official results are allowed.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-008",
+          "BS-S-009",
+          "BS-S-007"
+        ],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"Predictions that defer to official results are allowed.\",\n  \"used_precedents\": [\"BS-S-008\", \"BS-S-009\"]\n}"
+      },
+      {
+        "case_id": "BS-T-008",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-007"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "False official result claims during active counting should be removed.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-007",
+          "BS-S-009",
+          "BS-S-008"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"False official result claims during active counting should be removed.\",\"used_precedents\":[\"BS-S-007\"]}"
+      },
+      {
+        "case_id": "BS-T-009",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "allow",
+        "model_decision": "restrict",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "False counting process claims should be restricted.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-009",
+          "BS-S-007",
+          "BS-S-008"
+        ],
+        "raw_response": "{\n  \"decision\": \"restrict\",\n  \"rationale\": \"False counting process claims should be restricted.\",\n  \"used_precedents\": []\n}"
+      },
+      {
+        "case_id": "BS-T-010",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "remove",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [
+          "BS-S-010",
+          "BS-S-011"
+        ],
+        "invalid_used_precedent_count": 1,
+        "invalid_used_precedent_ids": [
+          "BS-S-010"
+        ],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Endorses a false ballot-invalidity rumor and urges voters not to submit those ballots, which discourages voting.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-012",
+          "BS-S-011",
+          "BS-S-010"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"Endorses a false ballot-invalidity rumor and urges voters not to submit those ballots, which discourages voting.\",\"used_precedents\":[\"BS-S-010\",\"BS-S-011\"]}"
+      },
+      {
+        "case_id": "BS-T-011",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-010"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Misleading ballot validity claims discourage voting, violating the Election Integrity Period policy.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-010",
+          "BS-S-012",
+          "BS-S-011"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"Misleading ballot validity claims discourage voting, violating the Election Integrity Period policy.\",\"used_precedents\":[\"BS-S-010\"]}"
+      },
+      {
+        "case_id": "BS-T-012",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "contextualize",
+        "model_decision": "remove",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [
+          "BS-S-010"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Current ballot-invalidity claims that discourage voting should be removed.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "BS-S-012",
+          "BS-S-011",
+          "BS-S-010"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"Current ballot-invalidity claims that discourage voting should be removed.\",\"used_precedents\":[\"BS-S-010\"]}"
+      }
+    ],
+    "regime_aware": [
+      {
+        "case_id": "BS-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-002",
+          "BS-S-012"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Future reform discussion is allowed in ordinary civic debate.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-002",
+          "BS-S-012",
+          "BS-S-008"
+        ],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"Future reform discussion is allowed in ordinary civic debate.\",\n  \"used_precedents\": [\"BS-S-002\", \"BS-S-012\"]\n}"
+      },
+      {
+        "case_id": "BS-T-002",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-001",
+          "BS-S-003"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "False voting procedure claims should be removed.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-001",
+          "BS-S-003",
+          "BS-S-007"
+        ],
+        "raw_response": "{\n  \"decision\": \"remove\",\n  \"rationale\": \"False voting procedure claims should be removed.\",\n  \"used_precedents\": [\"BS-S-001\", \"BS-S-003\"]\n}"
+      },
+      {
+        "case_id": "BS-T-003",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "contextualize",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": false,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-002",
+          "BS-S-012",
+          "BS-S-008"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Candidate claims may be contextualized unless they provide actionable election misinformation.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-002",
+          "BS-S-012",
+          "BS-S-008"
+        ],
+        "raw_response": "{\n  \"decision\": \"contextualize\",\n  \"rationale\": \"Candidate claims may be contextualized unless they provide actionable election misinformation.\",\n  \"used_precedents\": [\"BS-S-002\", \"BS-S-012\", \"BS-S-008\"]\n}"
+      },
+      {
+        "case_id": "BS-T-004",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "contextualize",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": false,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-005"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Satire is generally allowed when the satirical framing is clear, but in this case, the claim about polls closing when the moon gets bored may be misleading to some voters.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-005",
+          "BS-S-006",
+          "BS-S-008"
+        ],
+        "raw_response": "{\n  \"decision\": \"contextualize\",\n  \"rationale\": \"Satire is generally allowed when the satirical framing is clear, but in this case, the claim about polls closing when the moon gets bored may be misleading to some voters.\",\n  \"used_precedents\": [\n    \"BS-S-005\"\n  ]\n}"
+      },
+      {
+        "case_id": "BS-T-005",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-004"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post contains a parody tag, which may mislead voters during the integrity period.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-004",
+          "BS-S-003",
+          "BS-S-007"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"The post contains a parody tag, which may mislead voters during the integrity period.\",\"used_precedents\":[\"BS-S-004\"]}"
+      },
+      {
+        "case_id": "BS-T-006",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "allow",
+        "model_decision": "remove",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Satire is allowed, but this post may still mislead voters due to its fictional nature.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-004",
+          "BS-S-007",
+          "BS-S-003"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"Satire is allowed, but this post may still mislead voters due to its fictional nature.\"}"
+      },
+      {
+        "case_id": "BS-T-007",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-008",
+          "BS-S-009"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Ordinary civic discussion allows uncertain election analysis that avoids official-result claims.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-008",
+          "BS-S-009",
+          "BS-S-005"
+        ],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"Ordinary civic discussion allows uncertain election analysis that avoids official-result claims.\",\n  \"used_precedents\": [\n    \"BS-S-008\",\n    \"BS-S-009\"\n  ]\n}"
+      },
+      {
+        "case_id": "BS-T-008",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-007"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "False official result claims during active counting should be removed.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-007",
+          "BS-S-010",
+          "BS-S-003"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"False official result claims during active counting should be removed.\",\"used_precedents\":[\"BS-S-007\"]}"
+      },
+      {
+        "case_id": "BS-T-009",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "allow",
+        "model_decision": "restrict",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [
+          "BS-S-007",
+          "BS-S-001",
+          "BS-S-010"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Misleading counting process claims near election day should be restricted.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-007",
+          "BS-S-001",
+          "BS-S-010"
+        ],
+        "raw_response": "{\n  \"decision\": \"restrict\",\n  \"rationale\": \"Misleading counting process claims near election day should be restricted.\",\n  \"used_precedents\": [\"BS-S-007\", \"BS-S-001\", \"BS-S-010\"]\n}"
+      },
+      {
+        "case_id": "BS-T-010",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "contextualize",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": false,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-012",
+          "BS-S-011"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Ballot validity claims should be contextualized unless they instruct people not to vote.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-012",
+          "BS-S-011",
+          "BS-S-002"
+        ],
+        "raw_response": "{\n  \"decision\": \"contextualize\",\n  \"rationale\": \"Ballot validity claims should be contextualized unless they instruct people not to vote.\",\n  \"used_precedents\": [\"BS-S-012\", \"BS-S-011\"]\n}"
+      },
+      {
+        "case_id": "BS-T-011",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "expected_decision_family": "intervention",
+        "model_decision_family": "intervention",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "BS-S-010"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "Misleading ballot validity claim that discourages voting.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-010",
+          "BS-S-001",
+          "BS-S-003"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"Misleading ballot validity claim that discourages voting.\",\"used_precedents\":[\"BS-S-010\"]}"
+      },
+      {
+        "case_id": "BS-T-012",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "contextualize",
+        "model_decision": "remove",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "intervention",
+        "policy_adherence": false,
+        "decision_family_adherence": false,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post clearly labels the rumors as false and links voters to the official election office page, which aligns with the policy rule of removing false ballot validity claims.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "BS-S-010",
+          "BS-S-007",
+          "BS-S-001"
+        ],
+        "raw_response": "{\"decision\":\"remove\",\"rationale\":\"The post clearly labels the rumors as false and links voters to the official election office page, which aligns with the policy rule of removing false ballot validity claims.\"}"
+      }
+    ]
+  },
+  "summaries": {
+    "policy_only": {
+      "n": 12,
+      "policy_adherence_rate": 0.5,
+      "decision_family_adherence_rate": 0.6666666666666666,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.3333333333333333,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    },
+    "naive_memory": {
+      "n": 12,
+      "policy_adherence_rate": 0.4166666666666667,
+      "decision_family_adherence_rate": 0.5,
+      "mean_invalid_used_precedents": 0.16666666666666666,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.3333333333333333,
+      "parse_error_rate": 0.0
+    },
+    "regime_aware": {
+      "n": 12,
+      "policy_adherence_rate": 0.5,
+      "decision_family_adherence_rate": 0.75,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    }
+  }
+}

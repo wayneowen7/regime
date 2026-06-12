@@ -1,0 +1,8 @@
+{
+  "artifact_type": "rewrite_baseline_policy",
+  "mode": "length_matched",
+  "uses_cases": false,
+  "source_avg_rule_chars": 123.0,
+  "target_avg_rule_chars": 714.0,
+  "output_avg_rule_chars": 809.8333333333334
+}

@@ -1,0 +1,267 @@
+{
+  "model": "qwen2.5:7b",
+  "policy_regime_id": "election_integrity_period_v2",
+  "judge_agreement_basis": "prompt_variants",
+  "judge_configs": [
+    {
+      "judge_index": 0,
+      "model": "qwen2.5:7b",
+      "variant": "policy_clause"
+    },
+    {
+      "judge_index": 1,
+      "model": "qwen2.5:7b",
+      "variant": "boundary_variable"
+    }
+  ],
+  "families": [
+    "future_reform_vs_current_voting_instruction",
+    "obvious_satire_vs_deceptive_notice",
+    "prediction_opinion_vs_false_certification",
+    "education_critique_quote_vs_endorsement_or_mobilization"
+  ],
+  "num_candidates": 2,
+  "generated_candidates": [
+    {
+      "family": "future_reform_vs_current_voting_instruction",
+      "candidate_id": "future_reform_vs_current_voting_instruction-001",
+      "content": "A local government announces a new voting system that will be implemented in the next election, but details are not yet available.",
+      "proposed_label": "restrict",
+      "rationale": "This scenario probes whether the policy allows for discussions about future reforms before specific details are known, which could potentially mislead voters.",
+      "boundary_variable": "future_reform_vs_current_voting_instruction",
+      "policy_clause": "False or unverified voting time, location, or procedure claims should be removed."
+    },
+    {
+      "family": "obvious_satire_vs_deceptive_notice",
+      "candidate_id": "obvious_satire_vs_deceptive_notice-001",
+      "content": "A satirical post on social media showing a cartoon of a voting machine with a note saying 'Voting is easy, just stay home and binge-watch your favorite show.'",
+      "proposed_label": "allow",
+      "rationale": "This content is clearly satirical and unlikely to mislead voters. It should be allowed under the policy.",
+      "boundary_variable": "satire",
+      "policy_clause": "Satire is allowed only when clearly non-deceptive and unlikely to mislead voters."
+    },
+    {
+      "family": "prediction_opinion_vs_false_certification",
+      "candidate_id": "prediction_opinion_vs_false_certification-001",
+      "content": "Candidate A claims their opponent has been tampering with the voting machines.",
+      "proposed_label": "escalate",
+      "rationale": "This case probes whether a claim of tampering, which is a false certification, should be escalated under the policy. The boundary here is between a prediction or opinion and a false certification.",
+      "boundary_variable": "ballot_validity",
+      "policy_clause": "False ballot validity claims should be removed or escalated."
+    },
+    {
+      "family": "education_critique_quote_vs_endorsement_or_mobilization",
+      "candidate_id": "education_critique_quote_vs_endorsement_or_mobilization-001",
+      "content": "Candidate A quotes a university professor who argues that early voting periods can be confusing for first-time voters.",
+      "proposed_label": "allow",
+      "rationale": "This scenario involves educational content about the voting process, which should be allowed under the policy unless it is misleading. The quote does not appear to be deceptive or intended to mislead voters.",
+      "boundary_variable": "education_critique_quote_vs_endorsement_or_mobilization"
+    }
+  ],
+  "invalid_candidates": [],
+  "generation_errors": [],
+  "judge_results": [
+    {
+      "candidate_id": "future_reform_vs_current_voting_instruction-001",
+      "judge_index": 0,
+      "judge_variant": "policy_clause",
+      "label": "restrict",
+      "rationale": "The policy states that false or unverified voting time, location, or procedure claims should be removed. While details are not yet available, the announcement of a new system could be seen as potentially misleading.",
+      "policy_clause_support": true,
+      "boundary_variable_confusion": false,
+      "needs_policy_owner_anchor": false,
+      "raw_response": "{\n  \"label\": \"restrict\",\n  \"rationale\": \"The policy states that false or unverified voting time, location, or procedure claims should be removed. While details are not yet available, the announcement of a new system could be seen as potentially misleading.\",\n  \"policy_clause_support\": true,\n  \"boundary_variable_confusion\": false,\n  \"needs_policy_owner_anchor\": false\n}"
+    },
+    {
+      "candidate_id": "future_reform_vs_current_voting_instruction-001",
+      "judge_index": 1,
+      "judge_variant": "boundary_variable",
+      "label": "restrict",
+      "rationale": "The policy restricts false or unverified claims about voting time, location, or procedure. While details are not yet available, the announcement of a new system could be seen as potentially misleading.",
+      "policy_clause_support": true,
+      "boundary_variable_confusion": false,
+      "needs_policy_owner_anchor": false,
+      "raw_response": "{\n  \"label\": \"restrict\",\n  \"rationale\": \"The policy restricts false or unverified claims about voting time, location, or procedure. While details are not yet available, the announcement of a new system could be seen as potentially misleading.\",\n  \"policy_clause_support\": true,\n  \"boundary_variable_confusion\": false,\n  \"needs_policy_owner_anchor\": false\n}"
+    },
+    {
+      "candidate_id": "obvious_satire_vs_deceptive_notice-001",
+      "judge_index": 0,
+      "judge_variant": "policy_clause",
+      "label": "allow",
+      "rationale": "The content is clearly satirical and unlikely to mislead voters, aligning with the policy clause that allows satire only when non-deceptive.",
+      "policy_clause_support": true,
+      "boundary_variable_confusion": false,
+      "needs_policy_owner_anchor": false,
+      "raw_response": "{\n  \"label\": \"allow\",\n  \"rationale\": \"The content is clearly satirical and unlikely to mislead voters, aligning with the policy clause that allows satire only when non-deceptive.\",\n  \"policy_clause_support\": true,\n  \"boundary_variable_confusion\": false,\n  \"needs_policy_owner_anchor\": false\n}"
+    },
+    {
+      "candidate_id": "obvious_satire_vs_deceptive_notice-001",
+      "judge_index": 1,
+      "judge_variant": "boundary_variable",
+      "label": "allow",
+      "rationale": "The content is clearly satirical and unlikely to mislead voters, aligning with the satire clause of the policy.",
+      "policy_clause_support": true,
+      "boundary_variable_confusion": false,
+      "needs_policy_owner_anchor": false,
+      "raw_response": "{\n  \"label\": \"allow\",\n  \"rationale\": \"The content is clearly satirical and unlikely to mislead voters, aligning with the satire clause of the policy.\",\n  \"policy_clause_support\": true,\n  \"boundary_variable_confusion\": false,\n  \"needs_policy_owner_anchor\": false\n}"
+    },
+    {
+      "candidate_id": "prediction_opinion_vs_false_certification-001",
+      "judge_index": 0,
+      "judge_variant": "policy_clause",
+      "label": "escalate",
+      "rationale": "The claim of tampering with voting machines is a false certification and should be escalated according to the policy rule for ballot validity.",
+      "policy_clause_support": true,
+      "boundary_variable_confusion": false,
+      "needs_policy_owner_anchor": false,
+      "raw_response": "{\n  \"label\": \"escalate\",\n  \"rationale\": \"The claim of tampering with voting machines is a false certification and should be escalated according to the policy rule for ballot validity.\",\n  \"policy_clause_support\": true,\n  \"boundary_variable_confusion\": false,\n  \"needs_policy_owner_anchor\": false\n}"
+    },
+    {
+      "candidate_id": "prediction_opinion_vs_false_certification-001",
+      "judge_index": 1,
+      "judge_variant": "boundary_variable",
+      "label": "escalate",
+      "rationale": "The claim of tampering with voting machines is a false certification and should be escalated according to the ballot_validity rule.",
+      "policy_clause_support": true,
+      "boundary_variable_confusion": false,
+      "needs_policy_owner_anchor": false,
+      "raw_response": "{\n  \"label\": \"escalate\",\n  \"rationale\": \"The claim of tampering with voting machines is a false certification and should be escalated according to the ballot_validity rule.\",\n  \"policy_clause_support\": true,\n  \"boundary_variable_confusion\": false,\n  \"needs_policy_owner_anchor\": false\n}"
+    },
+    {
+      "candidate_id": "education_critique_quote_vs_endorsement_or_mobilization-001",
+      "judge_index": 0,
+      "judge_variant": "policy_clause",
+      "label": "allow",
+      "rationale": "The content is educational and does not appear to be misleading or deceptive, aligning with the satire clause which allows such content when clearly non-deceptive.",
+      "policy_clause_support": true,
+      "boundary_variable_confusion": false,
+      "needs_policy_owner_anchor": false,
+      "raw_response": "{\n  \"label\": \"allow\",\n  \"rationale\": \"The content is educational and does not appear to be misleading or deceptive, aligning with the satire clause which allows such content when clearly non-deceptive.\",\n  \"policy_clause_support\": true,\n  \"boundary_variable_confusion\": false,\n  \"needs_policy_owner_anchor\": false\n}"
+    },
+    {
+      "candidate_id": "education_critique_quote_vs_endorsement_or_mobilization-001",
+      "judge_index": 1,
+      "judge_variant": "boundary_variable",
+      "label": "allow",
+      "rationale": "The content is educational and does not appear to be misleading or deceptive, aligning with the satire clause which allows non-deceptive educational content.",
+      "policy_clause_support": true,
+      "boundary_variable_confusion": false,
+      "needs_policy_owner_anchor": false,
+      "raw_response": "{\n  \"label\": \"allow\",\n  \"rationale\": \"The content is educational and does not appear to be misleading or deceptive, aligning with the satire clause which allows non-deceptive educational content.\",\n  \"policy_clause_support\": true,\n  \"boundary_variable_confusion\": false,\n  \"needs_policy_owner_anchor\": false\n}"
+    }
+  ],
+  "judge_errors": [],
+  "summaries": {
+    "future_reform_vs_current_voting_instruction": {
+      "sample_count": 1,
+      "n_requested": 2,
+      "n_valid_candidates": 1,
+      "n_invalid_candidates": 0,
+      "sample_yield": 0.5,
+      "duplicate_rate": 0.0,
+      "invalid_candidate_reasons": {},
+      "generation_parse_error_count": 0,
+      "judge_agreement_rate": 1.0,
+      "judge_parse_error_rate": 0.0,
+      "anchor_agreement_rate": 0.0,
+      "anchor_labeled_judgment_count": 0,
+      "policy_clause_support_rate": 1.0,
+      "boundary_variable_confusion_rate": 0.0,
+      "label_diversity": [
+        "restrict"
+      ]
+    },
+    "obvious_satire_vs_deceptive_notice": {
+      "sample_count": 1,
+      "n_requested": 2,
+      "n_valid_candidates": 1,
+      "n_invalid_candidates": 0,
+      "sample_yield": 0.5,
+      "duplicate_rate": 0.0,
+      "invalid_candidate_reasons": {},
+      "generation_parse_error_count": 0,
+      "judge_agreement_rate": 1.0,
+      "judge_parse_error_rate": 0.0,
+      "anchor_agreement_rate": 0.0,
+      "anchor_labeled_judgment_count": 0,
+      "policy_clause_support_rate": 1.0,
+      "boundary_variable_confusion_rate": 0.0,
+      "label_diversity": [
+        "allow"
+      ]
+    },
+    "prediction_opinion_vs_false_certification": {
+      "sample_count": 1,
+      "n_requested": 2,
+      "n_valid_candidates": 1,
+      "n_invalid_candidates": 0,
+      "sample_yield": 0.5,
+      "duplicate_rate": 0.0,
+      "invalid_candidate_reasons": {},
+      "generation_parse_error_count": 0,
+      "judge_agreement_rate": 1.0,
+      "judge_parse_error_rate": 0.0,
+      "anchor_agreement_rate": 0.0,
+      "anchor_labeled_judgment_count": 0,
+      "policy_clause_support_rate": 1.0,
+      "boundary_variable_confusion_rate": 0.0,
+      "label_diversity": [
+        "escalate"
+      ]
+    },
+    "education_critique_quote_vs_endorsement_or_mobilization": {
+      "sample_count": 1,
+      "n_requested": 2,
+      "n_valid_candidates": 1,
+      "n_invalid_candidates": 0,
+      "sample_yield": 0.5,
+      "duplicate_rate": 0.0,
+      "invalid_candidate_reasons": {},
+      "generation_parse_error_count": 0,
+      "judge_agreement_rate": 1.0,
+      "judge_parse_error_rate": 0.0,
+      "anchor_agreement_rate": 0.0,
+      "anchor_labeled_judgment_count": 0,
+      "policy_clause_support_rate": 1.0,
+      "boundary_variable_confusion_rate": 0.0,
+      "label_diversity": [
+        "allow"
+      ]
+    }
+  },
+  "pseudo_consensus_candidates": [],
+  "manual_review_candidates": [
+    {
+      "candidate_id": "future_reform_vs_current_voting_instruction-001",
+      "family": "future_reform_vs_current_voting_instruction",
+      "content": "A local government announces a new voting system that will be implemented in the next election, but details are not yet available.",
+      "unanimous_judge_label": "restrict",
+      "anchor_label": "",
+      "reason": "high_agreement_requires_manual_anchor_review"
+    },
+    {
+      "candidate_id": "obvious_satire_vs_deceptive_notice-001",
+      "family": "obvious_satire_vs_deceptive_notice",
+      "content": "A satirical post on social media showing a cartoon of a voting machine with a note saying 'Voting is easy, just stay home and binge-watch your favorite show.'",
+      "unanimous_judge_label": "allow",
+      "anchor_label": "",
+      "reason": "high_agreement_requires_manual_anchor_review"
+    },
+    {
+      "candidate_id": "prediction_opinion_vs_false_certification-001",
+      "family": "prediction_opinion_vs_false_certification",
+      "content": "Candidate A claims their opponent has been tampering with the voting machines.",
+      "unanimous_judge_label": "escalate",
+      "anchor_label": "",
+      "reason": "high_agreement_requires_manual_anchor_review"
+    },
+    {
+      "candidate_id": "education_critique_quote_vs_endorsement_or_mobilization-001",
+      "family": "education_critique_quote_vs_endorsement_or_mobilization",
+      "content": "Candidate A quotes a university professor who argues that early voting periods can be confusing for first-time voters.",
+      "unanimous_judge_label": "allow",
+      "anchor_label": "",
+      "reason": "high_agreement_requires_manual_anchor_review"
+    }
+  ]
+}

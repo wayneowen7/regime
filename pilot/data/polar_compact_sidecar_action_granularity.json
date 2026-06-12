@@ -1,0 +1,211 @@
+{
+  "sidecars": [
+    {
+      "artifact_type": "polar_compact_policy",
+      "policy_id": "normal_civic_discussion_v1",
+      "target_rule": "ballot_validity",
+      "included_rules": [
+        "ballot_validity"
+      ],
+      "rule_summaries": {
+        "ballot_validity": {
+          "has_boundary_rule": true,
+          "boundary_variable_count": 0,
+          "action_rule_count": 4
+        }
+      },
+      "case_ids": [
+        "AG-T-001"
+      ],
+      "action_edge_cues": {
+        "allow": [
+          "quoted_false_claim",
+          "critique",
+          "no_official_source",
+          "normal_period",
+          "no_endorsement",
+          "no_mobilization"
+        ]
+      }
+    },
+    {
+      "artifact_type": "polar_compact_policy",
+      "policy_id": "normal_civic_discussion_v1",
+      "target_rule": "satire",
+      "included_rules": [
+        "satire"
+      ],
+      "rule_summaries": {
+        "satire": {
+          "has_boundary_rule": true,
+          "boundary_variable_count": 0,
+          "action_rule_count": 4
+        }
+      },
+      "case_ids": [],
+      "action_edge_cues": {}
+    },
+    {
+      "artifact_type": "polar_compact_policy",
+      "policy_id": "normal_civic_discussion_v1",
+      "target_rule": "counting_process",
+      "included_rules": [
+        "counting_process"
+      ],
+      "rule_summaries": {
+        "counting_process": {
+          "has_boundary_rule": true,
+          "boundary_variable_count": 0,
+          "action_rule_count": 4
+        }
+      },
+      "case_ids": [],
+      "action_edge_cues": {}
+    },
+    {
+      "artifact_type": "polar_compact_policy",
+      "policy_id": "election_integrity_period_v2",
+      "target_rule": "ballot_validity",
+      "included_rules": [
+        "ballot_validity"
+      ],
+      "rule_summaries": {
+        "ballot_validity": {
+          "has_boundary_rule": true,
+          "boundary_variable_count": 0,
+          "action_rule_count": 4
+        }
+      },
+      "case_ids": [
+        "AG-T-004",
+        "AG-T-003",
+        "AG-T-002"
+      ],
+      "action_edge_cues": {
+        "escalate": [
+          "quoted_false_claim",
+          "endorsement",
+          "targeted_voter_group",
+          "imminent_offline_mobilization",
+          "challenge_ballots"
+        ],
+        "remove": [
+          "quoted_false_claim",
+          "endorsement",
+          "current_election",
+          "no_targeted_mobilization",
+          "no_imminent_offline_coordination"
+        ],
+        "contextualize": [
+          "quoted_false_claim",
+          "clear_correction",
+          "official_source",
+          "heightened_period",
+          "no_endorsement",
+          "no_mobilization"
+        ]
+      }
+    },
+    {
+      "artifact_type": "polar_compact_policy",
+      "policy_id": "election_integrity_period_v2",
+      "target_rule": "satire",
+      "included_rules": [
+        "satire"
+      ],
+      "rule_summaries": {
+        "satire": {
+          "has_boundary_rule": true,
+          "boundary_variable_count": 0,
+          "action_rule_count": 4
+        }
+      },
+      "case_ids": [
+        "AG-T-008",
+        "AG-T-007",
+        "AG-T-006",
+        "AG-T-005"
+      ],
+      "action_edge_cues": {
+        "escalate": [
+          "official_looking_format",
+          "real_precincts",
+          "current_closure",
+          "coordinated_distribution",
+          "voters_should_go_home"
+        ],
+        "remove": [
+          "official_looking_format",
+          "real_precinct",
+          "current_cancellation",
+          "weak_parody_label",
+          "high_confusion_risk"
+        ],
+        "contextualize": [
+          "parody_label",
+          "partial_official_format",
+          "no_real_location_change",
+          "medium_confusion_risk",
+          "no_current_cancellation"
+        ],
+        "allow": [
+          "clear_label",
+          "fictional_location",
+          "absurd_reason",
+          "no_real_current_instruction",
+          "low_confusion_risk"
+        ]
+      }
+    },
+    {
+      "artifact_type": "polar_compact_policy",
+      "policy_id": "election_integrity_period_v2",
+      "target_rule": "counting_process",
+      "included_rules": [
+        "counting_process"
+      ],
+      "rule_summaries": {
+        "counting_process": {
+          "has_boundary_rule": true,
+          "boundary_variable_count": 0,
+          "action_rule_count": 4
+        }
+      },
+      "case_ids": [
+        "AG-T-012",
+        "AG-T-011",
+        "AG-T-010",
+        "AG-T-009"
+      ],
+      "action_edge_cues": {
+        "escalate": [
+          "official_status_claim",
+          "false_certification",
+          "coordinated_distribution",
+          "mobilization_to_officials",
+          "active_counting"
+        ],
+        "remove": [
+          "official_status_claim",
+          "certified_result",
+          "remaining_ballots_rejected",
+          "active_counting",
+          "no_coordination"
+        ],
+        "contextualize": [
+          "unverified_report",
+          "counting_active",
+          "official_source_direction",
+          "no_final_result_claim",
+          "medium_confusion_risk"
+        ],
+        "allow": [
+          "uncertainty_markers",
+          "no_official_status_claim",
+          "await_certification",
+          "no_voter_action_instruction"
+        ]
+      }
+    }
+  ]
+}

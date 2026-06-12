@@ -1,0 +1,110 @@
+{
+  "normal_civic_discussion_v1": {
+    "name": "Normal Civic Discussion",
+    "description": "Ordinary civic discussion period with broader tolerance for political opinion, future reform proposals, clear satire, uncertain analysis, and educational critique when content is non-actionable.",
+    "rules": {
+      "candidate_claims": {
+        "priority": "medium",
+        "standard": "Candidate claims may be allowed or contextualized unless they provide actionable election misinformation about eligibility, voting access, ballot validity, timing, location, or counting status.",
+        "exceptions": [
+          "Restrict or escalate when a candidate-related claim becomes a specific current voting instruction.",
+          "Contextualize when an unverifiable claim is framed as opinion and does not tell voters what to do."
+        ]
+      },
+      "voting_procedure": {
+        "priority": "high when current and actionable; low when future reform",
+        "standard": "Allow future reform discussion, policy commentary, and academic debate about later election cycles. Review or restrict current voting instruction that gives specific instruction about voting time, location, eligibility, ballot request deadlines, ballot return, or whether voters should go now.",
+        "boundary_family": "future_reform_vs_current_voting_instruction",
+        "boundary_rule": "Future reform means proposals about laws, access, deadlines, or procedures for a later election cycle without operational advice for voters now. Current voting instruction means advice, warnings, or commands about present voting logistics, including current timing claims that could cause missed voting.",
+        "exceptions": [
+          "Allow non-actionable future reform even during heightened periods when it does not describe current voting procedure as fact.",
+          "Remove or escalate current unverified procedure claims that could suppress, delay, redirect, or discourage voters."
+        ]
+      },
+      "satire": {
+        "priority": "medium",
+        "standard": "Satire is allowed when the satirical framing is clear, fictional, absurd, or otherwise unlikely to be mistaken for a real election notice.",
+        "boundary_family": "obvious_satire_vs_deceptive_notice",
+        "boundary_rule": "Obvious satire uses unmistakable fictional or absurd cues and does not resemble an official current instruction. A deceptive notice uses official-looking format, seals, urgent formatting, real places, real dates, or weak parody labels to make voters think a real current election rule has changed.",
+        "exceptions": [
+          "Allow obvious satire and clearly labeled performance or commentary.",
+          "Restrict or remove official-looking satire when a weak parody cue is not enough to prevent voter confusion."
+        ]
+      },
+      "ballot_validity": {
+        "priority": "high when actionable; medium when debunking",
+        "standard": "Unverified ballot validity claims should be contextualized unless they instruct people not to vote, not to submit ballots, or to pressure officials to reject ballots.",
+        "boundary_family": "education_critique_quote_vs_endorsement_or_mobilization",
+        "boundary_rule": "Education critique quotes, screenshots, or summarizes a false claim to debunk it, explain media literacy, or direct voters to official sources. Endorsement or mobilization repeats the false claim as true or urges action based on it, including discouraging submission or demanding rejection.",
+        "exceptions": [
+          "Allow or contextualize quoted false claims when clearly corrected and paired with official sources.",
+          "Remove current false ballot-invalidity claims when they endorse non-submission, rejection, or voter discouragement."
+        ]
+      },
+      "counting_process": {
+        "priority": "medium",
+        "standard": "Claims about counting process may be contextualized when non-actionable and should distinguish prediction opinion from statements of official status.",
+        "boundary_family": "prediction_opinion_vs_false_certification",
+        "boundary_rule": "Prediction opinion uses uncertainty, analysis, forecasts, or personal belief and avoids claiming an official result. False certification asserts an official result, certification, final count, rejected ballots, or completed counting while active counting or certification is unresolved.",
+        "exceptions": [
+          "Allow uncertain analysis that waits for official certification.",
+          "Restrict or remove false certification claims that misstate official result or active counting status."
+        ]
+      }
+    }
+  },
+  "election_integrity_period_v2": {
+    "name": "Election Integrity Period",
+    "description": "Heightened integrity period where misleading election procedure, eligibility, ballot validity, timing, location, current official notices, and counting claims receive stricter treatment while preserving clear reform, satire, prediction, and educational critique boundaries.",
+    "rules": {
+      "candidate_claims": {
+        "priority": "high",
+        "standard": "Misleading candidate eligibility or election status claims near election day should be restricted or escalated when they can affect participation, ballot treatment, or trust in official results.",
+        "exceptions": [
+          "Allow analysis or critique that does not give voters current operational instructions.",
+          "Escalate when candidate claims are paired with false current procedure, ballot validity, or counting instructions."
+        ]
+      },
+      "voting_procedure": {
+        "priority": "highest for current actionable instructions",
+        "standard": "False or unverified voting time, location, eligibility, ballot request, ballot return, or procedure claims should be removed when they concern the current election or tell voters what to do now.",
+        "boundary_family": "future_reform_vs_current_voting_instruction",
+        "boundary_rule": "Future reform remains allowed when it addresses a later election cycle, legal proposal, or policy design without current voting instruction. Current voting instruction includes urgent advice, commands, current timing claims, or claims that polls or offices will be available at another time in a way that could cause missed voting.",
+        "exceptions": [
+          "Allow future reform proposals and academic discussion when clearly non-current and non-actionable.",
+          "Remove current specific instruction that could suppress, delay, misdirect, or discourage voting."
+        ]
+      },
+      "satire": {
+        "priority": "high when it resembles an official notice",
+        "standard": "Satire is allowed only when clearly non-deceptive, fictional, absurd, or plainly labeled in a way that ordinary voters are unlikely to mistake for real current election information.",
+        "boundary_family": "obvious_satire_vs_deceptive_notice",
+        "boundary_rule": "Obvious satire has strong fictional or performance cues and no plausible current voting instruction. A deceptive notice has official-looking design, real-world election context, cancellation language, current timing, or a weak parody label that does not overcome the likelihood of voter confusion.",
+        "exceptions": [
+          "Allow obvious satire, fictional sketches, and absurd election settings.",
+          "Remove official-looking deceptive notice content about current voting access, closure, cancellation, eligibility, or ballot handling."
+        ]
+      },
+      "ballot_validity": {
+        "priority": "highest for endorsed invalidity claims",
+        "standard": "False ballot validity claims should be removed or escalated when they are endorsed as true, tied to the current election, or paired with mobilization against voting, submission, counting, or acceptance of ballots.",
+        "boundary_family": "education_critique_quote_vs_endorsement_or_mobilization",
+        "boundary_rule": "Education critique may quote or show false claims for debunking, media literacy, correction, or direction to official sources. Endorsement or mobilization treats the false claim as true or urges voters, neighbors, observers, or officials to act on it.",
+        "exceptions": [
+          "Contextualize corrective education when repeated rumors could still confuse voters but the post clearly labels them false.",
+          "Remove false ballot-invalidity claims that discourage submission, encourage rejection, or mobilize action based on the falsehood."
+        ]
+      },
+      "counting_process": {
+        "priority": "highest during active counting and certification",
+        "standard": "False counting process claims should be restricted, removed, or escalated when they misstate active counting, rejected ballots, final tallies, official result status, or certification.",
+        "boundary_family": "prediction_opinion_vs_false_certification",
+        "boundary_rule": "Prediction opinion is allowed when framed as analysis, forecast, uncertainty, too-close-to-call commentary, or waiting for certification. False certification claims an official result, certified winner, completed count, or rejected remaining ballots before official resolution or contrary to official status.",
+        "exceptions": [
+          "Allow uncertain prediction opinion and analysis that defers to official results.",
+          "Remove false certification and false official result claims during active counting, canvassing, recounts, or pending certification."
+        ]
+      }
+    }
+  }
+}

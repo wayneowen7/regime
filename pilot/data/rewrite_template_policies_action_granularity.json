@@ -1,0 +1,20 @@
+{
+  "normal_civic_discussion_v1": {
+    "name": "Template Rewrite Normal Civic Discussion",
+    "description": "Ordinary civic discussion period with broad tolerance for critique, satire, prediction, and non-actionable political speech.",
+    "rules": {
+      "ballot_validity": "Operational rewrite: apply the ballot_validity rule using the current policy text only.\nSource standard: Allow educational or critical discussion. Intervene when content spreads harmful false claims about whether ballots count.\nDecision guidance: identify the claim, separate critique or education from endorsement, assess current operational risk, and choose the least severe action that addresses the risk.\nWhen the policy leaves an action boundary unresolved, escalate rather than inventing facts outside the policy.",
+      "satire": "Operational rewrite: apply the satire rule using the current policy text only.\nSource standard: Allow satire and commentary, but act on content that could mislead voters about election access.\nDecision guidance: identify the claim, separate critique or education from endorsement, assess current operational risk, and choose the least severe action that addresses the risk.\nWhen the policy leaves an action boundary unresolved, escalate rather than inventing facts outside the policy.",
+      "counting_process": "Operational rewrite: apply the counting_process rule using the current policy text only.\nSource standard: Allow opinion and analysis about counting. Intervene when content misstates official election results or counting status.\nDecision guidance: identify the claim, separate critique or education from endorsement, assess current operational risk, and choose the least severe action that addresses the risk.\nWhen the policy leaves an action boundary unresolved, escalate rather than inventing facts outside the policy."
+    }
+  },
+  "election_integrity_period_v2": {
+    "name": "Template Rewrite Election Integrity Period",
+    "description": "Heightened period where misleading election procedure, ballot validity, official notice, and counting claims require stricter treatment.",
+    "rules": {
+      "ballot_validity": "Operational rewrite: apply the ballot_validity rule using the current policy text only.\nSource standard: False ballot validity claims are high priority during the integrity period. Preserve corrective education but intervene on harmful misinformation.\nDecision guidance: identify the claim, separate critique or education from endorsement, assess current operational risk, and choose the least severe action that addresses the risk.\nWhen the policy leaves an action boundary unresolved, escalate rather than inventing facts outside the policy.",
+      "satire": "Operational rewrite: apply the satire rule using the current policy text only.\nSource standard: Satire is allowed when it is clearly not deceptive. Intervene on official-looking or confusing election notices.\nDecision guidance: identify the claim, separate critique or education from endorsement, assess current operational risk, and choose the least severe action that addresses the risk.\nWhen the policy leaves an action boundary unresolved, escalate rather than inventing facts outside the policy.",
+      "counting_process": "Operational rewrite: apply the counting_process rule using the current policy text only.\nSource standard: Claims about active counting and certification require care. Intervene on false claims about official status or rejected ballots.\nDecision guidance: identify the claim, separate critique or education from endorsement, assess current operational risk, and choose the least severe action that addresses the risk.\nWhen the policy leaves an action boundary unresolved, escalate rather than inventing facts outside the policy."
+    }
+  }
+}

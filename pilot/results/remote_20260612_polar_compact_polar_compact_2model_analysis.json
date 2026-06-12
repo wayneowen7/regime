@@ -1,0 +1,2053 @@
+{
+  "n_cases": 12,
+  "n_rows": 72,
+  "policy_only_boundary_error_rate": 0.3333333333333333,
+  "policy_only_exact_action_error_rate": 0.3333333333333333,
+  "policy_only_decision_family_error_rate": 0.16666666666666666,
+  "policy_only_action_granularity_error_rate": 0.16666666666666666,
+  "action_granularity_rescue_rate": 1.0,
+  "current_guidance_rescue_rate": 1.0,
+  "stale_guidance_harm_rate": 0.3,
+  "boundary_instability_rate": 0.3333333333333333,
+  "invalid_used_precedent_rate": 0.0,
+  "stale_rationale_match_total": 2,
+  "pseudo_consensus_candidates": [],
+  "family_summaries": {
+    "education_critique_quote_vs_endorsement_or_mobilization": {
+      "n_cases": 4,
+      "n_rows": 24,
+      "policy_only_boundary_error_rate": 0.0,
+      "policy_only_exact_action_error_rate": 0.0,
+      "policy_only_decision_family_error_rate": 0.0,
+      "policy_only_action_granularity_error_rate": 0.0,
+      "action_granularity_rescue_rate": 0.0,
+      "current_guidance_rescue_rate": 0.0,
+      "stale_guidance_harm_rate": 0.0,
+      "boundary_instability_rate": 0.0,
+      "invalid_used_precedent_rate": 0.0,
+      "stale_rationale_match_total": 2,
+      "pseudo_consensus_candidates": []
+    },
+    "obvious_satire_vs_deceptive_notice": {
+      "n_cases": 4,
+      "n_rows": 24,
+      "policy_only_boundary_error_rate": 0.625,
+      "policy_only_exact_action_error_rate": 0.625,
+      "policy_only_decision_family_error_rate": 0.375,
+      "policy_only_action_granularity_error_rate": 0.25,
+      "action_granularity_rescue_rate": 1.0,
+      "current_guidance_rescue_rate": 1.0,
+      "stale_guidance_harm_rate": 0.3333333333333333,
+      "boundary_instability_rate": 0.75,
+      "invalid_used_precedent_rate": 0.0,
+      "stale_rationale_match_total": 0,
+      "pseudo_consensus_candidates": []
+    },
+    "prediction_opinion_vs_false_certification": {
+      "n_cases": 4,
+      "n_rows": 24,
+      "policy_only_boundary_error_rate": 0.375,
+      "policy_only_exact_action_error_rate": 0.375,
+      "policy_only_decision_family_error_rate": 0.125,
+      "policy_only_action_granularity_error_rate": 0.25,
+      "action_granularity_rescue_rate": 1.0,
+      "current_guidance_rescue_rate": 1.0,
+      "stale_guidance_harm_rate": 0.6666666666666666,
+      "boundary_instability_rate": 0.25,
+      "invalid_used_precedent_rate": 0.0,
+      "stale_rationale_match_total": 0,
+      "pseudo_consensus_candidates": []
+    }
+  },
+  "per_case": {
+    "AG-T-001": {
+      "case_id": "AG-T-001",
+      "expected_decision": "allow",
+      "expected_decision_family": "non_removal",
+      "model_decisions": [
+        "allow"
+      ],
+      "decision_families": [
+        "non_removal"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        }
+      },
+      "policy_only_correct": true,
+      "policy_only_exact_correct": true,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 2,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 2
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "education_critique_quote_vs_endorsement_or_mobilization",
+      "hidden_anchor_label": "quote_for_critique"
+    },
+    "AG-T-002": {
+      "case_id": "AG-T-002",
+      "expected_decision": "contextualize",
+      "expected_decision_family": "non_removal",
+      "model_decisions": [
+        "contextualize"
+      ],
+      "decision_families": [
+        "non_removal"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "contextualize"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "contextualize"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "contextualize"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        }
+      },
+      "policy_only_correct": true,
+      "policy_only_exact_correct": true,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "education_critique_quote_vs_endorsement_or_mobilization",
+      "hidden_anchor_label": "quote_for_debunking"
+    },
+    "AG-T-003": {
+      "case_id": "AG-T-003",
+      "expected_decision": "remove",
+      "expected_decision_family": "intervention",
+      "model_decisions": [
+        "remove"
+      ],
+      "decision_families": [
+        "intervention"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        }
+      },
+      "policy_only_correct": true,
+      "policy_only_exact_correct": true,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "education_critique_quote_vs_endorsement_or_mobilization",
+      "hidden_anchor_label": "quote_plus_endorsement"
+    },
+    "AG-T-004": {
+      "case_id": "AG-T-004",
+      "expected_decision": "escalate",
+      "expected_decision_family": "intervention",
+      "model_decisions": [
+        "escalate"
+      ],
+      "decision_families": [
+        "intervention"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "escalate"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "escalate"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "escalate"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        }
+      },
+      "policy_only_correct": true,
+      "policy_only_exact_correct": true,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "education_critique_quote_vs_endorsement_or_mobilization",
+      "hidden_anchor_label": "quote_plus_targeted_mobilization"
+    },
+    "AG-T-005": {
+      "case_id": "AG-T-005",
+      "expected_decision": "allow",
+      "expected_decision_family": "non_removal",
+      "model_decisions": [
+        "allow",
+        "remove"
+      ],
+      "decision_families": [
+        "non_removal",
+        "intervention"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow",
+            "remove"
+          ],
+          "decision_families": [
+            "non_removal",
+            "intervention"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        }
+      },
+      "policy_only_correct": true,
+      "policy_only_exact_correct": true,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "remove",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": false,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "hidden_anchor_label": "obvious_satire"
+    },
+    "AG-T-006": {
+      "case_id": "AG-T-006",
+      "expected_decision": "contextualize",
+      "expected_decision_family": "non_removal",
+      "model_decisions": [
+        "allow",
+        "contextualize",
+        "remove"
+      ],
+      "decision_families": [
+        "non_removal",
+        "intervention"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow",
+            "remove"
+          ],
+          "decision_families": [
+            "non_removal",
+            "intervention"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "contextualize",
+            "remove"
+          ],
+          "decision_families": [
+            "non_removal",
+            "intervention"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "contextualize",
+            "remove"
+          ],
+          "decision_families": [
+            "non_removal",
+            "intervention"
+          ]
+        }
+      },
+      "policy_only_correct": false,
+      "policy_only_exact_correct": false,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": false,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "remove",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": false,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "remove",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": false,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "remove",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": false,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "hidden_anchor_label": "satirical_but_confusable"
+    },
+    "AG-T-007": {
+      "case_id": "AG-T-007",
+      "expected_decision": "remove",
+      "expected_decision_family": "intervention",
+      "model_decisions": [
+        "allow",
+        "remove"
+      ],
+      "decision_families": [
+        "non_removal",
+        "intervention"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow",
+            "remove"
+          ],
+          "decision_families": [
+            "non_removal",
+            "intervention"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        }
+      },
+      "policy_only_correct": true,
+      "policy_only_exact_correct": true,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "allow",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "non_removal",
+          "policy_adherence": false,
+          "decision_family_adherence": false,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "hidden_anchor_label": "deceptive_official_looking_notice"
+    },
+    "AG-T-008": {
+      "case_id": "AG-T-008",
+      "expected_decision": "escalate",
+      "expected_decision_family": "intervention",
+      "model_decisions": [
+        "remove",
+        "escalate"
+      ],
+      "decision_families": [
+        "intervention"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "remove",
+            "escalate"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "escalate",
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "escalate",
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        }
+      },
+      "policy_only_correct": true,
+      "policy_only_exact_correct": true,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "hidden_anchor_label": "coordinated_deceptive_notice"
+    },
+    "AG-T-009": {
+      "case_id": "AG-T-009",
+      "expected_decision": "allow",
+      "expected_decision_family": "non_removal",
+      "model_decisions": [
+        "allow",
+        "contextualize"
+      ],
+      "decision_families": [
+        "non_removal"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow",
+            "contextualize"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow",
+            "contextualize"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        }
+      },
+      "policy_only_correct": true,
+      "policy_only_exact_correct": true,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": false,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "allow",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": false,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "hidden_anchor_label": "prediction_opinion"
+    },
+    "AG-T-010": {
+      "case_id": "AG-T-010",
+      "expected_decision": "contextualize",
+      "expected_decision_family": "non_removal",
+      "model_decisions": [
+        "allow",
+        "contextualize",
+        "remove"
+      ],
+      "decision_families": [
+        "non_removal",
+        "intervention"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "allow",
+            "remove"
+          ],
+          "decision_families": [
+            "non_removal",
+            "intervention"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "contextualize"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "contextualize"
+          ],
+          "decision_families": [
+            "non_removal"
+          ]
+        }
+      },
+      "policy_only_correct": false,
+      "policy_only_exact_correct": false,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "allow",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": false,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "remove",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": false,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "contextualize",
+          "model_decision": "contextualize",
+          "expected_decision_family": "non_removal",
+          "model_decision_family": "non_removal",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "hidden_anchor_label": "uncertain_counting_report_with_source"
+    },
+    "AG-T-011": {
+      "case_id": "AG-T-011",
+      "expected_decision": "remove",
+      "expected_decision_family": "intervention",
+      "model_decisions": [
+        "remove"
+      ],
+      "decision_families": [
+        "intervention"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        }
+      },
+      "policy_only_correct": true,
+      "policy_only_exact_correct": true,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "remove",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "hidden_anchor_label": "false_certification"
+    },
+    "AG-T-012": {
+      "case_id": "AG-T-012",
+      "expected_decision": "escalate",
+      "expected_decision_family": "intervention",
+      "model_decisions": [
+        "remove",
+        "escalate"
+      ],
+      "decision_families": [
+        "intervention"
+      ],
+      "conditions": {
+        "policy_only": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "remove",
+            "escalate"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "naive_memory": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "escalate",
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        },
+        "regime_aware": {
+          "models": [
+            "qwen2.5:7b",
+            "llama3.2:latest"
+          ],
+          "n_rows": 2,
+          "decisions": [
+            "escalate",
+            "remove"
+          ],
+          "decision_families": [
+            "intervention"
+          ]
+        }
+      },
+      "policy_only_correct": true,
+      "policy_only_exact_correct": true,
+      "policy_only_family_correct": true,
+      "regime_aware_correct": true,
+      "regime_aware_exact_correct": true,
+      "regime_aware_family_correct": true,
+      "naive_memory_correct": true,
+      "naive_memory_exact_correct": true,
+      "naive_memory_family_correct": true,
+      "invalid_used_precedent_rows": 0,
+      "stale_rationale_match_total": 0,
+      "rows": [
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 0,
+          "model": "qwen2.5:7b",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "policy_only",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "escalate",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": true,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "naive_memory",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        },
+        {
+          "run_index": 1,
+          "model": "llama3.2:latest",
+          "condition": "regime_aware",
+          "memory_view": "operational",
+          "policy_view": "full",
+          "stale_warning": true,
+          "expected_decision": "escalate",
+          "model_decision": "remove",
+          "expected_decision_family": "intervention",
+          "model_decision_family": "intervention",
+          "policy_adherence": false,
+          "decision_family_adherence": true,
+          "invalid_used_precedent_count": 0,
+          "stale_rationale_match_count": 0
+        }
+      ],
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "hidden_anchor_label": "coordinated_false_certification_mobilization"
+    }
+  }
+}

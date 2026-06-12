@@ -1,0 +1,185 @@
+{
+  "contrast_sets": [
+    {
+      "boundary_family": "education_critique_quote_vs_endorsement_or_mobilization",
+      "action_contrast": "allow_vs_contextualize",
+      "case_ids": [
+        "AG-T-001",
+        "AG-T-002"
+      ],
+      "expected_actions": [
+        "allow",
+        "contextualize"
+      ],
+      "boundary_variables": [
+        "quoted_false_claim",
+        "critique",
+        "no_official_source",
+        "normal_period",
+        "no_endorsement",
+        "no_mobilization",
+        "clear_correction",
+        "official_source",
+        "heightened_period"
+      ],
+      "key": "education_critique_quote_vs_endorsement_or_mobilization::allow_vs_contextualize"
+    },
+    {
+      "boundary_family": "education_critique_quote_vs_endorsement_or_mobilization",
+      "action_contrast": "contextualize_vs_remove",
+      "case_ids": [
+        "AG-T-003"
+      ],
+      "expected_actions": [
+        "remove"
+      ],
+      "boundary_variables": [
+        "quoted_false_claim",
+        "endorsement",
+        "current_election",
+        "no_targeted_mobilization",
+        "no_imminent_offline_coordination"
+      ],
+      "key": "education_critique_quote_vs_endorsement_or_mobilization::contextualize_vs_remove"
+    },
+    {
+      "boundary_family": "education_critique_quote_vs_endorsement_or_mobilization",
+      "action_contrast": "remove_vs_escalate",
+      "case_ids": [
+        "AG-T-004"
+      ],
+      "expected_actions": [
+        "escalate"
+      ],
+      "boundary_variables": [
+        "quoted_false_claim",
+        "endorsement",
+        "targeted_voter_group",
+        "imminent_offline_mobilization",
+        "challenge_ballots"
+      ],
+      "key": "education_critique_quote_vs_endorsement_or_mobilization::remove_vs_escalate"
+    },
+    {
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "action_contrast": "allow_vs_contextualize",
+      "case_ids": [
+        "AG-T-005",
+        "AG-T-006"
+      ],
+      "expected_actions": [
+        "allow",
+        "contextualize"
+      ],
+      "boundary_variables": [
+        "clear_label",
+        "fictional_location",
+        "absurd_reason",
+        "no_real_current_instruction",
+        "low_confusion_risk",
+        "parody_label",
+        "partial_official_format",
+        "no_real_location_change",
+        "medium_confusion_risk",
+        "no_current_cancellation"
+      ],
+      "key": "obvious_satire_vs_deceptive_notice::allow_vs_contextualize"
+    },
+    {
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "action_contrast": "contextualize_vs_remove",
+      "case_ids": [
+        "AG-T-007"
+      ],
+      "expected_actions": [
+        "remove"
+      ],
+      "boundary_variables": [
+        "official_looking_format",
+        "real_precinct",
+        "current_cancellation",
+        "weak_parody_label",
+        "high_confusion_risk"
+      ],
+      "key": "obvious_satire_vs_deceptive_notice::contextualize_vs_remove"
+    },
+    {
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "action_contrast": "remove_vs_escalate",
+      "case_ids": [
+        "AG-T-008"
+      ],
+      "expected_actions": [
+        "escalate"
+      ],
+      "boundary_variables": [
+        "official_looking_format",
+        "real_precincts",
+        "current_closure",
+        "coordinated_distribution",
+        "voters_should_go_home"
+      ],
+      "key": "obvious_satire_vs_deceptive_notice::remove_vs_escalate"
+    },
+    {
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "action_contrast": "allow_vs_contextualize",
+      "case_ids": [
+        "AG-T-009",
+        "AG-T-010"
+      ],
+      "expected_actions": [
+        "allow",
+        "contextualize"
+      ],
+      "boundary_variables": [
+        "uncertainty_markers",
+        "no_official_status_claim",
+        "await_certification",
+        "no_voter_action_instruction",
+        "unverified_report",
+        "counting_active",
+        "official_source_direction",
+        "no_final_result_claim",
+        "medium_confusion_risk"
+      ],
+      "key": "prediction_opinion_vs_false_certification::allow_vs_contextualize"
+    },
+    {
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "action_contrast": "contextualize_vs_remove",
+      "case_ids": [
+        "AG-T-011"
+      ],
+      "expected_actions": [
+        "remove"
+      ],
+      "boundary_variables": [
+        "official_status_claim",
+        "certified_result",
+        "remaining_ballots_rejected",
+        "active_counting",
+        "no_coordination"
+      ],
+      "key": "prediction_opinion_vs_false_certification::contextualize_vs_remove"
+    },
+    {
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "action_contrast": "remove_vs_escalate",
+      "case_ids": [
+        "AG-T-012"
+      ],
+      "expected_actions": [
+        "escalate"
+      ],
+      "boundary_variables": [
+        "official_status_claim",
+        "false_certification",
+        "coordinated_distribution",
+        "mobilization_to_officials",
+        "active_counting"
+      ],
+      "key": "prediction_opinion_vs_false_certification::remove_vs_escalate"
+    }
+  ]
+}

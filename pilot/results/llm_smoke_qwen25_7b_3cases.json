@@ -1,0 +1,229 @@
+{
+  "model": "qwen2.5:7b",
+  "top_k": 3,
+  "conditions": [
+    "policy_only",
+    "naive_memory",
+    "regime_aware"
+  ],
+  "rows": {
+    "policy_only": [
+      {
+        "case_id": "T-001",
+        "type": "within_regime_holdout",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "policy_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "rationale": "The post contains false voting time claims, which are not verified and may mislead voters.",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\n  \"decision\": \"remove\",\n  \"rationale\": \"The post contains false voting time claims, which are not verified and may mislead voters.\",\n  \"used_precedents\": []\n}"
+      },
+      {
+        "case_id": "T-002",
+        "type": "within_regime_holdout",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "contextualize",
+        "model_decision": "contextualize",
+        "policy_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "rationale": "The post is a clearly edited joke image and falls under the allowed category of satire as long as the satirical framing is clear.",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\n  \"decision\": \"contextualize\",\n  \"rationale\": \"The post is a clearly edited joke image and falls under the allowed category of satire as long as the satirical framing is clear.\",\n  \"used_precedents\": []\n}"
+      },
+      {
+        "case_id": "T-003",
+        "type": "cross_regime_conflict",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "policy_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "rationale": "The post contains a false or unverified voting time claim, suggesting that weekday voting is hard and directing users to wait for Sunday instead of voting today. This violates the policy rule 'voting_procedure'.",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\n  \"decision\": \"remove\",\n  \"rationale\": \"The post contains a false or unverified voting time claim, suggesting that weekday voting is hard and directing users to wait for Sunday instead of voting today. This violates the policy rule 'voting_procedure'.\",\n  \"used_precedents\": []\n}"
+      }
+    ],
+    "naive_memory": [
+      {
+        "case_id": "T-001",
+        "type": "within_regime_holdout",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "policy_adherence": true,
+        "used_precedents": [
+          "R2-P-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "rationale": "The post provides a specific false voting time claim that may mislead voters, similar to precedent R2-P-001.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "R2-P-001",
+          "R1-P-001",
+          "R2-P-002"
+        ],
+        "raw_response": "{\n  \"decision\": \"remove\",\n  \"rationale\": \"The post provides a specific false voting time claim that may mislead voters, similar to precedent R2-P-001.\",\n  \"used_precedents\": [\"R2-P-001\"]\n}"
+      },
+      {
+        "case_id": "T-002",
+        "type": "within_regime_holdout",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "contextualize",
+        "model_decision": "contextualize",
+        "policy_adherence": true,
+        "used_precedents": [
+          "R1-P-002"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "rationale": "The post is a clearly edited joke image, which falls under satirical content and does not provide actionable election misinformation.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "R1-P-002",
+          "R2-P-002",
+          "R1-P-004"
+        ],
+        "raw_response": "{\n  \"decision\": \"contextualize\",\n  \"rationale\": \"The post is a clearly edited joke image, which falls under satirical content and does not provide actionable election misinformation.\",\n  \"used_precedents\": [\"R1-P-002\"]\n}"
+      },
+      {
+        "case_id": "T-003",
+        "type": "cross_regime_conflict",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "policy_adherence": true,
+        "used_precedents": [
+          "R2-P-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "rationale": "The post provides specific current-election voting location instructions that may mislead voters.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "R1-P-001",
+          "R2-P-001",
+          "R2-P-002"
+        ],
+        "raw_response": "{\n  \"decision\": \"remove\",\n  \"rationale\": \"The post provides specific current-election voting location instructions that may mislead voters.\",\n  \"used_precedents\": [\"R2-P-001\"]\n}"
+      }
+    ],
+    "regime_aware": [
+      {
+        "case_id": "T-001",
+        "type": "within_regime_holdout",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "policy_adherence": true,
+        "used_precedents": [
+          "R2-P-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "rationale": "The post provides specific false voting time information that may mislead voters about the current election schedule.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "R2-P-001",
+          "R2-P-002",
+          "R2-P-005"
+        ],
+        "raw_response": "{\n  \"decision\": \"remove\",\n  \"rationale\": \"The post provides specific false voting time information that may mislead voters about the current election schedule.\",\n  \"used_precedents\": [\"R2-P-001\"]\n}"
+      },
+      {
+        "case_id": "T-002",
+        "type": "within_regime_holdout",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "contextualize",
+        "model_decision": "contextualize",
+        "policy_adherence": true,
+        "used_precedents": [
+          "R1-P-002"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "rationale": "The post is a clearly edited joke image, similar to the precedent R1-P-002, which suggests contextualizing the content as it does not provide actionable election misinformation.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "R1-P-002",
+          "R1-P-004",
+          "R1-P-005"
+        ],
+        "raw_response": "{\n  \"decision\": \"contextualize\",\n  \"rationale\": \"The post is a clearly edited joke image, similar to the precedent R1-P-002, which suggests contextualizing the content as it does not provide actionable election misinformation.\",\n  \"used_precedents\": [\"R1-P-002\"]\n}"
+      },
+      {
+        "case_id": "T-003",
+        "type": "cross_regime_conflict",
+        "active_regime_id": "election_integrity_period_v2",
+        "expected_decision": "remove",
+        "model_decision": "remove",
+        "policy_adherence": true,
+        "used_precedents": [
+          "R2-P-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "rationale": "The post suggests a specific voting time (Sunday) that may mislead voters about the current election schedule.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "R2-P-001",
+          "R2-P-002",
+          "R2-P-005"
+        ],
+        "raw_response": "{\n  \"decision\": \"remove\",\n  \"rationale\": \"The post suggests a specific voting time (Sunday) that may mislead voters about the current election schedule.\",\n  \"used_precedents\": [\"R2-P-001\"]\n}"
+      }
+    ]
+  },
+  "summaries": {
+    "policy_only": {
+      "n": 3,
+      "policy_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "parse_error_rate": 0.0
+    },
+    "naive_memory": {
+      "n": 3,
+      "policy_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "parse_error_rate": 0.0
+    },
+    "regime_aware": {
+      "n": 3,
+      "policy_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "parse_error_rate": 0.0
+    }
+  }
+}

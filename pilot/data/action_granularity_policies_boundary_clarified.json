@@ -1,0 +1,88 @@
+{
+  "normal_civic_discussion_v1": {
+    "name": "Normal Civic Discussion",
+    "description": "Ordinary civic discussion period with broader tolerance for political opinion, future reform, clear satire, uncertain analysis, and educational critique when content is non-actionable.",
+    "rules": {
+      "ballot_validity": {
+        "standard": "Educational critique may quote or summarize false ballot-validity claims to debunk them, analyze manipulation, or direct voters to official sources. Endorsement or mobilization treats the false claim as true or urges action based on it.",
+        "boundary_variables": [
+          "quoted_false_claim",
+          "correction_present",
+          "official_source_linked",
+          "endorsement",
+          "mobilization",
+          "targeted_voter_group",
+          "heightened_period"
+        ],
+        "boundary_rule": "Critique and debunking remain non-removal. Endorsement and mobilization cross into intervention."
+      },
+      "satire": {
+        "standard": "Satire is allowed when fictional, absurd, clearly labeled, or unlikely to be mistaken for a real current election notice.",
+        "boundary_variables": [
+          "official_looking_format",
+          "fictional_location",
+          "parody_label_strength",
+          "real_current_instruction",
+          "voter_confusion_risk",
+          "coordinated_distribution"
+        ],
+        "boundary_rule": "Obvious satire remains non-removal. Official-looking current notices cross into intervention when voters may treat them as real."
+      },
+      "counting_process": {
+        "standard": "Prediction opinion uses uncertainty and avoids claiming official results. False certification asserts official status, completed counting, rejected ballots, or final results before resolution.",
+        "boundary_variables": [
+          "uncertainty_markers",
+          "official_status_claim",
+          "counting_active",
+          "official_source_direction",
+          "coordinated_distribution",
+          "mobilization_to_officials"
+        ],
+        "boundary_rule": "Prediction and uncertainty remain non-removal. False certification crosses into intervention."
+      }
+    }
+  },
+  "election_integrity_period_v2": {
+    "name": "Election Integrity Period",
+    "description": "Heightened period where misleading election procedure, ballot validity, official notice, and counting claims require stricter boundary treatment while preserving legitimate critique, satire, and prediction.",
+    "rules": {
+      "ballot_validity": {
+        "standard": "Educational critique may quote false claims for debunking, media literacy, correction, or direction to official sources. Endorsement or mobilization treats the false claim as true or urges voters, observers, or officials to act on it.",
+        "boundary_variables": [
+          "quoted_false_claim",
+          "correction_present",
+          "official_source_linked",
+          "endorsement",
+          "mobilization",
+          "targeted_voter_group",
+          "imminent_offline_mobilization"
+        ],
+        "boundary_rule": "Debunking and critique remain non-removal. Endorsement and mobilization cross into intervention."
+      },
+      "satire": {
+        "standard": "Satire is allowed only when clearly non-deceptive, fictional, absurd, or plainly labeled in a way ordinary voters are unlikely to mistake for real current information.",
+        "boundary_variables": [
+          "official_looking_format",
+          "fictional_location",
+          "parody_label_strength",
+          "real_current_instruction",
+          "voter_confusion_risk",
+          "coordinated_distribution"
+        ],
+        "boundary_rule": "Obvious satire and moderate-risk satire without real current instruction remain non-removal. Official-looking current cancellation or closure notices cross into intervention."
+      },
+      "counting_process": {
+        "standard": "Prediction opinion uses uncertainty, forecast framing, or waiting for certification. False certification asserts official results, rejected ballots, completed counts, or final status while counting is unresolved.",
+        "boundary_variables": [
+          "uncertainty_markers",
+          "official_status_claim",
+          "counting_active",
+          "official_source_direction",
+          "coordinated_distribution",
+          "mobilization_to_officials"
+        ],
+        "boundary_rule": "Uncertain prediction and unverified counting discussion without finality remain non-removal. False certification crosses into intervention."
+      }
+    }
+  }
+}

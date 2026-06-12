@@ -1,0 +1,128 @@
+{
+  "model": "qwen2.5:7b",
+  "top_k": 3,
+  "memory_view": "operational",
+  "policy_view": "full",
+  "stale_warning": true,
+  "conditions": [
+    "policy_only",
+    "naive_memory",
+    "regime_aware"
+  ],
+  "rows": {
+    "policy_only": [
+      {
+        "case_id": "AG-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post is an educational critique quoting a false claim to debunk it and explain the manipulation, which falls under non-removal criteria.",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"The post is an educational critique quoting a false claim to debunk it and explain the manipulation, which falls under non-removal criteria.\",\n  \"used_precedents\": []\n}"
+      }
+    ],
+    "naive_memory": [
+      {
+        "case_id": "AG-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "AG-B-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post quotes the rumor to explain its manipulation, which falls under educational critique and remains non-removal.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "AG-B-001",
+          "AG-B-003",
+          "AG-B-002"
+        ],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"The post quotes the rumor to explain its manipulation, which falls under educational critique and remains non-removal.\",\n  \"used_precedents\": [\"AG-B-001\"]\n}"
+      }
+    ],
+    "regime_aware": [
+      {
+        "case_id": "AG-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "AG-B-001",
+          "AG-B-002"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post quotes a false claim to explain manipulation, aligning with the boundary guidance for educational critique during a non-intervention period.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "AG-B-001",
+          "AG-B-002",
+          "AG-B-005"
+        ],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"The post quotes a false claim to explain manipulation, aligning with the boundary guidance for educational critique during a non-intervention period.\",\n  \"used_precedents\": [\"AG-B-001\", \"AG-B-002\"]\n}"
+      }
+    ]
+  },
+  "summaries": {
+    "policy_only": {
+      "n": 1,
+      "policy_adherence_rate": 1.0,
+      "decision_family_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    },
+    "naive_memory": {
+      "n": 1,
+      "policy_adherence_rate": 1.0,
+      "decision_family_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    },
+    "regime_aware": {
+      "n": 1,
+      "policy_adherence_rate": 1.0,
+      "decision_family_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    }
+  }
+}

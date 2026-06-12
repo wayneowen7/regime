@@ -1,0 +1,127 @@
+{
+  "model": "qwen2.5:7b",
+  "top_k": 3,
+  "memory_view": "operational",
+  "policy_view": "full",
+  "stale_warning": true,
+  "conditions": [
+    "policy_only",
+    "naive_memory",
+    "regime_aware"
+  ],
+  "rows": {
+    "policy_only": [
+      {
+        "case_id": "AG-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post is part of media-literacy discussion and does not endorse or mobilize voters. It explains the rumor without current operational risk.",
+        "condition": "policy_only",
+        "retrieved_case_ids": [],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"The post is part of media-literacy discussion and does not endorse or mobilize voters. It explains the rumor without current operational risk.\",\n  \"used_precedents\": []\n}"
+      }
+    ],
+    "naive_memory": [
+      {
+        "case_id": "AG-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "AG-A-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post is used for ordinary critique, media-literacy discussion, and does not include current operational risk or endorsement of the false claim.",
+        "condition": "naive_memory",
+        "retrieved_case_ids": [
+          "AG-A-001",
+          "AG-A-002",
+          "AG-A-004"
+        ],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"The post is used for ordinary critique, media-literacy discussion, and does not include current operational risk or endorsement of the false claim.\",\n  \"used_precedents\": [\"AG-A-001\"]\n}"
+      }
+    ],
+    "regime_aware": [
+      {
+        "case_id": "AG-T-001",
+        "type": "boundary_ambiguity",
+        "active_regime_id": "normal_civic_discussion_v1",
+        "expected_decision": "allow",
+        "model_decision": "allow",
+        "expected_decision_family": "non_removal",
+        "model_decision_family": "non_removal",
+        "policy_adherence": true,
+        "decision_family_adherence": true,
+        "used_precedents": [
+          "AG-A-001"
+        ],
+        "invalid_used_precedent_count": 0,
+        "invalid_used_precedent_ids": [],
+        "unknown_used_precedent_count": 0,
+        "unknown_used_precedent_ids": [],
+        "stale_rationale_match_count": 0,
+        "stale_rationale_precedent_ids": [],
+        "rationale": "The post is an ordinary critique of a ballot-invalidity rumor without current operational risk or endorsement, fitting the 'allow' criteria for media-literacy discussion.",
+        "condition": "regime_aware",
+        "retrieved_case_ids": [
+          "AG-A-001",
+          "AG-A-009",
+          "AG-A-005"
+        ],
+        "raw_response": "{\n  \"decision\": \"allow\",\n  \"rationale\": \"The post is an ordinary critique of a ballot-invalidity rumor without current operational risk or endorsement, fitting the 'allow' criteria for media-literacy discussion.\",\n  \"used_precedents\": [\"AG-A-001\"]\n}"
+      }
+    ]
+  },
+  "summaries": {
+    "policy_only": {
+      "n": 1,
+      "policy_adherence_rate": 1.0,
+      "decision_family_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    },
+    "naive_memory": {
+      "n": 1,
+      "policy_adherence_rate": 1.0,
+      "decision_family_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    },
+    "regime_aware": {
+      "n": 1,
+      "policy_adherence_rate": 1.0,
+      "decision_family_adherence_rate": 1.0,
+      "mean_invalid_used_precedents": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "parse_error_rate": 0.0
+    }
+  }
+}

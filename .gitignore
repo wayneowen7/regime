@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environments and notebooks
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+._*
+*.swp
+*.swo
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# Reference PDFs are useful locally but should not be pushed by default.
+papers/*.pdf
+papers/._*
+
+# Large or temporary archives
+*.zip
+*.tar
+*.tgz
+*.tar.gz
+
+# Local secrets
+.env
+.env.*
+
+# Git worktree sandboxes
+.worktrees/
+worktrees/

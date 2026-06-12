@@ -1,0 +1,815 @@
+
+\documentclass{article} % For LaTeX2e
+\usepackage{iclr2025_conference,times}
+
+% Optional math commands from https://github.com/goodfeli/dlbook_notation.
+\input{math_commands.tex}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{tikz}
+
+
+\title{Beyond Monolithic Memory: Regime-Aware Memory for Adaptive Agents}
+
+% Authors must not appear in the submitted version. They should be hidden
+% as long as the \iclrfinalcopy macro remains commented out below.
+% Non-anonymous submissions will be rejected without review.
+
+\author{Antiquus S.~Hippocampus, Natalia Cerebro \& Amelie P. Amygdale \thanks{ Use footnote for providing further information
+about author (webpage, alternative address)---\emph{not} for acknowledging
+funding agencies.  Funding acknowledgements go at the end of the paper.} \\
+Department of Computer Science\\
+Cranberry-Lemon University\\
+Pittsburgh, PA 15213, USA \\
+\texttt{\{hippo,brain,jen\}@cs.cranberry-lemon.edu} \\
+\And
+Ji Q. Ren \& Yevgeny LeNet \\
+Department of Computational Neuroscience \\
+University of the Witwatersrand \\
+Joburg, South Africa \\
+\texttt{\{robot,net\}@wits.ac.za} \\
+\AND
+Coauthor \\
+Affiliation \\
+Address \\
+\texttt{email}
+}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+%\iclrfinalcopy % Uncomment for camera-ready version, but NOT for submission.
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+Long-term memory lets agents reuse past experience, but semantic relevance does not imply validity under a new policy, goal, norm, or safety constraint.
+We formalize these validity conditions as \emph{regimes} and study \emph{regime collapse}: cross-regime interference, memory homogenization, and minority-regime erasure caused by monolithic memory.
+We propose \emph{RAM-minimal}, a concrete regime-aware memory mechanism with write-time regime assignment, conservative invariant promotion, and eligibility-first activation with hard incompatible-regime suppression.
+We evaluate it on RegimeBench v0, a deterministic pilot benchmark with 720 queries across content moderation, robot planning, and cultural norm adaptation.
+On the primary moderation domain, RAM-minimal reaches 96.0 RCA and 0.0 IMA, while a diagnostic metadata-filtering comparator reaches 94.3 RCA and 0.0 IMA; RAM-minimal further improves imbalanced-regime query preservation from 66.7 to 100.0.
+Together, these results identify the limited settings where lifecycle validity changes retrieval outcomes beyond relevance ranking and read-time metadata filtering.
+\end{abstract}
+\section{Introduction}
+
+Large language models are increasingly used as policy-conditioned moderation
+systems. Instead of training a separate classifier for every platform rule,
+jurisdiction, or customer requirement, a moderator can be prompted with a
+natural-language policy and asked to judge whether a piece of content should be
+allowed, contextualized, restricted, removed, or escalated. This interface is
+attractive because moderation policies change frequently and because many
+organizations need domain-specific rules that cannot be fully covered by a
+static safety taxonomy.
+
+However, deployment does not require only a policy-consistent judgment. It
+requires an operational action. A policy may state that election misinformation
+should be removed, that educational correction should be allowed, and that
+borderline civic-integrity content may need context. These statements can be
+reasonable at the level of institutional intent, while still underspecifying the
+boundary that an operational moderator must apply. If a post quotes a false
+ballot-validity rumor in order to debunk it, should the system allow it,
+contextualize it, or remove it? If a satirical civic notice imitates an official
+government format, is the decisive factor parody intent, deception risk, or the
+requested user action? Such cases are not merely hard examples; they expose
+whether the policy text contains enough information to determine the action
+space it asks the model to execute.
+
+We call this mismatch the \emph{policy-to-operation specification gap}: the gap
+between a high-level moderation policy and the concrete operational decisions
+that a model must make under that policy. The gap has two separable layers.
+\emph{Boundary sufficiency} asks whether the policy specifies the variables that
+separate decision families, such as correction versus endorsement, satire versus
+impersonation, or prediction versus false certification. \emph{Action-granularity
+sufficiency} asks whether the policy specifies the exact action within a
+decision family, such as allow, contextualize, restrict, remove, or escalate.
+The first layer concerns what kind of case the system is seeing; the second
+concerns what intervention that case warrants.
+
+This distinction matters because a model can appear to follow a policy while
+remaining operationally unstable. A high-level policy may be sufficient for
+coarse accept/reject judgments but insufficient for exact moderation actions.
+Conversely, adding more examples or retrieving more precedents can create
+pseudo-consensus around an underspecified boundary: the model becomes consistent
+with the supplied cases without revealing whether those cases reflect the
+current policy's intended operational boundary. Before building larger
+moderation datasets, fine-tuning guardrail models, or adding long-term memory,
+we therefore need a way to test whether the policy itself is sufficiently
+specified for the decisions it delegates to the model.
+
+We propose \emph{policy specification testing} as this missing diagnostic step.
+Rather than generating synthetic training data, our method constructs matched
+boundary probes that stress a policy's underspecified regions. Each probe is
+paired with an expected decision family and an exact operational action. We then
+compare model behavior under three policy views: an abstract policy, a
+boundary-clarified policy that names the relevant distinctions, and a
+boundary-plus-action policy that additionally defines the action rubric. The
+goal is not to replace policy owners with a model-generated rulebook. The goal
+is to reveal which boundary variables and action mappings are missing, so that
+clarification can be targeted where it changes decisions.
+
+A pilot study supports this decomposition. We build 12 action-granularity probes
+for election moderation and evaluate two open models under the three policy
+views. Moving from the abstract policy to the boundary-clarified policy reduces
+decision-family error from 25.0\% to 8.3\% and instability from 58.3\% to
+16.7\%. Adding the action rubric further reduces exact-action error from 54.2\%
+to 33.3\% and action-granularity error from 45.8\% to 29.2\%. These numbers are
+not intended as a benchmark-scale claim; they demonstrate the mechanism that
+boundary clarification and action clarification repair different failure modes.
+
+One representative case makes the mechanism concrete. For a post that quotes a
+false ballot claim in order to debunk it and link official guidance, the
+expected action is to contextualize rather than remove. Under the abstract
+policy, both models remove the post. Under the boundary-clarified policy, both
+models move to the correct decision family but choose allow. Under the
+boundary-plus-action policy, both models choose contextualize. The same content
+therefore moves through three distinct error regimes: wrong boundary, right
+boundary but wrong action, and correct operational action.
+
+This paper makes the following contributions:
+\begin{itemize}
+    \item We define the policy-to-operation specification gap in LLM-based
+    content moderation: the failure mode where natural-language policy does not
+    sufficiently determine operational moderation actions.
+    \item We decompose the gap into boundary sufficiency and action-granularity
+    sufficiency, separating coarse decision-family errors from exact-action
+    errors.
+    \item We introduce a lightweight policy specification testing protocol based
+    on matched boundary probes, policy-view comparisons, instability analysis,
+    and minimal clarification rescue.
+    \item We provide pilot evidence that boundary clarification and action
+    rubrics repair different classes of moderation failure, motivating policy
+    specification testing as a preflight step before policy-conditioned judging,
+    synthetic data generation, or memory-augmented moderation.
+\end{itemize}
+
+\section{Regime-Dependent Memory in Long-Term Agents}
+\label{sec:problem_formulation}
+
+Let $\mathcal{R}$ denote the set of regimes encountered by a long-term agent.
+At time $t$, an agent receives input $x_t$, context $c_t$, active regime $r_t$, and memory state $M_t$.
+A regime is not an arbitrary context tag: it is a condition that changes whether at least one memory may be reused.
+We define the validity set of memory $m$ as
+\begin{equation}
+    V(m) \subseteq \mathcal{R}.
+\end{equation}
+Some memories are invariant across regimes; others are valid only under narrow policies, objectives, or norms.
+This separates semantic relevance from regime validity:
+\begin{equation}
+    s_{rel}(m, x_t, c_t)
+    \quad \text{and} \quad
+    s_{val}(m, r_t).
+\end{equation}
+Optimizing $s_{rel}$ alone can activate memories that are topically close but invalid.
+
+We use \emph{regime collapse} for failures caused by losing validity information during consolidation or retrieval.
+The three measurable failures are \textbf{cross-regime interference}, where a memory from $r'\neq r$ steers behavior under $r$; \textbf{memory homogenization}, where distinct regime rules collapse into a generic heuristic; and \textbf{minority regime erasure}, where low-frequency regimes are overwritten by dominant regimes.
+An effective memory system should therefore preserve regime-conditioned correctness, isolate incompatible regimes, share genuinely invariant memories, and retain rare regimes.
+
+This formulation makes the evaluation target different from ordinary retrieval accuracy.
+A retrieval system can select a topically relevant memory and still fail because the selected memory is valid only under a different regime.
+Conversely, a system can avoid cross-regime interference by refusing to retrieve useful memories, which would reduce final task accuracy.
+We therefore evaluate both final behavior and memory activation.
+Regime-conditioned accuracy (RCA) measures whether the final answer matches the target under the active regime.
+Cross-regime interference (CRI) measures whether the answer matches an explicitly invalid cross-regime negative.
+Homogenization rate (HR) captures generic answers that avoid regime-specific commitments.
+Minority-regime query preservation (MRP-Acc) measures downstream accuracy on rare-regime queries, and invalid memory activation (IMA) measures the fraction of retrieved memories whose assignment is incompatible with the active regime.
+These metrics are deliberately redundant: a credible method should reduce CRI and IMA without simply becoming generic or suppressing all useful memory.
+
+The active regime can be explicit, inferred, or partially specified.
+This paper studies the explicit-regime case because it isolates memory lifecycle validity from regime inference.
+That choice makes the closest comparator unusually strong: if a method already receives active-regime metadata, a simple read-time metadata filter can prevent many invalid activations.
+The remaining question is narrower but still important for long-term agents: whether write-time store separation, conservative invariant promotion, and retention pressure change outcomes beyond read-time filtering alone.
+
+Formally, a memory method receives a construction stream $\mathcal{H}=\{e_1,\ldots,e_T\}$ and produces a memory state $M_T$.
+At query time it receives $(x,c,r)$ and returns a prediction $\hat y$ after retrieving a context $C_K(M_T,x,c,r)$ of at most $K$ memories.
+The usual relevance objective encourages $C_K$ to contain memories with high semantic similarity to $(x,c)$.
+Regime-dependent memory adds a constraint: activated memories should be compatible with $r$, and memories that are useful across regimes should be shared only when there is evidence for that invariance.
+This turns memory construction into part of the algorithm rather than a passive log of previous examples.
+
+The failure taxonomy also clarifies what would falsify the proposed method.
+If semantic retrieval has low IMA and low CRI on conflict pairs, then the relevance-validity gap is not present in the benchmark.
+If metadata filtering matches RAM-minimal on minority-regime retention and invariant transfer, then write-time lifecycle structure is unnecessary under the tested conditions.
+If RAM-minimal reduces IMA only by failing to retrieve useful memories, RCA should drop.
+These failure conditions are important because the paper's claim is intentionally narrow: RAM-minimal should improve exactly the pressure points where lifecycle validity matters, not dominate every explicit-regime memory comparator.
+
+\section{RAM-minimal}
+\label{sec:methodology}
+
+RAM-minimal is the concrete method studied in this paper.
+It instantiates the RAM principle with the smallest set of operations needed to test the relevance-validity gap: write-time regime assignment, conservative invariant promotion, and eligibility-first activation with incompatible-regime suppression.
+The method assumes that RegimeBench v0 provides an explicit active regime for each construction and query example.
+Latent regime inference, learned controllers, deprecation, split, and merge are useful extensions, but they are not required for the main empirical claim.
+
+Each memory record is
+\begin{equation}
+    m_i = (u_i, z_i, a_i, v_i, \eta_i, \sigma_i),
+\end{equation}
+where $u_i$ is a stable memory identifier, $z_i$ is the memory content, $a_i \in \{0, ?\}\cup\mathcal{R}$ is its assignment, $v_i$ stores the current validity scope, $\eta_i$ stores provenance such as source example, timestamp, feedback, and rationale, and $\sigma_i$ is the status.
+RAM-minimal decomposes memory into invariant, regime-specific, and optional uncertain stores:
+\begin{equation}
+    M_t = M_t^0 \cup \bigcup_{r \in \mathcal{R}} M_t^r \cup M_t^?,
+\end{equation}
+where $M_t^0$ contains invariant memories and $M_t^r$ contains memories valid under regime $r$.
+The store decomposition is the main design choice.
+A flat memory pool can attach labels to memories, but it still consolidates all regimes through the same capacity pressure and update path.
+RAM-minimal instead lets each regime maintain local evidence while reserving $M^0$ for memories that have explicit cross-regime support.
+This distinction matters most when one regime is rare: a low-frequency memory can be overwritten in a flat pool even if read-time filtering is later perfect.
+
+Given a construction example with explicit regime $r_t$, RAM-minimal writes the extracted memory to $M^{r_t}$ by default.
+Write-time assignment is conservative: a memory observed under one regime is not treated as globally valid.
+It promotes a rule group $g$ to $M^0$ only when positive evidence appears in at least $k$ distinct regimes; v0 uses $k=2$ and deterministic rule identifiers.
+Promotion is therefore a high-precision operation rather than an aggressive sharing rule.
+In a richer implementation, the rule group could be replaced by a learned equivalence class over semantically similar memories, but the reported v0 avoids that additional modeling assumption.
+
+At query time, RAM-minimal first applies hard eligibility:
+\begin{equation}
+    \mathcal{E}(r)=M^0 \cup M^r.
+\end{equation}
+Eligible memories are then ranked by relevance plus an optional validity bonus:
+\begin{equation}
+    \mathrm{Score}(m,x,c,r)=s_{rel}(m,x,c)+\gamma s_{val}(m,r).
+\end{equation}
+The reported implementation uses TF-IDF cosine similarity, $K=3$, $\gamma=1.0$, and hard suppression of memories assigned to incompatible regimes; ablations show that hard eligibility, not the soft validity bonus, drives the main v0 effect.
+Full pseudocode and scoring details are in Appendix~\ref{app:implementation_details}.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\begin{tabular}{p{0.95\linewidth}}
+\toprule
+\textbf{Algorithm 1: RAM-minimal, compact form} \\
+\midrule
+Initialize invariant store $M^0$ and regime stores $\{M^r:r\in\mathcal{R}\}$. \\
+For each construction example $(x,c,r,y,\mathrm{rule})$, write the extracted memory to $M^r$. \\
+Promote a rule group to $M^0$ only if it has positive evidence in at least $k$ regimes. \\
+For query $(x,c,r)$, form eligible memories $\mathcal{E}(r)=M^0\cup M^r$. \\
+Rank eligible memories by $s_{rel}(m,x,c)+\gamma s_{val}(m,r)$ and retrieve top $K$. \\
+Predict using the retrieved memories and the same deterministic task policy as all comparators. \\
+\bottomrule
+\end{tabular}
+\caption{Main-text summary of the proposed method. All methods receive the same construction/query streams and $K=3$ retrieval budget.}
+\label{alg:ram_compact}
+\end{table}
+
+Regime-Tagged Retrieval serves as the diagnostic metadata-filtering comparator because it also receives active regime metadata.
+However, it treats regime labels as read-time filters over a flat memory pool.
+RAM-minimal changes the memory lifecycle before retrieval: write location is regime-specific, invariant memories are promoted under conservative evidence, incompatible regimes are made ineligible under explicit active regimes, and minority-regime retention is an explicit diagnostic target.
+The distinction is empirical, not merely terminological.
+When Regime-Tagged Retrieval matches RAM-minimal on minority and invariant-sharing diagnostics, lifecycle construction adds little in that setting.
+
+\begin{table*}[t]
+\centering
+\footnotesize
+\begin{tabular}{p{0.24\linewidth} p{0.31\linewidth} p{0.33\linewidth}}
+\toprule
+\textbf{Dimension} & \textbf{Regime-Tagged Retrieval} & \textbf{RAM-minimal} \\
+\midrule
+Write-time separation & Flat pool with labels & Separate invariant and regime-specific stores \\
+\midrule
+Invariant memory & Not explicit & Dedicated $M^0$ store \\
+\midrule
+Promotion & No lifecycle promotion & Conservative promotion with cross-regime support \\
+\midrule
+Incompatible regime suppression & Read-time filter & Eligibility control before ranking plus optional validity bonus \\
+\midrule
+Minority-regime preservation & Not a design target & Explicit retention and query diagnostic \\
+\midrule
+Evolving validity & Weak static labels & Extension point through status and provenance \\
+\bottomrule
+\end{tabular}
+\caption{RAM-minimal differs from regime-tagged retrieval by changing memory construction and eligibility, not only read-time label filtering.}
+\label{tab:ram_vs_tagged}
+\end{table*}
+
+The proposed method is intentionally minimal.
+It does not learn a controller, infer latent regimes, or implement deprecation in the reported experiments.
+Those operations belong to the broader RAM family, but including them in the main claim would make the paper harder to falsify.
+The empirical test here is whether the smallest lifecycle intervention--separate regime stores, conservative invariant promotion, and hard eligibility--is enough to expose failures that relevance-only retrieval and flat metadata filtering hide.
+
+\paragraph{Write rule.}
+The write rule is deliberately conservative.
+For an experience $e_t=(x_t,c_t,r_t,y_t,\mathrm{feedback}_t)$, RAM-minimal extracts a memory containing the observed behavior and writes it to $M^{r_t}$ unless it already belongs to a promoted invariant group.
+This prevents a single observation from becoming a global rule.
+The v0 implementation uses deterministic rule identifiers supplied by the benchmark, so the experiment does not claim to solve memory clustering.
+This is a limitation, but it also makes the mechanism easy to audit: when a memory is promoted, the artifact records the source rule and the regimes that support it.
+
+\paragraph{Promotion rule.}
+Promotion to $M^0$ requires evidence in at least $k$ distinct regimes and an invariant-candidate flag in the construction data.
+The default is $k=2$.
+This rule is intentionally asymmetric: it is easier to keep a memory regime-specific than to promote it globally.
+The asymmetry matters because false promotion is costly in a regime-aware system: a memory incorrectly placed in $M^0$ becomes eligible everywhere.
+In the reported pilot, promotion has a small but positive diagnostic effect; it is not the main driver of performance.
+
+\paragraph{Activation rule.}
+At query time, RAM-minimal first forms an eligible set $\mathcal{E}(r)=M^0\cup M^r$ and only then ranks memories.
+This is the central difference from relevance-only retrieval, where all memories compete in the same ranking space.
+It is also different from a flat tag filter because the memory was already written under regime-specific capacity pressure.
+The optional validity bonus $\gamma s_{val}$ is included for completeness, but the primary moderation ablation shows that setting $\gamma=0$ leaves the main results unchanged.
+We therefore interpret the v0 evidence as support for eligibility and store separation, not for a learned validity scorer.
+
+\paragraph{Capacity diagnostic.}
+Because separate stores can retain more memories than a flat store, capacity could explain the minority-regime result.
+To test this, we add a tagged-capacity sensitivity diagnostic.
+RAM-minimal is first built normally and then pruned by removing the oldest memories from the largest stores until its realized total memory count matches Regime-Tagged Retrieval for the same domain and split.
+This diagnostic is not a deployable variant; it is a stress test for the artifact.
+In v0, the tagged-capacity version preserves the moderation and imbalanced-regime gains, suggesting that the observed minority-retention effect is not only a consequence of storing more memories.
+
+\section{RegimeBench v0}
+\label{sec:regimebench_v0}
+
+RegimeBench v0 evaluates long-term agent tasks where similar inputs require different behavior under different regimes.
+The central question is whether a memory system can reuse experience without applying it outside its validity conditions.
+Each query instance is
+\begin{equation}
+    (x_i, c_i, r_i, y_i, \mathcal{Y}_i^{-}),
+\end{equation}
+where $x_i$ is the query or environment state, $c_i$ is metadata, $r_i$ is the active regime, $y_i$ is the regime-correct output, and $\mathcal{Y}_i^{-}$ contains plausible outputs valid under other regimes but invalid under $r_i$.
+Each example also stores a rule identifier, rationale, invariant-candidate flag, and minority-regime flag.
+The benchmark has four splits: seen-regime recall, imbalanced-regime retention, conflict-pair interference, and evolving-regime diagnostics.
+Content moderation is the primary domain; robot planning and cultural norm adaptation test transfer to procedural and social regimes.
+
+RegimeBench v0 is deliberately small enough to inspect and rerun.
+It contains 600 balanced construction prototypes and 720 query examples.
+Because each split is evaluated with its own construction stream, the released \texttt{dataset.jsonl} logs 2,085 split-specific construction events plus the 720 queries.
+The released \texttt{data\_summary.json} records 2,805 total rows.
+All reported numbers are computed from \texttt{predictions.jsonl}, \texttt{retrieved\_memories.jsonl}, \texttt{memory\_states.jsonl}, \texttt{metrics.json}, \texttt{diagnostics.json}, \texttt{ablations.json}, \texttt{capacity\_matched.json}, and \texttt{memory\_costs.json}.
+
+\begin{table*}[t]
+\centering
+\scriptsize
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Domain} & \textbf{Regimes} & \textbf{Balanced prototypes} & \textbf{Queries} & \textbf{Conflict queries} \\
+\midrule
+Content moderation & 5 & 250 & 300 & 100 \\
+Robot planning & 3 & 150 & 180 & 60 \\
+Cultural norms & 4 & 200 & 240 & 80 \\
+\midrule
+Total & 12 & 600 & 720 & 240 \\
+\bottomrule
+\end{tabular}
+\caption{RegimeBench v0 scale. The artifact logs 2,085 split-specific construction events because seen, imbalanced, conflict, and evolving splits use separate construction streams.}
+\label{tab:regimebench_scale}
+\end{table*}
+
+Examples are constructed from deterministic templates.
+Each template specifies a base situation, surface variants, active regime, target output, cross-regime negative outputs, rule identifier, rationale, and invariant-candidate flag.
+Construction and query splits do not share exact wording.
+Conflict pairs preserve semantic similarity while changing the active regime and target output.
+Active-regime metadata is made available fairly: methods that use explicit regimes receive the same active regime at query time, while relevance-only methods are reported as not using it.
+Appendix~\ref{app:regimebench_construction} gives construction, leakage-control, and judge-protocol details.
+
+The four splits are designed to separate different failure modes.
+The seen-regime split checks whether methods can reuse memories when construction and query regimes match.
+The conflict-pair split creates semantically similar inputs whose correct outputs differ across regimes, making relevance-only retrieval brittle by construction.
+The imbalanced-regime split down-samples a designated minority regime during construction and oversamples it at query time, exposing whether memory capacity and consolidation preserve rare regimes.
+The evolving-regime split changes selected labels between construction and query.
+Because RAM-minimal does not implement deprecation or split/merge, evolving-regime results are diagnostic rather than central evidence for the method.
+
+Evaluation is exact-match in v0.
+For moderation and robot planning, outputs are compact labels such as \textit{allow}, \textit{restrict}, or a discrete robot action.
+For cultural norm adaptation, deterministic response templates play the same role.
+This sacrifices natural-language realism in exchange for full traceability: every error can be attributed to a target output, a cross-regime negative set, and the retrieved memories.
+A future free-form benchmark would need fixed judge prompts and judge calibration, but those judge outputs are not used for any reported number in this paper.
+
+\paragraph{Domain design.}
+The moderation domain is the primary testbed because policy regimes make conditional validity easy to inspect.
+The same surface post can be allowed under a public-discussion regime, restricted under a protected-group-harm regime, or handled differently during a crisis event.
+Robot planning turns the same idea into procedural objectives: a route or action can be appropriate under efficiency-first behavior but invalid when safety-first constraints are active.
+Cultural norm adaptation tests social validity: a direct response may be appropriate under an informal-peer regime but invalid under a hierarchy-sensitive regime.
+These domains are not meant to exhaustively cover real policies, robotics, or cultural behavior.
+They are controlled probes for the same abstract memory failure.
+
+\paragraph{Leakage controls.}
+Construction and query examples share rule identities but not exact wording.
+Conflict-pair examples preserve semantic similarity while changing the active regime, target output, and negative set.
+This prevents methods from succeeding by memorizing exact strings while still making relevance-only retrieval vulnerable to topically close invalid memories.
+All methods receive the same construction stream in the same order.
+Methods that use explicit regimes receive the same active-regime metadata; methods that do not use it are reported separately so that the comparison does not hide the advantage of regime information.
+
+\paragraph{Pilot status.}
+RegimeBench v0 is a deterministic controlled pilot; a full-scale benchmark remains future work.
+Its value is that it makes memory-lifecycle failures easy to reproduce and inspect.
+Its weakness is that deterministic labels and TF-IDF retrieval are cleaner than real long-term agent memory.
+The experiments therefore support a mechanism claim, not a deployment claim: if an agent stores conditionally valid memories in a monolithic state, relevance alone can activate invalid memories, and lifecycle-aware storage can prevent a subset of those failures.
+
+\section{Experiments}
+\label{sec:experiments}
+
+The experiments test whether the proposed method reduces regime collapse.
+We compare against No Memory, Monolithic Memory, Semantic Retrieval, Context-Aware Retrieval, and Regime-Tagged Retrieval, a diagnostic metadata-filtering comparator.
+All results are computed from deterministic RegimeBench v0 predictions, retrieved memories, and memory states saved under \texttt{results/regimebench\_v0/}.
+All retrieval methods use the same top-$K=3$ activation budget; because lifecycle stores can retain different numbers of memories, we also report memory cost and a tagged-capacity sensitivity test.
+
+We test four falsifiable claims.
+H1: relevance-only retrieval increases invalid activation on conflict pairs.
+H2: metadata filtering is strong when regimes are explicit but weaker under imbalanced minority pressure.
+H3: RAM-minimal reduces CRI and IMA without reducing RCA.
+H4: invariant promotion has a small positive diagnostic effect rather than a broad standalone result.
+Metrics are RCA, CRI, HR, minority-regime query preservation (MRP-Acc), IMA, and cost.
+IMA is only defined for methods that retrieve individual assigned memories; monolithic summaries are evaluated by CRI and HR instead.
+Here, cost in \texttt{metrics.json} means activation cost, the average number of retrieved memories per query; stored-memory cost is reported separately in \texttt{memory\_costs.json}.
+
+RCA, CRI, and HR are computed from the final prediction.
+RCA is exact-match accuracy against the active-regime target.
+CRI checks whether the prediction falls in the cross-regime negative set $\mathcal{Y}^{-}$, and HR checks whether the prediction collapses to a generic domain-specific response.
+MRP-Acc is computed only on minority-regime queries, so it measures downstream preservation rather than just memory count.
+IMA is computed from retrieved memory assignments: a retrieved memory is invalid if it is neither invariant nor assigned to the active regime.
+This metric is not defined for Monolithic Memory because its summaries do not expose individual regime assignments; we therefore mark Monolithic IMA as N/A in the main table.
+Table~\ref{tab:main_results_template} asks whether invalid activation can be reduced without sacrificing regime-conditioned accuracy.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} &
+\textbf{RCA $\uparrow$} &
+\textbf{CRI $\downarrow$} &
+\textbf{HR $\downarrow$} &
+\textbf{MRP-Acc $\uparrow$} &
+\textbf{IMA $\downarrow$} \\
+\midrule
+No Memory & 16.7 & -- & 83.3 & -- & -- \\
+Monolithic Memory & 34.3 & 65.7 & 64.7 & 23.2 & N/A \\
+Semantic Retrieval & 44.0 & 56.0 & 0.0 & 14.5 & 81.8 \\
+Context-Aware Retrieval & 51.0 & 49.0 & 0.0 & 36.2 & 69.4 \\
+Regime-Tagged Retrieval & 94.3 & 5.7 & 0.0 & 92.8 & 0.0 \\
+RAM-minimal & 96.0 & 4.0 & 0.0 & 100.0 & 0.0 \\
+\bottomrule
+\end{tabular}
+\caption{Primary content moderation results on RegimeBench v0. MRP-Acc is accuracy on minority-regime queries. Monolithic IMA is N/A because monolithic summaries do not retain individual regime assignments; their failures are captured by CRI and HR.}
+\label{tab:main_results_template}
+\end{table*}
+
+Bootstrap intervals over moderation queries support the same pattern.
+RAM-minimal obtains RCA $96.0$ with a 95\% bootstrap interval of $[93.7,98.0]$, compared with $94.3$ $[91.7,97.0]$ for Regime-Tagged Retrieval and $44.0$ $[38.7,49.7]$ for Semantic Retrieval.
+Against relevance-only retrieval, the strongest diagnostic gap is IMA: Semantic Retrieval activates invalid memories in $81.8$ $[77.6,85.9]$ percent of retrieved contexts, while RAM-minimal and Regime-Tagged Retrieval both remain at $0.0$.
+The main table shows two points: read-time metadata filtering is strong under explicit regimes, and RAM-minimal adds minority retention and invariant-store benefits on top of that diagnostic comparator.
+
+Table~\ref{tab:split_results} reports split-level diagnostics aligned with the hypotheses.
+It asks where explicit-regime metadata filtering is sufficient and where lifecycle construction changes the outcome.
+Regime-Tagged Retrieval is strong on seen regimes and eliminates conflict-pair interference, but RAM-minimal improves minority-regime query preservation through separate regime stores and conservative invariant promotion.
+The evolving-regime split is intentionally diagnostic: RAM-minimal and Regime-Tagged Retrieval tie in this deterministic v0, so the present evidence for RAM-minimal over metadata filtering comes from imbalanced-regime retention and small invariant/promotion diagnostics rather than from evolving-regime gains.
+Across transfer domains, RAM-minimal obtains 92.8 RCA on robot planning and 93.8 on cultural norm adaptation, compared with 87.2 and 89.6 for Regime-Tagged Retrieval.
+
+Memory capacity is a possible confound, since the default RAM-minimal setting retains invariant and regime-specific stores.
+Table~\ref{tab:capacity_diagnostic} therefore reports stored-memory cost and a tagged-capacity sensitivity in which RAM-minimal is pruned to the same realized total memory count as Regime-Tagged Retrieval for each domain and split.
+The moderation and imbalanced-regime pattern is unchanged in this controlled diagnostic, suggesting that the v0 minority-retention gain is not explained only by storing more memories.
+
+\begin{table*}[t]
+\centering
+\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} &
+\textbf{Seen RCA $\uparrow$} &
+\textbf{Conflict CRI $\downarrow$} &
+\textbf{Imbal. MRP-Acc $\uparrow$} &
+\textbf{Evolving RCA $\uparrow$} \\
+\midrule
+Semantic Retrieval & 59.4 & 66.7 & 33.3 & 15.6 \\
+Context-Aware Retrieval & 64.4 & 58.8 & 42.9 & 21.2 \\
+Regime-Tagged Retrieval & 99.4 & 0.0 & 66.7 & 75.0 \\
+RAM-minimal & 100.0 & 0.0 & 100.0 & 75.0 \\
+\bottomrule
+\end{tabular}
+\caption{Split-level diagnostics on RegimeBench v0. The strongest RAM-minimal advantage over metadata filtering is imbalanced minority-regime query preservation; evolving-regime behavior remains tied in this v0 pilot.}
+\label{tab:split_results}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Method} &
+\textbf{Mean mem.} &
+\textbf{Max mem.} &
+\textbf{Inv. mem.} &
+\textbf{Mod. RCA} &
+\textbf{Imbal. MRP-Acc} \\
+\midrule
+Regime-Tagged & 95.0 & 125 & 0.0 & 94.3 & 66.7 \\
+RAM-minimal & 158.8 & 225 & 34.5 & 96.0 & 100.0 \\
+RAM-minimal (tagged cap.) & 95.0 & 125 & 18.7 & 96.0 & 100.0 \\
+\bottomrule
+\end{tabular}
+\caption{Memory-cost and capacity sensitivity from \texttt{memory\_costs.json} and \texttt{capacity\_matched.json}. The tagged-capacity variant is a diagnostic version of the proposed method pruned to the same realized total memory count as Regime-Tagged Retrieval.}
+\label{tab:capacity_diagnostic}
+\end{table*}
+
+The diagnostic degradation localizes most components: removing write-time assignment collapses to relevance-only behavior, removing suppression increases invalid activation, and removing invariant memory or promotion slightly weakens transfer.
+Setting $\gamma=0$ has no measurable effect in this explicit-regime v0, indicating that hard eligibility control rather than soft validity weighting drives the main gain.
+The diagnostic contrasts from \texttt{diagnostics.json} summarize this narrow pattern: RAM-minimal is +1.7 RCA over Regime-Tagged Retrieval on moderation, +33.3 MRP-Acc on imbalanced queries, and tied on evolving-regime RCA; Semantic Retrieval has +66.7 conflict CRI relative to RAM-minimal.
+Table~\ref{tab:ablation_results_template} asks which operations account for this pattern.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Variant} &
+\textbf{RCA $\uparrow$} &
+\textbf{CRI $\downarrow$} &
+\textbf{IMA $\downarrow$} \\
+\midrule
+RAM-minimal & 96.0 & 4.0 & 0.0 \\
+w/o Write-Time Assignment & 44.0 & 56.0 & 79.9 \\
+w/o Regime Suppression & 91.0 & 9.0 & 3.0 \\
+w/o Invariant Memory & 94.3 & 5.7 & 0.0 \\
+w/o Promotion & 94.3 & 5.7 & 0.0 \\
+$\gamma=0$ & 96.0 & 4.0 & 0.0 \\
+\bottomrule
+\end{tabular}
+\caption{Primary moderation ablations on RegimeBench v0. The strongest evidence supports write-time assignment and suppression; invariant memory and promotion have a small positive diagnostic effect, while the soft validity bonus has no measurable effect in this explicit-regime pilot.}
+\label{tab:ablation_results_template}
+\end{table}
+
+The ablations sharpen the interpretation of H4.
+Removing write-time assignment reduces moderation RCA from 96.0 to 44.0 and raises IMA to 79.9, closely resembling relevance-only retrieval.
+Removing suppression preserves much of the method but increases CRI and IMA, showing that store separation alone is insufficient if incompatible stores remain eligible.
+Removing invariant memory or promotion drops RCA from 96.0 to 94.3, matching Regime-Tagged Retrieval; this is a positive but small diagnostic effect, not evidence for a broad learned promotion mechanism.
+Finally, $\gamma=0$ leaves the main numbers unchanged, so the current evidence supports hard eligibility and lifecycle storage more strongly than soft validity weighting.
+
+Failure traces support the aggregate pattern.
+In conflict-pair queries, Semantic Retrieval has CRI $66.7$ and IMA $74.6$, while RAM-minimal has CRI $0.0$ and IMA $0.0$.
+For a public-discussion query about flooding an event page with angry comments, Semantic Retrieval predicts \textit{restrict} after retrieving an incompatible protected-group-harm memory; Regime-Tagged Retrieval and RAM-minimal both predict \textit{allow}.
+This case is a seen-regime relevance-validity failure rather than the source of the conflict-pair aggregate.
+
+The transfer domains show the same qualitative pattern but should not be overread.
+On robot planning and cultural norm adaptation, RAM-minimal reaches 92.8 and 93.8 RCA, respectively, while Regime-Tagged Retrieval reaches 87.2 and 89.6.
+These domains are useful because they show that regime-dependent memory is not only a moderation artifact; however, they are still deterministic template domains.
+The transfer results are best read as additional controlled evidence: relevance-only retrieval can activate invalid memories, explicit-regime metadata filtering is a strong comparator, and RAM-minimal adds a narrow lifecycle benefit concentrated on minority retention and conservative invariant sharing.
+
+\section{Discussion}
+\label{sec:discussion}
+
+The experiments support a narrow mechanism claim rather than a general replacement for retrieval, metadata filters, or learned memory controllers.
+When memories are conditionally valid, relevance-only retrieval can activate invalid memories; in the controlled v0 setting, a minimal lifecycle mechanism prevents those activations without reducing task accuracy.
+Regime-Tagged Retrieval is an intentionally strong explicit-regime comparator: it receives the active regime and should remove most invalid activations when labels are reliable.
+RAM-minimal matters only where writing, promotion, and capacity pressure change what survives until query time.
+The capacity and ablation diagnostics make this interpretation more precise.
+The tagged-capacity sensitivity keeps realized mean stored memory at 95.0 for both Regime-Tagged Retrieval and RAM-minimal (tagged capacity), while RAM-minimal still obtains 100.0 imbalanced MRP-Acc, so the v0 minority gain is not explained only by larger storage.
+The ablations identify write-time assignment and hard suppression as the main components; invariant memory and promotion provide a small positive diagnostic effect, and the soft validity bonus has no measurable effect under explicit regimes.
+The current evidence therefore supports eligibility before relevance ranking, not a learned validity scorer or full lifecycle controller.
+
+RegimeBench v0 intentionally favors inspection over realism.
+The template-based domains make conflict pairs, negative sets, and retrieved-memory traces easy to audit.
+This is useful for debugging memory mechanisms, but it also means that natural-language ambiguity, latent regime inference, and judge calibration remain open.
+A stronger future benchmark should add free-form generation and calibrated judges, but the role of v0 is to isolate a failure that larger evaluations can otherwise hide.
+The practical implication is modest: when regimes are static, explicit, and balanced, read-time metadata filtering may be sufficient; RAM-minimal is most useful when regimes are imbalanced, invariant memories should transfer, or update rules must preserve validity boundaries over time.
+
+\section{Related Work}
+\label{sec:related_work}
+
+Long-term memory systems for language agents store, retrieve, summarize, and reason over experiences across sessions~\citep{park2023generative,packer2023memgpt,sumers2023coala,wu2024longmemeval}.
+These works primarily ask whether agents can remember and use past information.
+RAM-minimal targets a complementary failure: the agent remembers a relevant memory, but that memory is no longer valid under the active policy, objective, norm, or safety constraint.
+The distinction is not that prior memory systems ignore retrieval quality; rather, their memory states usually do not make conditional validity a first-class lifecycle property.
+If all memories are consolidated into a single pool, the system can improve recall while still losing the boundary conditions under which a memory should be reused.
+
+Context-aware and intent-aware retrieval improve read-time selection by conditioning on task context, interaction state, or downstream utility~\citep{xu2025amem,utilityrag2025,influencecontext2025}.
+The closest diagnostic alternative is simple metadata filtering: store memories with observed regime labels and filter the flat pool by the active regime.
+We instantiate this strong comparator as Regime-Tagged Retrieval in our experiments.
+The proposed method differs only where lifecycle validity matters: write-time store separation, conservative invariant promotion, and minority-regime retention.
+When active regimes are explicit, metadata filtering should be strong, and the experiments confirm that it eliminates most invalid activation.
+The remaining question is whether read-time labels are enough under memory construction pressure, rare regimes, and invariant sharing.
+
+Memory update, compression, and forgetting methods decide what an agent should retain, summarize, overwrite, or discard as interactions accumulate.
+These mechanisms are complementary to RAM-minimal: they can reduce stale or redundant memories, but they do not by themselves specify whether a retained memory remains valid under a different policy, norm, objective, or safety constraint.
+Regime-aware memory can therefore act as a lifecycle constraint on top of update or forgetting policies.
+Update rules decide whether a memory should remain in the system; regime validity decides where it is stored and when it is eligible for activation.
+
+Pluralistic alignment and cultural adaptation study systems that support diverse values, preferences, and norms~\citep{sorensen2024roadmap,culturalpalette2024,valuepluralism2025}.
+RAM-minimal studies the memory-layer analogue: whether a single agent preserves distinct norm- or policy-specific memories during consolidation rather than averaging them into generic heuristics.
+It is not a multi-agent or mixture-of-experts method; regimes are validity structures attached to memories, not separate experts.
+This makes the proposed method narrower than pluralistic alignment: it does not decide which value system should be used, and it does not infer social context from scratch.
+Instead, given an active regime, it asks whether long-term memory preserves the distinctions needed to act correctly under that regime.
+
+\section{Limitations}
+\label{sec:limitations}
+
+The reported experiments are a deterministic RegimeBench v0 pilot, not a full deployment benchmark.
+It uses templated examples, exact-match labels, TF-IDF retrieval, and deterministic task policies so that every result can be traced to predictions, retrieved memories, and memory states.
+This design isolates the relevance-validity gap but overstates the cleanliness of real agent memory.
+RAM-minimal also assumes explicit active regimes in the main evaluation and therefore does not solve latent regime inference.
+When regimes are explicit, balanced, and static, metadata filtering can be nearly sufficient; RAM-minimal is most useful when invariant transfer, minority retention, or lifecycle validity boundaries matter.
+Finally, the current implementation uses deterministic rule identifiers for promotion, making invariant discovery easier than learning equivalence classes from natural language.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We introduced RAM-minimal, a concrete regime-aware memory mechanism for long-term agents whose memories are conditionally valid under goals, norms, policies, or task constraints.
+RegimeBench v0 shows that relevance-only retrieval can activate invalid memories, while RAM-minimal matches strong metadata filtering on invalid activation and improves minority-regime query preservation in the controlled pilot.
+The broader lesson is simple: memory-augmented agents should not merely remember more; they should remember the regimes under which their memories remain valid.
+
+
+\bibliography{iclr2025_conference}
+\bibliographystyle{iclr2025_conference}
+
+\appendix
+\section{Implementation Details for RAM-minimal and Extensions}
+\label{app:implementation_details}
+
+\subsection{Validity Scoring and Normalization}
+\label{app:validity_scoring}
+
+RAM-minimal separates semantic relevance from regime validity.
+In the explicit-regime v0 implementation, hard eligibility is applied before ranking; for eligible memories, the implementation can also compute a relevance score $s_{rel}(m,x,c)$ and a validity score $s_{val}(m,r)$.
+When regimes are explicit, $s_{val}$ is computed from memory assignment:
+\begin{equation}
+    s_{val}(m,r)
+    =
+    \mathbb{I}[a(m)=0]
+    +
+    \mathbb{I}[a(m)=r],
+\end{equation}
+where $a(m)=0$ denotes invariant memory.
+Invariant memories and memories assigned to the active regime receive high compatibility; memories assigned to other regimes are suppressed.
+
+In future variants where regimes are latent, noisy, or partially specified, $s_{val}$ could be estimated by a compatibility model:
+\begin{equation}
+    s_{val}(m,r) = p_\psi(\mathrm{valid}=1 \mid m,r,x,c),
+\end{equation}
+where $p_\psi$ may be a classifier, an instruction-tuned language model, or an LLM judge prompted to decide whether memory $m$ remains valid under regime $r$.
+For uncertain regimes, RAM marginalizes over the inferred regime distribution:
+\begin{equation}
+    s_{val}(m)
+    =
+    \sum_{r \in \mathcal{R}}
+    q_\phi(r \mid x,c,h) s_{val}(m,r).
+\end{equation}
+
+In larger variants, relevance and validity scores can be normalized to $[0,1]$ on a validation split and combined after eligibility control.
+The retrieval score is
+\begin{equation}
+    \mathrm{Score}(m,x,c,r)
+    =
+    \mathrm{Norm}(s_{rel}(m,x,c))
+    +
+    \gamma \mathrm{Norm}(s_{val}(m,r)).
+\end{equation}
+The coefficient $\gamma$ controls the optional validity bonus.
+The main v0 setting fixes $\gamma=1.0$, but the $\gamma=0$ ablation is unchanged on the primary moderation domain; this is why the main claim emphasizes store separation and hard eligibility rather than learned validity scoring.
+Tuning $\gamma$ on validation regimes is an extension for larger benchmarks.
+
+\subsection{Memory Actions}
+\label{app:memory_actions}
+
+The broader RAM family supports several memory actions, but RAM-minimal requires only writing, activation, suppression, and promotion.
+We describe practical decision rules below.
+
+\paragraph{Writing.}
+Given a new experience $e_t$, RAM extracts a candidate memory $m_t$ and assigns it to either a regime-specific memory $M^r$ or invariant memory $M^0$.
+If the active regime is explicit, the default action is \textsc{WriteToRegime}$(r_t)$.
+If the active regime is latent in a future extension, RAM can write to the most likely regime $\hat r_t=\arg\max_r q_\phi(r \mid x_t,c_t,h_t)$ when confidence exceeds a threshold; otherwise, the memory is marked uncertain and revisited after additional evidence.
+
+\paragraph{Promotion to invariant memory.}
+A memory is promoted from $M^r$ to $M^0$ only when there is evidence that it is valid across regimes.
+Promotion occurs in three cases:
+(1) the data construction or a heuristic explicitly marks the memory as regime-independent;
+(2) the same memory or rule receives positive feedback under multiple regimes;
+or (3) in a future latent-regime variant, a compatibility model predicts high $s_{val}(m,r)$ for several distinct regimes.
+Promotion therefore avoids treating a single-regime success as globally valid.
+
+\paragraph{Suppression.}
+During retrieval, memories assigned to regimes incompatible with the inferred active regime are suppressed by validity scoring.
+Suppression is soft when the regime distribution is uncertain and hard when the regime is explicit and high confidence.
+RAM can therefore reduce cross-regime interference without discarding memories that may become useful later.
+
+\paragraph{Deprecation.}
+A memory is deprecated when it repeatedly causes incorrect behavior, receives negative feedback, or conflicts with an updated regime definition.
+Deprecated memories are retained with provenance metadata but excluded from normal retrieval.
+This is useful for evolving-regime settings, where policy updates may invalidate memories that were previously correct.
+
+\paragraph{Split and merge.}
+Split and merge are optional lifecycle actions.
+\textsc{SplitRegime} is used when a regime contains internally inconsistent memories that lead to systematic errors.
+\textsc{MergeRegime} is used when two regimes show high mutual compatibility and separating them produces unnecessary duplication.
+These actions are not required for the minimal RAM implementation but are useful when regime taxonomies are initially coarse or change over time.
+
+\paragraph{Oracle diagnostic.}
+The code also logs an \emph{Oracle Regime Memory} diagnostic that receives ground-truth regime labels and exact rule identity when ranking memories.
+It is not a deployable method and is omitted from the main tables because deterministic v0 makes RAM-minimal match it on several splits.
+Its purpose is only to check whether remaining errors come from memory mechanics rather than task ambiguity.
+
+\section{RegimeBench Construction Details}
+\label{app:regimebench_construction}
+
+RegimeBench is designed to evaluate whether memory systems preserve conditional validity across long-term memory construction and query phases.
+All domains follow the same construction pattern.
+The reported v0 pilot is deterministic: examples are generated from fixed templates, retrieval uses TF-IDF cosine similarity, and task outputs are exact-match labels.
+
+\subsection{Memory Stream Construction}
+
+For each domain, we define a set of regimes $\mathcal{R}$ and construct a memory stream
+\begin{equation}
+    \mathcal{H} = \{e_1,\ldots,e_T\}.
+\end{equation}
+Each experience contains an input, context metadata, active regime, target behavior, and feedback or rationale:
+\begin{equation}
+    e_t=(x_t,c_t,r_t,y_t,\mathrm{feedback}_t).
+\end{equation}
+The memory stream is processed sequentially, so memory systems cannot revise earlier decisions unless their lifecycle update rules allow them to do so.
+All compared methods receive the same stream in the same order.
+In the balanced construction stream, each regime contributes 50 construction examples.
+In the imbalanced construction stream, each domain down-samples its designated minority regime to 5 examples and keeps 30 examples for each dominant regime.
+
+\subsection{Conflict Pair Construction}
+
+Conflict pairs are the core of RegimeBench.
+For a base input $x$, we construct two or more instances with similar surface content but different active regimes:
+\begin{equation}
+    (x,c,r_a,y^{r_a})
+    \quad \text{and} \quad
+    (x,c',r_b,y^{r_b}).
+\end{equation}
+The output $y^{r_a}$ is correct under $r_a$ but becomes a cross-regime negative under $r_b$, and vice versa.
+This yields the negative set $\mathcal{Y}_i^{-}$ used by the CRI metric.
+In moderation, conflict pairs are created by changing the policy context while holding the post nearly fixed.
+In robot planning, they are created by changing the operational objective while holding the environment fixed.
+In cultural norm adaptation, they are created by changing the social regime while holding the communicative intent fixed.
+
+\subsection{Minority Regime Splits}
+
+To test minority-regime query preservation, we vary the frequency of one or more regimes during memory construction.
+In v0, the minority regimes are \textit{minor safety} for moderation, \textit{energy-saving} for robot planning, and \textit{hierarchy-sensitive} for cultural norms.
+The minority regime appears only 5 times in imbalanced construction streams while dominant regimes appear 30 times each; minority regimes are then oversampled in the query phase.
+A robust memory system should preserve these memories despite their low frequency.
+We evaluate both retained minority-memory count and performance on minority-regime queries; the main tables report the performance-based MRP-Acc value.
+
+\subsection{Evolving Regime Splits}
+
+In evolving-regime splits, the validity of some labels changes between construction and query.
+In v0, crisis-event moderation becomes stricter, efficiency-first robot planning inherits a hard safety constraint, and informal-peer cultural responses require a softened alternative under the updated regime.
+Because RAM-minimal does not implement deprecation or split/merge, evolving-regime results are diagnostic rather than the central evidence for the method.
+
+\subsection{Output Evaluation}
+
+For the reported v0 pilot, moderation, robot planning, and cultural norm adaptation all use exact-match evaluation over deterministic output labels or response templates.
+A future LLM judge protocol for free-form generation is not used to compute the reported numbers.
+
+\section{Metric Details}
+\label{app:metric_details}
+
+\paragraph{Regime-conditioned accuracy.}
+RCA measures whether the final output matches the target behavior under the active regime.
+In the reported v0 pilot, all domains use exact-match labels or deterministic response templates; regime-aware judges are reserved for future free-form generation.
+
+\paragraph{Cross-regime interference.}
+CRI uses the explicit negative set $\mathcal{Y}^{-}$.
+An output counts as interference when it matches or semantically follows a behavior that is valid under another regime but invalid under the current one.
+
+\paragraph{Homogenization rate.}
+HR measures generic outputs that avoid committing to regime-specific behavior.
+For instance, ``be respectful'' is homogenized when the target requires a direct refusal under one regime and deferential negotiation under another.
+In v0, homogenization is detected by matching a domain-specific generic output label.
+
+\paragraph{Minority-regime query preservation.}
+The main tables report MRP-Acc: downstream accuracy on minority-regime queries.
+The released JSON files keep the shorter key \texttt{MRP}; \texttt{metric\_aliases.json} maps it to the paper's MRP-Acc terminology.
+The artifacts also log memory-state retention counts in \texttt{memory\_states.jsonl}.
+A memory is considered retained if it remains accessible, non-deprecated, and correctly assigned or compatible with the minority regime.
+
+\paragraph{Invalid memory activation.}
+IMA is computed over the effective retrieved context.
+It measures the fraction of activated memories whose assigned regime is incompatible with the current regime and which are not invariant.
+IMA is especially useful for diagnosing failures hidden by final-answer accuracy.
+
+\section{Reproducibility, Ethics, and LLM Usage}
+\label{app:reproducibility_ethics_llm}
+
+\paragraph{Reproducibility.}
+The reported pilot uses deterministic templates, TF-IDF retrieval, exact-match task labels, fixed bootstrap seed 7, and no external services.
+The artifact records the generated dataset, predictions, retrieved memories, memory states, metrics, diagnostics, ablations, capacity sensitivity results, memory-cost summaries, metric aliases, and failure cases under \texttt{results/regimebench\_v0/}.
+The experiment scripts are under \texttt{code/regimebench\_v0/}.
+The released \texttt{data\_summary.json} records 600 balanced construction prototypes, 2,085 logged split-specific construction events, 720 queries, and 2,805 total rows.
+All table values are traceable to JSON artifacts; Monolithic Memory uses \texttt{N/A} for IMA in the paper because monolithic summaries do not expose individual regime assignments.
+For the tagged-capacity diagnostic, RAM-minimal is first built normally and then pruned by removing the oldest memories from the largest stores until its realized total memory count matches Regime-Tagged Retrieval for the same domain and split.
+
+\paragraph{Ethics.}
+RegimeBench v0 uses synthetic moderation, robot-planning, and cultural-norm templates rather than human-subject data.
+The benchmark is intended to diagnose memory validity failures, not to define real moderation, safety, or cultural policy.
+Future real-world versions should include domain review and calibrated evaluation protocols.
+
+\paragraph{LLM usage.}
+Large language model assistance was used for drafting, editing, code-writing support, and consistency checks.
+No LLM outputs are used as labels, predictions, judge scores, metric values, or hand-filled trends in the reported pilot.
+The authors are responsible for the paper's claims, experiments, artifact contents, and final wording.
+
+
+\end{document}
