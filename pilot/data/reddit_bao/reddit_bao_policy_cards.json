@@ -1,0 +1,552 @@
+[
+  {
+    "dataset": "multilingual_content_mod",
+    "description": "# [Submission Rules](https://www.reddit.com/r/science/wiki/rules#wiki_submission_rules)\n\n1. Directly link to published peer-reviewed research or media summary\n2. No summaries of summaries, re-hosted press releases, reviews, or reposts\n3. No editorialized, sensationalized, or biased titles\n4. Research must be less than 6 months old\n5. No blogspam, images, videos, or infographics\n6. All submissions must have flair assigned\n\n# [Comment Rules](https://www.reddit.com/r/science/wiki/rules#wiki_comment_rules)\n\n1. No off-topic comments, memes, low-effort comments or jokes\n2. No abusive or offensive comments\n3. Non-professional personal anecdotes will be removed\n4. Criticism of published work should assume basic competence of the researchers and reviewers\n5. Comments dismissing established findings and fields of science must provide evidence\n6. No medical advice\n7. Repeat or flagrant offenders will be banned\n\n---\n\n\n\n## [New to reddit? Click here!](https://www.reddit.com/wiki/reddit_101)\n\n## [Get flair in /r/science](https://www.reddit.com/r/science/wiki/flair)\n\n## [Previous Science AMA's](https://www.reddit.com/r/science/search?q=flair%3A%27AMA%27&sort=new&restrict_sr=on)\n\n> \n- **filter by field**\n- [Animal Sci.](https://goo.gl/STb58P)\n- [Anthropology](https://goo.gl/janxGX)\n- [Astronomy](https://goo.gl/dTqMXH)\n- [Biology](https://goo.gl/m4QZbs)\n- [Cancer](https://goo.gl/rjLfaK)\n- [Chemistry](https://goo.gl/Jjxj3P)\n- [Computer Sci.](https://goo.gl/Xpvh6i)\n- [Engineering](https://goo.gl/iFi3Gu)\n- [Environment](https://goo.gl/oedACs)\n- [Epidemiology](https://goo.gl/VmmsA9)\n- [Geology](https://goo.gl/J4xdyq)\n- [Health](https://goo.gl/kWcS6m)\n- [Mathematics](https://goo.gl/8SMPsP)\n- [Medicine](https://goo.gl/kyPRCD)\n- [Nanoscience](https://goo.gl/UmxqQd)\n- [Neuroscience](https://goo.gl/AphkXU)\n- [Paleontology](https://goo.gl/iMgZoU)\n- [Physics](https://goo.gl/1ZrRAu)\n- [Psychology](https://goo.gl/J2vKF1)\n- [Social Sci.](https://goo.gl/CftfVE)\n- [Sci Discussion](https://goo.gl/dGn6F8)\n\n---\n\n[](#/RES_SR_Config/NightModeCompatible)",
+    "display_name": "science",
+    "policy_card_id": "reddit_science_p0_public_policy",
+    "policy_views": [
+      "P0_structured_comment_rules",
+      "P1_subreddit_description",
+      "P2_site_rules"
+    ],
+    "site_rules": [
+      "Spam",
+      "Personal and confidential information",
+      "Threatening, harassing, or inciting violence"
+    ],
+    "source_path": "rules\\2022-06-27\\science\\subreddit_metadata.json",
+    "source_snapshot": "2022-06-27",
+    "structured_comment_rules": [
+      {
+        "created_utc": 1652981855,
+        "description": "Comments must be on topic and not a meme or joke. Comments should constructively contribute to the discussion or be an attempt to learn more. This also means avoiding low-effort comments like \"water is wet\" or \"correlation doesn’t prove causation.\"\n\n[View all comment rules](https://www.reddit.com/r/science/wiki/rules#wiki_comment_rules)",
+        "kind": "comment",
+        "priority": 4,
+        "short_name": "No off-topic comments, memes, low-effort comments or jokes",
+        "violation_reason": "Off topic, low effort, meme, or joke comment"
+      },
+      {
+        "created_utc": 1652981855,
+        "description": "Abusive comments include those that disparage or attack other users of the subreddit.\n\nOffensive comments are those that denigrate individuals or groups based on group membership or inherent characteristics. This includes bigoted comments that are thinly veiled by leading/insincere questions or \"just stating facts.\"\n\n[View all comment rules](https://www.reddit.com/r/science/wiki/rules#wiki_comment_rules)",
+        "kind": "comment",
+        "priority": 5,
+        "short_name": "No abusive or offensive comments",
+        "violation_reason": "Abusive or offensive"
+      },
+      {
+        "created_utc": 1652981855,
+        "description": "Comments that only rely on a user's non-professional anecdotal evidence to confirm or refute a study will be removed (e.g. \"I do that but that result doesn't happen to me\"). Comments should be limited in personal details and scientific in nature. Including references to peer-reviewed research to support your claims is highly encouraged.\n\n[View all comment rules](https://www.reddit.com/r/science/wiki/rules#wiki_comment_rules)",
+        "kind": "comment",
+        "priority": 6,
+        "short_name": "Non-professional personal anecdotes will be removed",
+        "violation_reason": "Non-professional personal anecdote"
+      },
+      {
+        "created_utc": 1652981855,
+        "description": "Critiquing science is an important skill and one we want users to engage in but please try to do so with the assumption that the researchers who have spent years or decades in the field have already considered ideas that you came up with in a few minutes.\n\nPlease also remember that individual studies sit within a larger corpus of work that may have already addressed your concern.\n\n[View all comment rules](https://www.reddit.com/r/science/wiki/rules#wiki_comment_rules)",
+        "kind": "comment",
+        "priority": 7,
+        "short_name": "Criticism of published work should assume basic competence of the researchers and reviewers",
+        "violation_reason": "Criticism should assume basic competence of researchers"
+      },
+      {
+        "created_utc": 1652981855,
+        "description": "Comments that dispute well-established scientific concepts (e.g. gravity, vaccination, anthropogenic climate change, etc.) must be supported with appropriate peer-reviewed evidence. Links to personal blogs or 'skeptic' websites are not valid forms of evidence.\n\nComments that dismiss entire fields of science (e.g., \"that’s just a soft science\") will also be removed.\n\n[View all comment rules](https://www.reddit.com/r/science/wiki/rules#wiki_comment_rules)",
+        "kind": "comment",
+        "priority": 8,
+        "short_name": "Comments dismissing established findings and fields of science must provide evidence",
+        "violation_reason": "Not scientific"
+      },
+      {
+        "created_utc": 1652981855,
+        "description": "Offering or seeking medical advice is strictly prohibited and offending comments will be removed.\n\nDiscussions regarding the advantages and/or disadvantages of certain treatments, diets, or supplements are allowed as long as relevant and reputable evidence is provided.\n\n[View all comment rules](https://www.reddit.com/r/science/wiki/rules#wiki_comment_rules)",
+        "kind": "comment",
+        "priority": 9,
+        "short_name": "No medical advice",
+        "violation_reason": "No medical advice"
+      }
+    ],
+    "structured_link_rules": [
+      {
+        "created_utc": 1652981855,
+        "description": "Submissions must directly link to recently published peer-reviewed research or media summary. Review articles are prohibited unless they contain new results.\n\n[View all submission rules](https://www.reddit.com/r/science/wiki/rules#wiki_submission_rules)",
+        "kind": "link",
+        "priority": 0,
+        "short_name": "Must be peer-reviewed research",
+        "violation_reason": "Not peer-reviewed"
+      },
+      {
+        "created_utc": 1652981855,
+        "description": "Articles that obtain their information second-hand from other articles are not acceptable for submission. Websites that re-host press releases are prohibited.\n\nAll peer-reviewed articles must contain new research, data analysis, or meta-analysis. Review articles are prohibited unless they contain new results.\n\nReposting of existing, popular submissions is prohibited.\n\n[View all submission rules](https://www.reddit.com/r/science/wiki/rules#wiki_submission_rules)",
+        "kind": "link",
+        "priority": 1,
+        "short_name": "No summaries of summaries, rehosts, reviews, or reposts",
+        "violation_reason": "Summary of summary, rehost, review, or repost"
+      },
+      {
+        "created_utc": 1652981855,
+        "description": "The title and content of submissions should not be editorialized, sensationalized, or biased. All titles must adhere to our [headline rules](https://www.reddit.com/r/science/wiki/clickbait).\n\n[View all submission rules](https://www.reddit.com/r/science/wiki/rules#wiki_submission_rules)",
+        "kind": "link",
+        "priority": 2,
+        "short_name": "No editorialized, sensationalized, or biased titles",
+        "violation_reason": "Editorialized, sensationalized, or biased title"
+      },
+      {
+        "created_utc": 1652981855,
+        "description": "All submissions must have been published within the past six months. This time requirement refers to the publication date of the research, not the article or web page. Ambiguous publication dates are determined by the first available date, which is typically the 'Published Online' or 'Pre-Print' date.\n\n[View all submission rules](https://www.reddit.com/r/science/wiki/rules#wiki_submission_rules)",
+        "kind": "link",
+        "priority": 3,
+        "short_name": "Research must be less than 6 months old",
+        "violation_reason": "Submission is more than 6 months old"
+      }
+    ],
+    "subreddit": "science",
+    "text_scope_note": "Rules are public policy context; comment text is not included in this card.",
+    "title": "Reddit Science"
+  },
+  {
+    "dataset": "multilingual_content_mod",
+    "description": ">* **[/r/worldnews](/r/worldnews?hl)**\n\n>#\n\n>* **[/r/politics](/r/politics?hl)**\n\n>#\n\n>* **[/r/Foodforthought](/r/Foodforthought?hl)**\n\n---\n\nSee a post that violates the rules below? Did your post get stuck in the spam filter? Have a question about the rules? Just want to give feedback? [Send the mod team a message](http://www.reddit.com/message/compose?to=%2Fr%2Fnews).\n\n---\n\n**Your account must be email-verified to participate in /r/news.**\n\n---\n\n**Your post will be removed if it:** \n\n* is not news.\n* is not in English.\n* is an opinion/analysis or advocacy piece.\n* primarily concerns politics.\n* has a title that does not match the actual title or [the lede](https://www.merriam-webster.com/dictionary/lede \"the introductory section of a news story that is intended to entice the reader to read the full story\").\n* has a pay wall or steals content.\n* covers an already-submitted story.\n* violates [reddit's site-wide rules](http://www.reddit.com/rules/ \"Reddit Content Policy\"), especially regarding personal info.\n\n**Your comment will likely be removed if it:**\n\n* is racist, sexist, vitriolic, or overly crude.\n* is unnecessarily rude or provocative.\n* is a cheap and distracting joke or meme.\n* is responding to spam.\n* violates [reddit's site-wide rules](http://www.reddit.com/rules/ \"Reddit Content Policy\").\n* advocates or celebrates the death of another person.\n* incites violence.\n\nExtreme or repeat offenders will be banned.\n\n**\\>\\>\\>[Expanded Rules](https://www.reddit.com/r/news/wiki/rules/)<<<**\n\n---\n\nIf your post is not a good fit for /r/news, consider submitting to one of these subreddits instead:\n\n* r/worldnews \n* r/entertainment \n* r/politics \n* r/politicaldiscussion\n* r/geopolitics\n* r/UpliftingNews \n* r/SavedYouAClick \n* r/FoodForThought \n* r/AnythingGoesNews \n* r/TrueReddit \n\n\n---\n\n[submit news article (no analysis/opinion)](http://www.reddit.com/r/news/submit)\n\n[submit something else](http://www.reddit.com/r/misc/submit)",
+    "display_name": "news",
+    "policy_card_id": "reddit_news_p0_public_policy",
+    "policy_views": [
+      "P0_structured_comment_rules",
+      "P1_subreddit_description",
+      "P2_site_rules"
+    ],
+    "site_rules": [
+      "Spam",
+      "Personal and confidential information",
+      "Threatening, harassing, or inciting violence"
+    ],
+    "source_path": "rules\\2022-06-27\\news\\subreddit_metadata.json",
+    "source_snapshot": "2022-06-27",
+    "structured_comment_rules": [
+      {
+        "created_utc": 1652980697,
+        "description": "Comments containing racist, sexist or bigoted slurs are subject to removal. Comments which promote racism, sexism or bigotry (including a viewpoint in relation to those) are subject to removal, and users whom engage in posting such comments may be banned at the mods' discretion. Overly crude comments which add nothing to discussion are also subject to removal/ban. These include inappropriate or inflammatory comments, personal attacks, etc.",
+        "kind": "comment",
+        "priority": 6,
+        "short_name": "Do not be racist, sexist, vitriolic, or overly crude",
+        "violation_reason": "Do not be racist, sexist, vitriolic, or overly crude"
+      },
+      {
+        "created_utc": 1652980697,
+        "description": "In conjunction with vitriolic and crude comments, a comment that is unnecessarily rude (inflammatory comments, personal attacks) or purposefully provocative (baiting) are subject to removal/ban.\n\nAdvocating for or celebrating the death of another human being is grounds for a permanent ban from r/news. Regardless of what you think about a person, this type of discourse is unwelcome on r/news and we will not hesitate to remove you for it.",
+        "kind": "comment",
+        "priority": 7,
+        "short_name": "Do not be unnecessarily rude or provocative",
+        "violation_reason": "Unnecessarily rude or provocative"
+      },
+      {
+        "created_utc": 1652980697,
+        "description": "Jokes, memes, puns, and overall low quality comments are subject to removal, especially in the top-level comments.",
+        "kind": "comment",
+        "priority": 8,
+        "short_name": "No Cheap or distracting jokes or memes",
+        "violation_reason": "No Cheap or distracting jokes or memes"
+      },
+      {
+        "created_utc": 1652980697,
+        "description": "While civil criticism of others is allowed (whether living or deceased), advocating or celebrating the death of others, including public figures, is not.",
+        "kind": "comment",
+        "priority": 10,
+        "short_name": "Do not advocate or celebrate death",
+        "violation_reason": "Advocating or celebrating death"
+      }
+    ],
+    "structured_link_rules": [
+      {
+        "created_utc": 1652980697,
+        "description": "A story that is over a week old, does not properly report a story, or is not noteworthy, or is not in English. Self-posts and meta-posts without moderator approval (live update threads, major breaking news, and megathreads are usually exempt) are not allowed. Articles must be about a specific news event.",
+        "kind": "link",
+        "priority": 0,
+        "short_name": "Submissions must be articles about a specific news event",
+        "violation_reason": "Submissions must be articles about a specific news event"
+      },
+      {
+        "created_utc": 1652980697,
+        "description": "Opinion and analysis should go in /r/Foodforthought or another relevant subreddit. This includes articles with editorial opinion, personal conjecture, or otherwise. Press releases with an editorial slant, and analysis of news events (rather than reporting on the event itself) are not allowed. Both articles and domains regarding advocacy for a certain point of view or ideology rather than objective reporting should be reviewed under this rule.",
+        "kind": "link",
+        "priority": 1,
+        "short_name": "No opinion/analysis or advocacy pieces",
+        "violation_reason": "No opinion/analysis or advocacy pieces"
+      },
+      {
+        "created_utc": 1652980697,
+        "description": "Articles must not be primarily concerning politics. To meet our requirements, a definitive outcome needs to have been reached. Political posturing, such as a politician making remarks, are not allowed. Political procedure, such as a bill being introduced for legislative review, are not allowed. A piece of legislation being signed into law or the results of an election being finalized are both examples of definitive outcomes which would be permitted.",
+        "kind": "link",
+        "priority": 2,
+        "short_name": "Articles must not be primarily concerning politics",
+        "violation_reason": "Articles must not be primarily concerning politics"
+      },
+      {
+        "created_utc": 1652980697,
+        "description": "Editorialized titles, written by the posting user or the domain, are not allowed. Titles should be unbiased and strictly factual. When the article itself is titled appropriately, the submission title should be directly sourced from either the title OR lede of the linked article, but not both.\n\nDon't plug other subreddits in the title; adding cross-post references is not suitable for /r/news.",
+        "kind": "link",
+        "priority": 3,
+        "short_name": "No editorialized titles; Title must match article title",
+        "violation_reason": "No editorialized titles; Title must match article title"
+      },
+      {
+        "created_utc": 1652980697,
+        "description": "Domains which require the user to purchase a subscription or register an account in order to read the full article are not allowed in /r/news. All users should be able to access the article. Domains which are stealing or reposting content from other news sites, or simply rehash another article without adding substance, are not allowed, and users are encouraged to post the original source instead.",
+        "kind": "link",
+        "priority": 4,
+        "short_name": "No paywalls/blogspam that steals content",
+        "violation_reason": "No paywalls/blogspam that steals content"
+      },
+      {
+        "created_utc": 1652980697,
+        "description": "This rule is in relation to already submitted stories which are being rehashed on multiple domains. If a popular story is being submitted while the same event is covered in another post on the front page, or one with sufficient upvotes at an earlier date, it may be subject to removal. If a story was already submitted but did not become popular, then the rule is not applicable. Spamming a story until it reaches the front page is in violation of reddit's sitewide rules and is not allowed.",
+        "kind": "link",
+        "priority": 5,
+        "short_name": "No posts covering an already submitted story",
+        "violation_reason": "No posts covering an already submitted story"
+      }
+    ],
+    "subreddit": "news",
+    "text_scope_note": "Rules are public policy context; comment text is not included in this card.",
+    "title": "News"
+  },
+  {
+    "dataset": "multilingual_content_mod",
+    "description": ">>> - **Other Subs:**\n\n>>> - [Related](http://goo.gl/ztbbza)\n>>> - /r/News\n>>> - /r/PoliticalDiscussion\n>>> - /r/WorldEvents\n>>> - /r/GeoPolitics\n>>> - /r/IntheNews\n>>> - /r/GlobalTalk \n>>> - /r/Breakingnews \n>>> - /r/Business\n>>> - /r/Economics\n>>> - /r/Environment\n>>> - /r/History\n>>> - /r/HumanRights\n>>> - /r/Features\n>>> - /r/UpliftingNews\n>>> - /r/NewsOfTheWeird\n>>> - /r/FakeNews\n>>> - /r/ID_News \n\n>>> - [N. America](https://goo.gl/dkfVnB)\n>>> - /r/Politics\n>>> - /r/USA\n>>> - /r/USANews\n>>> - /r/Canada\n>>> - /r/CanadaPolitics\n>>> - /r/OnGuardForThee\n>>> - /r/Cuba\n>>> - /r/Mexico\n>>> - /r/PuertoRico\n\n>>> - [S. America](https://goo.gl/DDaqmY)\n>>> - /r/Argentina\n>>> - /r/Brasil\n>>> - /r/Chile\n>>> - /r/Colombia\n>>> - /r/Ecuador\n>>> - /r/Guyana\n>>> - /r/Nicaragua\n>>> - /r/PanAmerica \n>>> - /r/Suriname \n>>> - /r/Uruguay\n>>> - [/r/Venezuela](/r/vzla)\n\n>>> - [Europe](https://goo.gl/ZF5rou)\n>>> - /r/Armenia\n>>> - /r/Austria\n>>> - /r/Azerbaijan\n>>> - /r/Belgium\n>>> - [/r/Bosnia](/r/BiH)\n>>> - /r/Bulgaria\n>>> - /r/Croatia\n>>> - /r/Denmark\n>>> - /r/Europe\n>>> - /r/France\n>>> - [/r/Georgia](/r/sakartvelo)\n>>> - /r/Germany\n>>> - /r/Greece\n>>> - /r/Hungary\n>>> - /r/Ireland\n>>> - /r/Italy\n>>> - /r/Moldova\n>>> - /r/TheNetherlands\n>>> - /r/Poland\n>>> - /r/Polska\n>>> - /r/Portugal\n>>> - /r/Romania\n>>> - /r/Scotland\n>>> - /r/Serbia\n>>> - /r/Spain\n>>> - /r/Sweden\n>>> - /r/Switzerland\n>>> - /r/Turkey\n>>> - /r/UnitedKingdom\n>>> - /r/UKPolitics\n>>> - /r/Ukraina\n>>> - /r/Ukraine\n>>> - /r/UkrainianConflict\n\n>>> - [Asia](https://goo.gl/az3Ygk)\n>>> - /r/Afghanistan\n>>> - /r/Bangladesh\n>>> - /r/China\n>>> - /r/India\n>>> - /r/Kazakhstan \n>>> - /r/Malaysia\n>>> - /r/Myanmar\n>>> - /r/Nepal\n>>> - /r/NorthKoreaNews\n>>> - /r/Pakistan\n>>> - /r/Philippines\n>>> - /r/Singapore\n\n>>> - /r/Thailand\n>>> - /r/Turkey\n\n>>> - [Middle East](https://goo.gl/Ut3syV)\n>>> - /r/Assyria\n>>> - /r/Iran\n>>> - /r/Iranian\n>>> - /r/Iraq\n>>> - /r/Israel\n>>> - /r/Kurdistan\n>>> - /r/LevantineWar\n>>> - /r/MiddleEastNews\n>>> - /r/MideastPeace\n>>> - /r/Palestine\n>>> - /r/Syria\n>>> - /r/Yemen\n>>> - /r/YemeniCrisis\n\n>>> - [Africa](https://goo.gl/FgJ4Na)\n>>> - /r/Africa\n>>> - /r/Namibia \n>>> - /r/SouthAfrica\n\n>>> - [Oceania](https://goo.gl/5pz9uS)\n>>> - /r/Australia\n>>> - /r/Fijian\n>>> - /r/NewZealand\n>>> - /r/Oceania\n>>> - /r/Westpapua\n\n## **Filter out dominant topics:**\n\n[Display COVID-19 submissions](http://www.reddit.com/r/worldnews#nc)\n\n[Filter COVID-19](http://nc.reddit.com/r/worldnews#www)\n\n[Display Russia/Ukraine submissions](http://www.reddit.com/r/worldnews#nr)\n\n[Filter Russia/Ukraine](http://nr.reddit.com/r/worldnews#www)\n\n[Display North Korea submissions](http://www.reddit.com/r/worldnews#nk)\n\n[Filter North Korea](http://nk.reddit.com/r/worldnews#www)\n\n[Display Afghanistan submissions](http://www.reddit.com/r/worldnews#nh)\n\n[Filter Pandora Papers](http://nh.reddit.com/r/worldnews#www)\n\n[Display Israel/Palestine submissions](http://www.reddit.com/r/worldnews#ni)\n\n[Filter Israel / Palestine](http://ni.reddit.com/r/worldnews#www)\n\n[Display all submissions](http://www.reddit.com/r/worldnews#iu)\n\n[Filter all dominant topics](http://iu.reddit.com/r/worldnews#www)\n\n#### [](#h4-green)\n># Welcome!\n>\n> /r/worldnews is for major news from around the world except US-internal news / US politics\n\n> [See all of our AMA events here] (http://www.reddit.com/r/worldnews/wiki/ama)\n\n###### [](#h6-red)\n>#Worldnews Rules\n>\n>\n>### **Disallowed submissions**\n>\n> * US internal news/US politics\n> * Editorialized titles\n> * Misleading titles\n> * Editorials, opinion, analysis\n> * Feature stories\n> * Non-English articles\n> * Images, videos or audio clips\n> * Petitions, advocacy, surveys\n> * All caps words in titles\n> * Blogspam (if stolen content/direct copy)\n> * Twitter, Facebook, Tumblr\n> * Old news (≥1 week old) articles\n\n>[See the wiki](/r/worldnews/wiki/rules#wiki_disallowed_submissions) for details on each rule\n\n>### **Disallowed comments**\n>\n> * Bigotry / Other offensive content\n> * Personal attacks on other users\n> * Memes/GIFs\n> * Unlabeled NSFW images/videos\n> * URL shorteners\n\n>[See the wiki](/r/worldnews/wiki/rules#wiki_disallowed_comments) for details on each rule\n\n> Violation of our rules may result in a ban from this subreddit. Untimed bans may be lifted when the moderators are confident that you will not continue to infringe on the community rules.\n\n>\n>----\n>\n>**Please don't ever feed the trolls.** \n>Downvote, report and move on.\n>\n>----\n>\n>* [**What moderators do and can't do**](/r/worldnews/wiki/whatmodsdo)\n>* [**Message the moderators**](http://www.reddit.com/message/compose?to=%2Fr%2Fworldnews)\n\n#### [](#h4-green)\n># Sticky Posts\n\n> • [A list of all recent stickied posts.](/r/worldnews/search?q=author%3AWorldNewsMods+OR+title%3A%22worldnews+live+thread%22+OR+self%3Ayes&restrict_sr=on&sort=new&t=all)",
+    "display_name": "worldnews",
+    "policy_card_id": "reddit_worldnews_p0_public_policy",
+    "policy_views": [
+      "P0_structured_comment_rules",
+      "P1_subreddit_description",
+      "P2_site_rules"
+    ],
+    "site_rules": [
+      "Spam",
+      "Personal and confidential information",
+      "Threatening, harassing, or inciting violence"
+    ],
+    "source_path": "rules\\2022-06-27\\worldnews\\subreddit_metadata.json",
+    "source_snapshot": "2022-06-27",
+    "structured_comment_rules": [
+      {
+        "created_utc": 1652979863,
+        "description": "Hate speech directed towards an entire group of people who share a race, gender, sexual orientation, ethnicity, religion, nationality, social status or disability is not allowed. This also applies to user names.",
+        "kind": "comment",
+        "priority": 6,
+        "short_name": "No Bigotry or Other Offensive Content",
+        "violation_reason": "Bigotry or Other Offensive Content"
+      },
+      {
+        "created_utc": 1652979863,
+        "description": "You may criticize a user's comment but not their person. Calling people names shuts down discussion. Accusing another user of being a \"shill\" is considered a personal attack. Stick to the issues and remain civil.",
+        "kind": "comment",
+        "priority": 7,
+        "short_name": "No Personal Attacks On Other Users",
+        "violation_reason": "Personal Attack"
+      },
+      {
+        "created_utc": 1652979863,
+        "description": "Memes may show up in image or in text form. Both are not allowed.\n\nBesides, porn or shock images unrelated to the story discussed will always be removed and posting them is an easy way to get banned.",
+        "kind": "comment",
+        "priority": 8,
+        "short_name": "No Memes, Gifs, unlabeled NSFW images",
+        "violation_reason": "Memes, Gifs, unlabeled NSFW images"
+      }
+    ],
+    "structured_link_rules": [
+      {
+        "created_utc": 1652979863,
+        "description": "Articles about events within the US or related to the US internal political process with no involvement of foreign officials or international organizations and no effect on people outside the US are not allowed here. The large subreddits for these topics are /r/news and /r/politics.",
+        "kind": "link",
+        "priority": 0,
+        "short_name": "No US Internal News or Politics",
+        "violation_reason": "US Internal News or Politics"
+      },
+      {
+        "created_utc": 1652979863,
+        "description": "Do not add opinion/commentary to the submission title. Don't add something that isn't covered by the article, and don't misrepresent the article. Adding a sentence from within the article that is more representative of the content is generally OK.\n\nAn article's title must not be misleading. It may be removed if the title states a source's opinion as fact, or misrepresents the facts in the article or multiple other sources. \n\nAll caps words are not allowed, except for acronyms of course.",
+        "kind": "link",
+        "priority": 1,
+        "short_name": "No Editorialized or Misleading Titles",
+        "violation_reason": "Editorialized or Misleading Title"
+      },
+      {
+        "created_utc": 1652979863,
+        "description": "Feature stories are journalistic reports providing more descriptive background information than a straight news report will contain. Dictionary.com: \"a newspaper or magazine article or report of a person, event, an aspect of a major event, or the like, often having a personal slant and written in an individual style.\"",
+        "kind": "link",
+        "priority": 2,
+        "short_name": "No Feature stories",
+        "violation_reason": "Feature story"
+      },
+      {
+        "created_utc": 1652979863,
+        "description": "/r/worldnews is for news, rather than analysis. There are several subreddits listed at the top of the page that are good for this. If the writer injects his/her opinion in the article or tries to draw any conclusion about a set of events, then it is no longer straight news and is not permitted in /r/worldnews.",
+        "kind": "link",
+        "priority": 3,
+        "short_name": "No Editorials, Opinion or Analysis Pieces",
+        "violation_reason": "Editorial, Opinion, or Analysis"
+      },
+      {
+        "created_utc": 1652979863,
+        "description": "This includes articles that are auto-translated.",
+        "kind": "link",
+        "priority": 4,
+        "short_name": "No Articles In Languages Other Than English",
+        "violation_reason": "Not in English"
+      },
+      {
+        "created_utc": 1652979863,
+        "description": "If images, videos or audio files are part of an article that's fine, but the accompanying article must have some value of its own. Merely providing image captions or video descriptions isn't sufficient.",
+        "kind": "link",
+        "priority": 5,
+        "short_name": "No Images, Videos or Audio Clips",
+        "violation_reason": "Image, Video or Audio Clip"
+      },
+      {
+        "created_utc": 1652979863,
+        "description": "Old News is any news older than one week.",
+        "kind": "link",
+        "priority": 9,
+        "short_name": "No Old News Articles (≥ 1 Week old)",
+        "violation_reason": "Out of Date"
+      }
+    ],
+    "subreddit": "worldnews",
+    "text_scope_note": "Rules are public policy context; comment text is not included in this card.",
+    "title": "World News"
+  },
+  {
+    "dataset": "multilingual_content_mod",
+    "description": "##**ABOUT r/space**\n\nShare & discuss informative content on:\n\n* Astrophysics\n* Cosmology\n* Space Exploration\n* Planetary Science\n* Astrobiology\n\n##**UPCOMING LAUNCHES**\n> **Timezone is UTC**\n\nDate | Event \n:-:|:-\n\n\n* [View Full Calendar](http://goo.gl/IXM141) \n* To suggest events, [message the moderators](/message/compose?to=%2Fr%2Fspace)\n\n \n##**SUBMITTING LINKS**\n*Please use original sources for content wherever possible. Please limit yourself to no more than 5 submissions per 24 hours.*\n\n**Encouraged**\n\n* Informative high-quality articles, news & videos\n* Peer-reviewed research papers that are publicly available\n* Academic texts that are publicly available\n \n**Not Allowed**\n\n* Sensationalized/misleading titles or Unscientific content\n* [Blogspam](https://www.reddit.com/wiki/selfpromotion), links behind a paywall, or pirated content\n* Social media links (Facebook, Twitter, Instagram, etc.) \n> *Exception: Twitter links are allowed only for breaking news by official sources. Examples:* \n*1. Pluto flyby announcements by NASA* \n*2. SpaceX launch coverage by SpaceX* \n\n* Duplicate/re-hosted content (use [Reddit Search](https://www.reddit.com/r/space/search?q=&sort=new&restrict_sr=on))\n* Petitions/surveys/crowd-funding\n* Shortened links/mobile links\n\n##**SUBMITTING IMAGES & GIFs**\n*Only allowed on Sundays UTC. Short videos without meaningful audio content qualify as GIFs.*\n\n**Encouraged**\n\n* Directly linked quality images/GIFs with an appropriate and concise title\n\n* Include information about the subject, equipment, processing, and name of the photographer\n\n* If you are the photographer do not include additional demographic information, the image should stand on its own merit\n\n* Recommended subreddits: r/spaceporn, r/astrophotography & r/astronomy for images and r/spacegifs for GIFs.\n\n**Not Allowed**\n\n* Memes/low quality images\n* Reaction GIFs\n* Re-hosted content (use KarmaDecay)\n* Misleadingly edited images\n\n##**SUBMITTING A TEXT POST**\n*Straightforward questions (who/what/where) belong to the Weekly Space Questions thread (pinned at the top)*\n\n**Encouraged**\n\n* Informative & thought-provoking posts \n* Open-ended questions that promote discussion\n* Highly recommended subreddit: r/askscience\n\n**Not Allowed**\n\n* ELI5/PSA styled posts\n* Posts that only state your opinion and don't engage the community\n\n## **COMMENTS**\n> **[Remember the Human](https://www.reddit.com/r/blog/comments/1ytp7q/remember_the_human/)**\n\n\n**Encouraged**\n\n* On topic comments that convey meaningful information\n* Backup scientific claims with appropriate links \n\n**Not Allowed** \n\n* Low-effort/short comments\n* Off-topic comments\n* Unscientific comments (e.g. Flat Earth)\n* Image-only comments\n* Memes/jokes/circle-jerk/trolling/insults\n\n>**[General Reddiquette applies](https://www.reddit.com/wiki/reddiquette)**\n\n>**Please report comments & links that don't follow the rules**\n\n>**Moderation will be strictly enforced on those not following the rules**\n\n##**Discord**\n\nWe have a discord server at discord.gg/CPbsdTprab, feel free to join.\n\n##**[MESSAGE THE MODERATORS](/message/compose?to=/r/space)**\n\n[Nightmode](http://nm.reddit.com/r/space)\n[Normal](http://www.reddit.com/r/space)\n\n###### [](/r/space/wiki/edit/sidebar_template)\n\n[](#/RES_SR_Config/NightModeCompatible) [](https://redd.it/3o3yp1/)",
+    "display_name": "space",
+    "policy_card_id": "reddit_space_p0_public_policy",
+    "policy_views": [
+      "P0_structured_comment_rules",
+      "P1_subreddit_description",
+      "P2_site_rules"
+    ],
+    "site_rules": [
+      "Spam",
+      "Personal and confidential information",
+      "Threatening, harassing, or inciting violence"
+    ],
+    "source_path": "rules\\2022-06-27\\space\\subreddit_metadata.json",
+    "source_snapshot": "2022-06-27",
+    "structured_comment_rules": [
+      {
+        "created_utc": 1652981195,
+        "description": "",
+        "kind": "comment",
+        "priority": 9,
+        "short_name": "No low-effort/meme/joke/troll/insult comments",
+        "violation_reason": "No low-effort/meme/joke/troll/insult comments"
+      },
+      {
+        "created_utc": 1652981195,
+        "description": "",
+        "kind": "comment",
+        "priority": 10,
+        "short_name": "No unscientific or anti-scientific comments",
+        "violation_reason": "No unscientific or anti-scientific comments"
+      }
+    ],
+    "structured_link_rules": [
+      {
+        "created_utc": 1652981195,
+        "description": "This includes \"circlejerky\" submissions or space-related art, with the exception of art from space agencies or historically-significant art.",
+        "kind": "link",
+        "priority": 0,
+        "short_name": "Submissions must be related to Space/Cosmology",
+        "violation_reason": "Submissions must be related to Space/Cosmology"
+      },
+      {
+        "created_utc": 1652981195,
+        "description": "",
+        "kind": "link",
+        "priority": 1,
+        "short_name": "No sensationalist/misleading/unscientific content",
+        "violation_reason": "No sensationalist/misleading/unscientific content"
+      },
+      {
+        "created_utc": 1652981195,
+        "description": "This also means that news articles should be a top-level source.",
+        "kind": "link",
+        "priority": 2,
+        "short_name": "No spam/blogspam/paywalled/pirated content",
+        "violation_reason": "No spam/blogspam/paywalled/pirated content"
+      },
+      {
+        "created_utc": 1652981195,
+        "description": "",
+        "kind": "link",
+        "priority": 5,
+        "short_name": "No duplicate or re-hosted content",
+        "violation_reason": "No duplicate or re-hosted content"
+      },
+      {
+        "created_utc": 1652981195,
+        "description": "Images, gifs, and gif-like videos (those under 2 minutes and which don't rely on sound) are permitted only on Sundays UTC.",
+        "kind": "link",
+        "priority": 6,
+        "short_name": "Images are only allowed on Sunday UTC",
+        "violation_reason": "Images are only allowed on Sunday UTC"
+      },
+      {
+        "created_utc": 1652981195,
+        "description": "",
+        "kind": "link",
+        "priority": 7,
+        "short_name": "No low-effort or meme images are permitted at any time.",
+        "violation_reason": "No low-effort or meme images are permitted at any time."
+      },
+      {
+        "created_utc": 1652981195,
+        "description": "Straightforward questions (who/what/where) belong to the Weekly Space Questions thread (pinned at the top).",
+        "kind": "link",
+        "priority": 11,
+        "short_name": "Straightforward questions belong in the Space Questions Thread",
+        "violation_reason": "Should be in the space questions thread"
+      }
+    ],
+    "subreddit": "space",
+    "text_scope_note": "Rules are public policy context; comment text is not included in this card.",
+    "title": "/r/space: news, articles and discussion"
+  },
+  {
+    "dataset": "multilingual_content_mod",
+    "description": "* **[Get a verified flair in r/Futurology](/r/futurology/wiki/userflair)**\n\n---\n\n*[Source Quality](/r/futurology/wiki/sourcequality)*:[](#green) excellent[](#blue) good[](#yellow) ok[](#red) avoid\n\n##### C A T E G O R I E S\n\n**[3D Printing](https://goo.gl/WFiFx2#3DPrint)** - **[Artificial Intelligence](https://goo.gl/tDywmA#AI)** - **[Biotech](https://goo.gl/JuckwK#Biotech)**\n\n **[Computing](https://goo.gl/pCho55#Computing)** - **[Economics](https://goo.gl/0Tup02#Economics)** - **[Energy](https://goo.gl/MP2q4I#Energy)** - **[Environment](https://goo.gl/3hU0mr#Environment)** \n\n**[Nanotech](https://goo.gl/c4HuSJ#Nanotech)** - **[Robotics](https://goo.gl/BNSVJZ#Robotics)** - **[Society](https://goo.gl/4qo2X6#Society)** - **[Space](https://goo.gl/U318JE#Space)** - **[Transport](https://goo.gl/MC1xDl#Transport)**\n\n[New to reddit? click here!](/wiki/reddit_101)\n\n#####Welcome to r/Futurology\n\nA subreddit devoted to the field of Future(s) Studies and evidence-based speculation about the development of humanity, technology, and civilization.\n\n#####Posting Rules\n\n>\n1. Be respectful to others - this includes no hostility, racism, sexism, bigotry, etc.\n2. Submissions must be *future focused*. All posts must have an initial comment, a **Submission Statement**, that suggests a line of future-focused discussion for the topic posted. We want this submission statement to elaborate on the topic being posted and suggest how it might be discussed in relation to the future.\n3. No memes, reaction gifs or similarly low effort content. Images/gifs require a starter comment.\n4. No spamming - this includes polls and surveys\n5. Bots require moderator permission to operate\n6. Comments must be on topic, contribute to the discussion and be of sufficient length. Comments that dismiss well-established science without compelling evidence are a distraction to discussion of futurology and may be removed.\n7. Account age: >1 day to comment, >5 days to submit content\n8. Submissions and comments of accounts whose combined karma is too far in the negatives will be removed\n9. Avoid posting content that is a duplicate of content posted within the last 7 days.\n10. Submissions with **[in-depth]** in the title have stricter post length and quality guidelines\n11. Titles must accurately and truthfully represent the content of the submission\n12. Support original sources - avoid blogs/websites that are primarily rehosted content\n13. Content older than 6 months must have [month, year] in the title\n>\nFor details on the rules see the\n [**Rules Wiki**](/r/futurology/wiki/rules).\n\n>\nFor details on moderation procedures, see the\n [**Transparency Wiki**](/r/Futurology/wiki/transparency).\n \n>\n \n#####On Futurology\n\nIf history studies our past and social sciences study our present, what is the study of our future? Future(s) Studies (colloquially called \"future(s)\" by many of the field's practitioners) is an interdisciplinary field that seeks to hypothesize the possible, probable, preferable, or alternative future(s). \n\nOne of the fundamental assumptions in future(s) studies is that the future is plural rather than singular, that is, that it consists of alternative future(s) of varying degrees of likelihood but that it is impossible in principle to say with certainty which one will occur. \n\n#####Recommended Links\n\n* **[Best of 2018](https://www.reddit.com/r/Futurology/comments/abk1xr/best_of_2018_vote_on_your_favorite_posts_of_the/)**\n\n* **[Best of 2017](https://www.reddit.com/r/Futurology/comments/7v87u2/best_of_2017_some_of_the_top_futurology_posts/)**\n\n* **[Best of 2016](https://www.reddit.com/r/Futurology/comments/6g4ztt/best_of_2016_winners/)**\n\n* **[Best of 2015](https://www.reddit.com/r/Futurology/comments/48b5oc/best_of_2015_winners/)**\n\n* **[Best of 2014](http://www.reddit.com/r/Futurology/search?q=flair%3Abestof&restrict_sr=on&sort=relevance&t=all)**\n\n\n* [/r/Collapse vs /r/Futurology Debate](https://www.reddit.com/r/Futurology/comments/5ocxj9/rcollapse_vs_rfuturology_debate_does_human/) \n\n* [The r/Futurology Wiki](/r/Futurology/wiki/)\n\n* [Futurist Blogs, Sites, and Resources](http://goo.gl/wJSULw)\n\n* [Futurist Reading List](http://goo.gl/jzYvZ9)\n\n* [Futurology Moderator's Forum](/r/FuturologyModerators)\n\n* [Removed Content Archive](/r/futurologyremovals)\n\n* [Tips on how to find content to submit](/r/Futurology/comments/84m56h/tips_on_how_to_find_content_to_submit_to/)\n\n* [Multi-Reddit of the SFTNetwork]\n(http://www.reddit.com/user/xenophon1/m/futurist)\n\n#####Related Subreddits\n\n**For a list of related subreddits, hover over top menu.**\n\n[popular discussions today](http://goo.gl/1q7oUp)\n\n[transparency](http://goo.gl/C0vOBH)\n\n[AMAs](/r/Futurology/wiki/ama)\n\n[domain blacklist](http://goo.gl/zDwI3D)\n\n[IRC](http://goo.gl/Nt9IIa)\n\n[glossary of terms](/r/Futurology/wiki/glossary#wiki)\n\n[source quality](/r/futurology/wiki/sourcequality#quality)\n\n>#\n\n>* [Universe](http://goo.gl/tzkaH6)\n* [Space Settlement](/r/Space_Settlement)\n* [Space Flight](/r/SpaceFlight)\n* [Cosmology](/r/Cosmology)\n* [Space Videos](/r/Spacevideos)\n* [AskTechnology](/r/AskTechnology)\n* [Scifi](/r/Scifi)\n* [Space](/r/space)\n\n\n>#\n\n>* [Transhuman](http://goo.gl/vFWcxv)\n* [**Transhuman**](/r/Transhuman)\n* [Transhumanism](/r/Transhumanism)\n* [Nootropics](/r/Nootropics)\n* [Cyberpunk](/r/Cyberpunk)\n* [Longevity](/r/longevity)\n\n>#\n\n>* [Futurology](http://goo.gl/pr7rJp)\n* [**Futurology**](/r/Futurology)\n* [FuturePorn](/r/FuturePorn)\n* [Retro Futurism](/r/RetroFuturism)\n* [Automate](/r/Automate)\n* [Simulate](/r/Simulate)\n* [TheVenusProject](/r/TheVenusProject)\n* [Basic Income](/r/BasicIncome)\n* [Futurist Party](/r/FuturistParty)\n\n>#\n\n>* [Singularity](http://goo.gl/P3nvU5)\n* [**Singularity**](/r/Singularity)\n* [Robotics](/r/Robotics)\n* [Artificial](/r/Artificial)\n\n>#\n\n>* [**SFT Network**](/r/SingularityNetwork)\n* [FAQ](http://intelligence.org/ie-faq/)\n* [Browse All](http://www.reddit.com/user/xenophon1/m/futurist)\n* [Follow on Twitter](https://twitter.com/#!/SFTNet/list)\n* [Join us on IRC](http://cbe005.chat.mibbit.com/?server=irc.snoonet.org&nick=nickname%3F%3F%3F&channel=%23singularitynetwork)\n\n[](#heads)\n\n[](https://discord.gg/9C9d9PZ)\n\n[Chat with us on Discord!](https://www.discord.gg/9C9d9PZ)\n\n[](#AMApromo)\n\n[](#AMAtext)\n\n[Apply to be a Mod here!](/r/futurology/wiki/moderator)",
+    "display_name": "futurology",
+    "policy_card_id": "reddit_futurology_p0_public_policy",
+    "policy_views": [
+      "P0_structured_comment_rules",
+      "P1_subreddit_description",
+      "P2_site_rules"
+    ],
+    "site_rules": [
+      "Spam",
+      "Personal and confidential information",
+      "Threatening, harassing, or inciting violence"
+    ],
+    "source_path": "rules\\2022-06-27\\futurology\\subreddit_metadata.json",
+    "source_snapshot": "2022-06-27",
+    "structured_comment_rules": [
+      {
+        "created_utc": 1652993382,
+        "description": "Comments must be on topic, contribute to the discussion and be of sufficient length. Comments that dismiss well-established science without compelling evidence are a distraction to discussion of futurology and may be removed.",
+        "kind": "comment",
+        "priority": 5,
+        "short_name": "Rule 6 - Comment Quality",
+        "violation_reason": "Rule 6 - Comment Quality"
+      }
+    ],
+    "structured_link_rules": [
+      {
+        "created_utc": 1652993382,
+        "description": "Submissions must be *future focused*. All posts must have an initial comment, a **Submission Statement**, that suggests a line of future-focused discussion for the topic posted. We want this submission statement to elaborate on the topic being posted and suggest how it might be discussed in relation to the future.",
+        "kind": "link",
+        "priority": 1,
+        "short_name": "Rule 2 - Future Focus",
+        "violation_reason": "Rule 2 - Future Focus"
+      },
+      {
+        "created_utc": 1652993382,
+        "description": "No memes, reaction gifs or similarly low effort content. Images/gifs require a starter comment.",
+        "kind": "link",
+        "priority": 2,
+        "short_name": "Rule 3 - Images",
+        "violation_reason": "Rule 3 - Images"
+      },
+      {
+        "created_utc": 1652993382,
+        "description": "Avoid posting content that is a duplicate of content posted within the last 7 days.",
+        "kind": "link",
+        "priority": 8,
+        "short_name": "Rule 9 - No Duplicates",
+        "violation_reason": "Rule 9 - No Duplicates"
+      },
+      {
+        "created_utc": 1652993382,
+        "description": "Titles should accurately and truthfully represent the content of the submission.",
+        "kind": "link",
+        "priority": 10,
+        "short_name": "Rule 11 - Title Quality",
+        "violation_reason": "Rule 11 - Title Quality"
+      },
+      {
+        "created_utc": 1652993382,
+        "description": "Support original sources - avoid blogs/websites that are primarily rehosted content.",
+        "kind": "link",
+        "priority": 11,
+        "short_name": "Rule 12 - Original Sources",
+        "violation_reason": "Rule 12 - Original Sources"
+      },
+      {
+        "created_utc": 1652993382,
+        "description": "Content older than 6 months must have [month, year] in the title.",
+        "kind": "link",
+        "priority": 12,
+        "short_name": "Rule 13 - Content age",
+        "violation_reason": "Rule 13 - Content age"
+      }
+    ],
+    "subreddit": "futurology",
+    "text_scope_note": "Rules are public policy context; comment text is not included in this card.",
+    "title": "Future(s) Studies"
+  },
+  {
+    "dataset": "multilingual_content_mod",
+    "description": "[Follow us on Twitter @nflreddit](https://twitter.com/nflreddit \"ad-twitter\")\n\n[Reddit is AntiCSS - read what the redesign means to r/nfl](https://www.reddit.com/r/nfl/comments/8glmp1/rnfl_the_redesign_and_the_future_of_reddit/ \"pro-css\")\n\n[Rules/Posting Guidelines](/r/nfl/wiki/postingguidelines \"subreddit-rules\")\n\n####FAQ\n\n[FAQ Page](/r/nfl/w/faq) \n\n[Which team should I root for?](https://www.reddit.com/r/nfl/wiki/new/pickateam)\n\n###Key 2022 Offseason Dates\n\n##### April\n\nDate | Event\n---|---\n4/4 | ~~Team with new coaches may begin offseason workout programs~~\n4/18 | ~~Teams with returning coaches may begin offseason workout programs~~\n4/20 | ~~Deadline to bring draft-eligible players to their facilities for a physical examination~~\n4/22 | ~~Deadline for restricted free agents to sign offer sheets~~\n4/27 | ~~Deadline for prior club to exercise Right of First Refusal to restricted free agents~~\n4/27 | ~~Deadline to time, test, and interview draft-eligible players~~\n4/28-4/30 | [***'22 NFL Draft, Las Vegas, Nevada***](https://www.reddit.com/r/nfl/comments/ue7s4k/2022_nfl_draft_hub/)\n\n##### May Through August\n\nDate | Event\n---|---\nMay/June | Organized Team Activities (OTAs) \nEarly July | Supplemental Draft\nJuly 15 | Franchise tag extension deadline\nEnd of July - August | Training Camps Begin \nAugust 4 | Hall of Fame Game (Preseason game #1)\n#### [](/blank \"START scores\")\n\n## Week 1 Schedule\n\nTime|Away||@||Home\n|:--|:--:|--:|:--:|:--|:--:|\n\n\n#### [](/blank \"END scores\")\n\n[Which games will be shown locally?](http://506sports.com/nfl/)\n\n#### [](/blank \"START standings\")\n\n## Standings\n\n|AFC|North|AFC|South|\n|--:|:--|--:|:--|\n|[*CIN*](/r/bengals)|10-7^xy|[*TEN*](/r/tennesseetitans)|12-5^xy*|\n|[*PIT*](/r/steelers)|9-7-1^xz|[*IND*](/r/colts)|9-8^†|\n|[*CLE*](/r/browns)|8-9^†|[*HOU*](/r/texans)|4-13^†|\n|[*BAL*](/r/ravens)|8-9^†|[*JAX*](/r/jaguars)|3-14^†|\n\n|AFC|East|AFC|West|\n|--:|:--|--:|:--|\n|[*BUF*](/r/buffalobills)|11-6^xy|[*KC*](/r/kansascitychiefs)|12-5^xy|\n|[*NE*](/r/patriots)|10-7^xz|[*LV*](/r/raiders)|10-7^xz|\n|[*MIA*](/r/miamidolphins)|9-8^†|[*LAC*](/r/chargers)|9-8^†|\n|[*NYJ*](/r/nyjets)|4-13^†|[*DEN*](/r/denverbroncos)|7-10^†|\n\n|NFC|North|NFC|South|\n|--:|:--|--:|:--|\n|[*GB*](/r/greenbaypackers)|13-4^xy*|[*TB*](/r/buccaneers)|13-4^xy|\n|[*MIN*](/r/minnesotavikings)|8-9^†|[*NO*](/r/saints)|9-8^†|\n|[*CHI*](/r/chibears)|6-11^†|[*ATL*](/r/falcons)|7-10^†|\n|[*DET*](/r/detroitlions)|3-13-1^†|[*CAR*](/r/panthers)|5-12^†|\n\n|NFC|East|NFC|West|\n|--:|:--|--:|:--|\n|[*DAL*](/r/cowboys)|12-5^xy|[*LA*](/r/losangelesrams)|12-5^xy|\n|[*PHI*](/r/eagles)|9-8^xz|[*ARI*](/r/azcardinals)|11-6^xz|\n|[*WAS*](/r/commanders)|7-10^†|[*SF*](/r/49ers)|10-7^xz|\n|[*NYG*](/r/nygiants)|4-13^†|[*SEA*](/r/seahawks)|7-10^†|\n\n\n\n#### [](/blank \"END standings\")\n\nx = Clinched playoff berth \ny = Clinched division title \nz = Clinched Wild card \n* = Clinched homefield advantage \n† = Eliminated \n\n#### [](/blank \"START calendar\")\n\n# Upcoming events\n\nNo upcoming events\n\n#### [](/blank \"END calendar\")\n\n\n## [Free Talk Threads](/r/nfl/search/?q=flair%3A\"Free+Talk\"&sort=new&restrict_sr=on&t=all)\n\n\n## NFL Subreddits\n* /r/cordcutters - [How to watch NFL games](https://www.reddit.com/r/cordcutters/wiki/nflguide)\n* /r/nflnoobs - For all your NFL-related questions\n* /r/nflfandom - NFL Show & Tell\n* /r/nflmarketplace - Buy, sell, trade, everything NFL related\n* /r/nfffffffluuuuuuuuuuuu - NFL Memes\n* /r/nflcirclejerk - Do it for Tebow\n* /r/nflroundtable - NFL Discussion\n* /r/nflofftopic - r/NFL for non-NFL topics\n* /r/nflfilms - NFL Films\n* /r/madden - NFL Madden\n* /r/nfl_draft - NFL Draft\n* /r/nflblogs - NFL Blogs\n* /r/nflgifs - NFL Gifs\n\n## Football Subreddits\n\n* /r/cfb - College Football\n* /r/CFL - Canadian Football\n* /r/arenafootball - Arena Football\n* /r/fantasyfootball - Fantasy Football\n* /r/footballstrategy - Football Strategy\n* /r/footballcards - Football Card Collecting\n* /r/eurobowl - Football in Europe\n* /r/xfl - Xtreme Football League \n* /r/usfl - United States Football League\n\n----\n\n### [](/blank)\n\n----\n\n#### [](/blank)\n\n# [](/blank)\n\n* [](/r/kansascitychiefs) [](/r/denverbroncos) [](/r/colts) [](/r/texans) [](/r/bengals) [](/r/ravens) [](/r/miamidolphins) [](/r/buffalobills) [](/r/raiders) [](/r/chargers) [](/r/tennesseetitans) [](/r/jaguars) [](/r/steelers) [](/r/browns) [](/r/nyjets) [](/r/patriots) \n* [](/r/cowboys) [](/r/nygiants) [](/r/chibears) [](/r/detroitlions) [](/r/falcons) [](/r/panthers) [](/r/azcardinals) [](/r/losangelesrams) [](/r/eagles) [](/r/commanders) [](/r/greenbaypackers) [](/r/minnesotavikings) [](/r/saints) [](/r/buccaneers) [](/r/49ers) [](/r/seahawks)",
+    "display_name": "nfl",
+    "policy_card_id": "reddit_nfl_p0_public_policy",
+    "policy_views": [
+      "P0_structured_comment_rules",
+      "P1_subreddit_description",
+      "P2_site_rules"
+    ],
+    "site_rules": [
+      "Spam",
+      "Personal and confidential information",
+      "Threatening, harassing, or inciting violence"
+    ],
+    "source_path": "rules\\2022-06-27\\nfl\\subreddit_metadata.json",
+    "source_snapshot": "2022-06-27",
+    "structured_comment_rules": [
+      {
+        "created_utc": 1652990297,
+        "description": "Someone attacking another user that goes far beyond normal trash talk or using a racist/homophobic/ablest slur.",
+        "kind": "comment",
+        "priority": 8,
+        "short_name": "Personal attack or any kind of slur",
+        "violation_reason": "Personal attack or any kind of slur"
+      }
+    ],
+    "structured_link_rules": [
+      {
+        "created_utc": 1652990297,
+        "description": "[Full Rule](https://www.reddit.com/r/nfl/wiki/postingguidelines#wiki_3._the_title_should_describe_the_submission)\n\nThe purpose of a title is so people reading it (and looking for it) will know what they will find inside without any unnecessary clutter. Make sure that your title does that as best as possible by avoiding editorializing, misleading wording, or false titles intended as a joke.",
+        "kind": "link",
+        "priority": 2,
+        "short_name": "Editorialized Title",
+        "violation_reason": "Editorialized Title"
+      },
+      {
+        "created_utc": 1652990297,
+        "description": "[Random highlights not allowed on Game Days - FULL RULE HERE](https://www.reddit.com/r/nfl/wiki/postingguidelines#wiki_5._highlights.3A_only_allowed_during_tnf.2C_snf.2C_mnf)\n\n**Not Allowed**\n\n* *Untagged highlights* - Begin the title with \"[Highlight]\" so it is appropriately flaired.\n* *Low quality Highlights* - Recording of a tv or so pixelated it is hard to watch.\n* *Hype Videos* - These are video packages with excessive content from off-field.",
+        "kind": "link",
+        "priority": 4,
+        "short_name": "Highlights: During Games",
+        "violation_reason": "Highlights"
+      },
+      {
+        "created_utc": 1652990297,
+        "description": "[Full Rule](https://reddit.com/r/nfl/wiki/postingguidelines#wiki_6._personal_life.2C_serious_illness.2C_deaths.2C_and_arrests_for_current_or_former_players)\n\nAny official statement by anybody relating to the NFL is appropriate in situations of serious situations such as (but not limited to) those listed above. Whether it is the league, a player, an involved lawyer, the police, or a team, any serious situation will be allowed. Such posts that have nothing to do with the NFL will be removed.",
+        "kind": "link",
+        "priority": 5,
+        "short_name": "Personal Life/Off Field, Serious illness, deaths, and arrests for current or former players",
+        "violation_reason": "Personal Life, Serious illness, deaths, and arrests for current or former players"
+      }
+    ],
+    "subreddit": "nfl",
+    "text_scope_note": "Rules are public policy context; comment text is not included in this card.",
+    "title": "NFL: National Football League Discussion"
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "dataset": "multilingual_content_mod",
+  "hydration_queue_count": 4800,
+  "outputs": {
+    "hydration_queue": "reddit_bao_hydration_queue.jsonl",
+    "id_core": "reddit_bao_id_core.jsonl",
+    "manifest": "manifest.json",
+    "policy_cards": "reddit_bao_policy_cards.json"
+  },
+  "policy_card_count": 6,
+  "record_count": 4800,
+  "rules_snapshot": "2022-06-27",
+  "source_view": "balanced/data-en",
+  "split_counts": {
+    "test-en": 1200,
+    "train": 3000,
+    "val": 600
+  },
+  "split_sizes_requested": {
+    "test-en": 200,
+    "train": 500,
+    "val": 100
+  },
+  "subreddits": [
+    "science",
+    "news",
+    "worldnews",
+    "space",
+    "futurology",
+    "nfl"
+  ],
+  "text_status": "unhydrated"
+}
