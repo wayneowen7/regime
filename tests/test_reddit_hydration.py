@@ -1,11 +1,17 @@
+import json
+import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 
 from regime_pilot.reddit_hydration import (
     MissingRedditCredentials,
     hydrate_queue,
+    load_env_file,
     make_reddit_client_from_env,
+    merge_env_file,
 )
 from regime_pilot.schema import load_jsonl
 
@@ -88,6 +94,86 @@ class RedditHydrationTests(unittest.TestCase):
         self.assertIn("REDDIT_CLIENT_ID", str(context.exception))
         self.assertIn("REDDIT_CLIENT_SECRET", str(context.exception))
         self.assertIn("REDDIT_USER_AGENT", str(context.exception))
+
+    def test_load_env_file_parses_comments_quotes_and_blank_lines(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            env_path = Path(tmp) / ".env.reddit.local"
+            env_path.write_text(
+                "\n"
+                "# local credentials\n"
+                "REDDIT_CLIENT_ID = abc123\n"
+                "REDDIT_CLIENT_SECRET='secret value'\n"
+                'REDDIT_USER_AGENT=\"regime research by u/example\"\n',
+                encoding="utf-8",
+            )
+
+            values = load_env_file(env_path)
+
+        self.assertEqual(
+            values,
+            {
+                "REDDIT_CLIENT_ID": "abc123",
+                "REDDIT_CLIENT_SECRET": "secret value",
+                "REDDIT_USER_AGENT": "regime research by u/example",
+            },
+        )
+
+    def test_merge_env_file_keeps_explicit_environment_over_file_values(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            env_path = Path(tmp) / ".env.reddit.local"
+            env_path.write_text(
+                "REDDIT_CLIENT_ID=file_id\n"
+                "REDDIT_CLIENT_SECRET=file_secret\n"
+                "REDDIT_USER_AGENT=file_agent\n",
+                encoding="utf-8",
+            )
+
+            values = merge_env_file(
+                env_path,
+                base_env={
+                    "REDDIT_CLIENT_ID": "env_id",
+                    "OTHER": "kept",
+                },
+            )
+
+        self.assertEqual(values["REDDIT_CLIENT_ID"], "env_id")
+        self.assertEqual(values["REDDIT_CLIENT_SECRET"], "file_secret")
+        self.assertEqual(values["REDDIT_USER_AGENT"], "file_agent")
+        self.assertEqual(values["OTHER"], "kept")
+
+    def test_cli_reports_missing_credentials_without_traceback(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            queue_path = Path(tmp) / "queue.jsonl"
+            queue_path.write_text(json.dumps({"comment_id": "abc123"}) + "\n", encoding="utf-8")
+            output_path = Path(tmp) / "out.jsonl"
+            env = os.environ.copy()
+            env["PYTHONPATH"] = "pilot/src"
+            env.pop("REDDIT_CLIENT_ID", None)
+            env.pop("REDDIT_CLIENT_SECRET", None)
+            env.pop("REDDIT_USER_AGENT", None)
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "regime_pilot.reddit_hydration",
+                    "--queue",
+                    str(queue_path),
+                    "--output",
+                    str(output_path),
+                    "--limit",
+                    "1",
+                ],
+                cwd=Path(__file__).resolve().parents[1],
+                env=env,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("Missing Reddit API credentials", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
 
 
 if __name__ == "__main__":

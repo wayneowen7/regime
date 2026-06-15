@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import sys
 from typing import Any, Iterable, Mapping
 
 from regime_pilot.schema import load_jsonl
@@ -11,6 +12,40 @@ from regime_pilot.schema import load_jsonl
 
 class MissingRedditCredentials(RuntimeError):
     pass
+
+
+def load_env_file(path: str | Path) -> dict[str, str]:
+    values: dict[str, str] = {}
+    for line_number, line in enumerate(Path(path).read_text(encoding="utf-8").splitlines(), start=1):
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if stripped.startswith("export "):
+            stripped = stripped[len("export "):].strip()
+        if "=" not in stripped:
+            raise ValueError(f"{path}:{line_number} expected KEY=VALUE")
+        key, value = stripped.split("=", 1)
+        key = key.strip()
+        value = value.strip()
+        if not key:
+            raise ValueError(f"{path}:{line_number} empty environment variable name")
+        if (
+            len(value) >= 2
+            and value[0] == value[-1]
+            and value[0] in {"'", '"'}
+        ):
+            value = value[1:-1]
+        values[key] = value
+    return values
+
+
+def merge_env_file(
+    env_file: str | Path | None,
+    base_env: Mapping[str, str] | None = None,
+) -> dict[str, str]:
+    merged = load_env_file(env_file) if env_file else {}
+    merged.update(dict(os.environ if base_env is None else base_env))
+    return merged
 
 
 def _write_jsonl(path: str | Path, records: Iterable[dict[str, Any]]) -> None:
@@ -95,10 +130,18 @@ def main() -> None:
     parser.add_argument("--queue", default="pilot/data/reddit_bao/reddit_bao_hydration_queue.jsonl")
     parser.add_argument("--output", default="data/raw/reddit_bao_hydrated_comments.jsonl")
     parser.add_argument("--limit", type=int)
+    parser.add_argument(
+        "--env-file",
+        help="Optional local KEY=VALUE file, for example .env.reddit.local. OS env vars override file values.",
+    )
     args = parser.parse_args()
 
     queue_records = load_jsonl(args.queue)
-    reddit_client = make_reddit_client_from_env()
+    try:
+        reddit_client = make_reddit_client_from_env(merge_env_file(args.env_file))
+    except MissingRedditCredentials as exc:
+        print(str(exc), file=sys.stderr)
+        raise SystemExit(2) from None
     summary = hydrate_queue(
         queue_records=queue_records,
         output_path=args.output,
