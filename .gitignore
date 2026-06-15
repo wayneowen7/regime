@@ -49,3 +49,9 @@ papers/._*
 # Git worktree sandboxes
 .worktrees/
 worktrees/
+
+# Local dataset cache and hydrated third-party data
+.local_data/
+data/raw/
+data/external/
+data/cache/
