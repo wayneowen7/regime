@@ -166,6 +166,90 @@ class RedditPullPushResolverTests(unittest.TestCase):
         self.assertEqual(attempts["abc123"], 2)
         self.assertEqual(result["status_counts"], {"hydrated": 1})
 
+    def test_resolve_queue_resume_skips_existing_comment_ids_and_appends_new_records(self):
+        calls = []
+        existing_record = {
+            **QUEUE_ITEM,
+            "text": "Already collected.",
+            "body_sha256": "existing-hash",
+            "text_status": "hydrated",
+            "hydration_status": "hydrated",
+            "retrieval_source": "pullpush",
+            "retrieved_at": "2026-06-16T00:00:00Z",
+        }
+        new_item = {
+            **QUEUE_ITEM,
+            "case_id": "RB-test-en-news-000002",
+            "comment_id": "new123",
+            "subreddit": "news",
+        }
+
+        def fetcher(comment_id):
+            calls.append(comment_id)
+            return {"data": [_pullpush_comment(id=comment_id, subreddit="news")]}
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "raw.jsonl"
+            summary = Path(tmp) / "summary.json"
+            output.write_text(json.dumps(existing_record) + "\n", encoding="utf-8")
+
+            result = resolve_queue(
+                queue_records=[QUEUE_ITEM, new_item],
+                fetcher=fetcher,
+                output_path=output,
+                summary_path=summary,
+                resume=True,
+                checkpoint_every=1,
+                retrieved_at="2026-06-16T00:00:00Z",
+            )
+            raw_records = load_jsonl(output)
+
+        self.assertEqual(calls, ["new123"])
+        self.assertEqual(len(raw_records), 2)
+        self.assertEqual(raw_records[0]["text"], "Already collected.")
+        self.assertEqual(raw_records[1]["comment_id"], "new123")
+        self.assertEqual(result["record_count"], 2)
+        self.assertEqual(result["skipped_existing_count"], 1)
+        self.assertEqual(result["processed_new_count"], 1)
+
+    def test_resolve_queue_checkpoint_summary_reflects_partial_stream_progress(self):
+        queue = [
+            QUEUE_ITEM,
+            {
+                **QUEUE_ITEM,
+                "case_id": "RB-test-en-news-000002",
+                "comment_id": "new123",
+                "subreddit": "news",
+            },
+        ]
+
+        def fetcher(comment_id):
+            if comment_id == "new123":
+                raise KeyboardInterrupt("stop after first streamed record")
+            return {"data": [_pullpush_comment(id=comment_id)]}
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "raw.jsonl"
+            summary = Path(tmp) / "summary.json"
+            with self.assertRaises(KeyboardInterrupt):
+                resolve_queue(
+                    queue_records=queue,
+                    fetcher=fetcher,
+                    output_path=output,
+                    summary_path=summary,
+                    stream=True,
+                    checkpoint_every=1,
+                    retrieved_at="2026-06-16T00:00:00Z",
+                )
+            raw_records = load_jsonl(output)
+            summary_data = json.loads(summary.read_text(encoding="utf-8"))
+
+        self.assertEqual(len(raw_records), 1)
+        self.assertEqual(raw_records[0]["comment_id"], "abc123")
+        self.assertEqual(summary_data["record_count"], 1)
+        self.assertEqual(summary_data["processed_new_count"], 1)
+        self.assertTrue(summary_data["streaming"])
+
 
 if __name__ == "__main__":
     unittest.main()

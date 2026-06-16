@@ -37,6 +37,11 @@ def write_jsonl(path: str | Path, records: Iterable[dict[str, Any]]) -> None:
             handle.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
 
 
+def append_jsonl_record(handle: Any, record: dict[str, Any]) -> None:
+    handle.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
+    handle.flush()
+
+
 def utc_now_iso() -> str:
     return datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
@@ -158,6 +163,76 @@ def summarize_resolved_records(records: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def _record_key(record: dict[str, Any]) -> str:
+    for field in ("comment_id", "reddit_fullname", "case_id"):
+        value = record.get(field)
+        if value:
+            return f"{field}:{value}"
+    return json.dumps(record, ensure_ascii=False, sort_keys=True)
+
+
+def _load_existing_records(path: str | Path) -> list[dict[str, Any]]:
+    output_path = Path(path)
+    if not output_path.exists():
+        return []
+    return load_jsonl(output_path)
+
+
+def _summary_with_metadata(
+    records: list[dict[str, Any]],
+    output_path: str | Path,
+    summary_path: str | Path,
+    timestamp: str,
+    max_retries: int,
+    streaming: bool,
+    resume: bool,
+    processed_existing_count: int,
+    skipped_existing_count: int,
+    processed_new_count: int,
+    pending_count: int,
+) -> dict[str, Any]:
+    summary = summarize_resolved_records(records)
+    summary["output_path"] = str(output_path)
+    summary["summary_path"] = str(summary_path)
+    summary["retrieved_at"] = timestamp
+    summary["contains_raw_text"] = False
+    summary["max_retries"] = max_retries
+    summary["streaming"] = streaming
+    summary["resume"] = resume
+    summary["processed_existing_count"] = processed_existing_count
+    summary["skipped_existing_count"] = skipped_existing_count
+    summary["processed_new_count"] = processed_new_count
+    summary["pending_count"] = pending_count
+    return summary
+
+
+def _resolve_one_record(
+    item: dict[str, Any],
+    fetcher: Callable[[str], dict[str, Any]],
+    timestamp: str,
+    max_retries: int,
+    retry_sleep_seconds: float,
+) -> dict[str, Any]:
+    last_error: Exception | None = None
+    for attempt in range(max_retries + 1):
+        try:
+            payload = fetcher(str(item["comment_id"]))
+            record = resolve_pullpush_record(item, payload, retrieved_at=timestamp)
+            record["fetch_attempts"] = attempt + 1
+            return record
+        except Exception as exc:
+            last_error = exc
+            if attempt < max_retries and retry_sleep_seconds > 0:
+                time.sleep(retry_sleep_seconds)
+
+    record = _base_record(item, timestamp)
+    record["text_status"] = "error"
+    record["hydration_status"] = "failed"
+    record["hydration_error"] = str(last_error)
+    record["fetch_attempts"] = max_retries + 1
+    return record
+
+
 def resolve_queue(
     queue_records: Iterable[dict[str, Any]],
     fetcher: Callable[[str], dict[str, Any]],
@@ -168,40 +243,77 @@ def resolve_queue(
     max_retries: int = 0,
     retry_sleep_seconds: float = 1.0,
     retrieved_at: str | None = None,
+    resume: bool = False,
+    stream: bool = False,
+    checkpoint_every: int = 50,
 ) -> dict[str, Any]:
-    records: list[dict[str, Any]] = []
-    timestamp = retrieved_at or utc_now_iso()
-    for index, item in enumerate(queue_records):
-        if limit is not None and index >= limit:
-            break
-        last_error: Exception | None = None
-        for attempt in range(max_retries + 1):
-            try:
-                payload = fetcher(str(item["comment_id"]))
-                record = resolve_pullpush_record(item, payload, retrieved_at=timestamp)
-                record["fetch_attempts"] = attempt + 1
-                break
-            except Exception as exc:
-                last_error = exc
-                if attempt < max_retries and retry_sleep_seconds > 0:
-                    time.sleep(retry_sleep_seconds)
-        else:
-            record = _base_record(item, timestamp)
-            record["text_status"] = "error"
-            record["hydration_status"] = "failed"
-            record["hydration_error"] = str(last_error)
-            record["fetch_attempts"] = max_retries + 1
-        records.append(record)
-        if sleep_seconds > 0:
-            time.sleep(sleep_seconds)
+    queue_list = list(queue_records)
+    if limit is not None:
+        queue_list = queue_list[:limit]
 
-    summary = summarize_resolved_records(records)
-    summary["output_path"] = str(output_path)
-    summary["summary_path"] = str(summary_path)
-    summary["retrieved_at"] = timestamp
-    summary["contains_raw_text"] = False
-    summary["max_retries"] = max_retries
-    write_jsonl(output_path, records)
+    timestamp = retrieved_at or utc_now_iso()
+
+    use_streaming_writes = stream or resume
+    existing_records = _load_existing_records(output_path) if resume else []
+    existing_keys = {_record_key(record) for record in existing_records}
+    records: list[dict[str, Any]] = list(existing_records)
+    processed_existing_count = len(existing_records)
+    skipped_existing_count = 0
+    processed_new_count = 0
+
+    def build_summary() -> dict[str, Any]:
+        pending_count = max(len(queue_list) - skipped_existing_count - processed_new_count, 0)
+        return _summary_with_metadata(
+            records=records,
+            output_path=output_path,
+            summary_path=summary_path,
+            timestamp=timestamp,
+            max_retries=max_retries,
+            streaming=use_streaming_writes,
+            resume=resume,
+            processed_existing_count=processed_existing_count,
+            skipped_existing_count=skipped_existing_count,
+            processed_new_count=processed_new_count,
+            pending_count=pending_count,
+        )
+
+    output_file_path = Path(output_path)
+    output_file_path.parent.mkdir(parents=True, exist_ok=True)
+    stream_handle = None
+    if use_streaming_writes:
+        stream_handle = output_file_path.open("a" if resume else "w", encoding="utf-8", newline="\n")
+
+    try:
+        for item in queue_list:
+            if _record_key(item) in existing_keys:
+                skipped_existing_count += 1
+                continue
+
+            record = _resolve_one_record(
+                item=item,
+                fetcher=fetcher,
+                timestamp=timestamp,
+                max_retries=max_retries,
+                retry_sleep_seconds=retry_sleep_seconds,
+            )
+            records.append(record)
+
+            processed_new_count += 1
+            if stream_handle is not None:
+                append_jsonl_record(stream_handle, record)
+                if checkpoint_every > 0 and processed_new_count % checkpoint_every == 0:
+                    write_json(summary_path, build_summary())
+
+            if sleep_seconds > 0:
+                time.sleep(sleep_seconds)
+    finally:
+        if stream_handle is not None:
+            stream_handle.close()
+
+    if not use_streaming_writes:
+        write_jsonl(output_path, records)
+
+    summary = build_summary()
     write_json(summary_path, summary)
     return summary
 
@@ -217,6 +329,9 @@ def main() -> None:
     parser.add_argument("--retry-sleep-seconds", type=float, default=2.0)
     parser.add_argument("--timeout", type=float, default=20.0)
     parser.add_argument("--user-agent", default=DEFAULT_USER_AGENT)
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--stream", action="store_true")
+    parser.add_argument("--checkpoint-every", type=int, default=50)
     args = parser.parse_args()
 
     queue_records = load_jsonl(args.queue)
@@ -237,6 +352,9 @@ def main() -> None:
         sleep_seconds=args.sleep_seconds,
         max_retries=args.max_retries,
         retry_sleep_seconds=args.retry_sleep_seconds,
+        resume=args.resume,
+        stream=args.stream,
+        checkpoint_every=args.checkpoint_every,
     )
     print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
 
