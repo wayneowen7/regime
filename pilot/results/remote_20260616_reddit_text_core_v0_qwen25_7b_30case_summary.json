@@ -1,0 +1,75 @@
+{
+  "by_subreddit": {
+    "comment_only": {
+      "news": {
+        "accuracy": 0.6,
+        "allow_accuracy": 0.6,
+        "expected_remove_rate": 0.0,
+        "n": 5,
+        "parse_error_rate": 0.0,
+        "predicted_remove_rate": 0.4,
+        "remove_accuracy": 0.0
+      },
+      "science": {
+        "accuracy": 0.8,
+        "allow_accuracy": 0.8333333333333334,
+        "expected_remove_rate": 0.04,
+        "n": 25,
+        "parse_error_rate": 0.0,
+        "predicted_remove_rate": 0.16,
+        "remove_accuracy": 0.0
+      }
+    },
+    "public_policy": {
+      "news": {
+        "accuracy": 0.6,
+        "allow_accuracy": 0.6,
+        "expected_remove_rate": 0.0,
+        "n": 5,
+        "parse_error_rate": 0.0,
+        "predicted_remove_rate": 0.4,
+        "remove_accuracy": 0.0
+      },
+      "science": {
+        "accuracy": 0.52,
+        "allow_accuracy": 0.5,
+        "expected_remove_rate": 0.04,
+        "n": 25,
+        "parse_error_rate": 0.0,
+        "predicted_remove_rate": 0.52,
+        "remove_accuracy": 1.0
+      }
+    }
+  },
+  "case_count": 30,
+  "conditions": [
+    "comment_only",
+    "public_policy"
+  ],
+  "contains_raw_text": false,
+  "label_counts": {
+    "allow": 29,
+    "remove": 1
+  },
+  "model": "qwen2.5:7b",
+  "summaries": {
+    "comment_only": {
+      "accuracy": 0.7666666666666667,
+      "allow_accuracy": 0.7931034482758621,
+      "expected_remove_rate": 0.03333333333333333,
+      "n": 30,
+      "parse_error_rate": 0.0,
+      "predicted_remove_rate": 0.2,
+      "remove_accuracy": 0.0
+    },
+    "public_policy": {
+      "accuracy": 0.5333333333333333,
+      "allow_accuracy": 0.5172413793103449,
+      "expected_remove_rate": 0.03333333333333333,
+      "n": 30,
+      "parse_error_rate": 0.0,
+      "predicted_remove_rate": 0.5,
+      "remove_accuracy": 1.0
+    }
+  }
+}

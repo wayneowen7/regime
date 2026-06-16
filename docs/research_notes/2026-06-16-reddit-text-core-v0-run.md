@@ -122,11 +122,11 @@ python -m regime_pilot.run_reddit_text_benchmark `
 - `summary` 是 text-free，可以进 Git；
 - runner 不把 prompt 或 comment text 写入 summary。
 
-## 远端状态
+## 远端状态与 30-case smoke
 
 本地没有可用 Ollama。
 
-尝试连接远端：
+第一次尝试连接远端时：
 
 ```text
 ssh lenovo@10.147.18.151
@@ -139,13 +139,22 @@ Connection timed out
 Ping timed out
 ```
 
-因此本轮还没有拿到真实 LLM 结果。远端恢复后，直接运行：
+但随后重新检测时，远端恢复可用：
+
+```text
+SSH reachable
+Ollama reachable
+qwen2.5:7b available
+llama3.2:latest available
+```
+
+运行：
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\run_2026_06_16_reddit_text_core_v0_remote.ps1
 ```
 
-该脚本会上传代码、测试、`data/raw/reddit_text_core_v0.jsonl`，并在远端跑：
+该脚本上传代码、测试、`data/raw/reddit_text_core_v0.jsonl`，并在远端跑：
 
 ```text
 qwen2.5:7b
@@ -154,15 +163,70 @@ llama3.2:latest
 
 每个模型先跑 30 cases 的 `comment_only` 和 `public_policy`。
 
+输出：
+
+```text
+pilot/results/remote_20260616_reddit_text_core_v0_qwen25_7b_30case_summary.json
+pilot/results/remote_20260616_reddit_text_core_v0_llama32_30case_summary.json
+```
+
+full rows 保存在：
+
+```text
+data/raw/remote_20260616_reddit_text_core_v0_qwen25_7b_30case_full.json
+data/raw/remote_20260616_reddit_text_core_v0_llama32_30case_full.json
+```
+
+`data/raw/` 不进入 Git。
+
+## 30-case smoke 结果
+
+这 30 条 case 的标签仍然极度不平衡：
+
+```text
+allow = 29
+remove = 1
+```
+
+因此 accuracy 不能作为方法有效性的正证据，只能作为 pipeline 和模型行为 smoke。
+
+### qwen2.5:7b
+
+| condition | accuracy | allow accuracy | remove accuracy | predicted remove rate | parse error |
+|---|---:|---:|---:|---:|---:|
+| comment_only | 76.67% | 79.31% | 0.00% | 20.00% | 0.00% |
+| public_policy | 53.33% | 51.72% | 100.00% | 50.00% | 0.00% |
+
+### llama3.2:latest
+
+| condition | accuracy | allow accuracy | remove accuracy | predicted remove rate | parse error |
+|---|---:|---:|---:|---:|---:|
+| comment_only | 33.33% | 31.03% | 100.00% | 70.00% | 0.00% |
+| public_policy | 40.00% | 37.93% | 100.00% | 63.33% | 0.00% |
+
+## 30-case smoke 解读
+
+这轮结果支持两个初步判断：
+
+1. Reddit-Text-Core v0 runner 能正常调用真实模型，并且能区分 `comment_only` / `public_policy` 条件。
+2. public policy 条件会显著改变模型的 remove 倾向，尤其 qwen2.5:7b 从 20.00% predicted remove 提升到 50.00%。
+
+但它也进一步确认当前 Reddit v0 不能直接用 accuracy 讲方法收益：
+
+- 30 条里只有 1 条 remove；
+- public policy 让模型更愿意 remove，反而在大量 allow 样本上降低 accuracy；
+- 这更像是一个 policy sensitivity / false-positive risk 信号，而不是最终审核效果信号。
+
 ## 当前判断
 
 Reddit v0 的价值不是已经证明方法有效，而是快速暴露了数据路线的现实约束：
 
 1. pipeline 可运行；
 2. public policy card 条件可评估；
-3. 当前 text acquisition 对 removed label 严重不友好；
-4. 直接做 allow/remove accuracy 会被 label imbalance 污染；
-5. 下一步需要优先解决 negative/removed text acquisition，或者重新定义 Reddit 子任务。
+3. 真实模型 smoke 已跑通；
+4. 当前 text acquisition 对 removed label 严重不友好；
+5. 直接做 allow/remove accuracy 会被 label imbalance 污染；
+6. 下一步需要优先解决 negative/removed text acquisition，或者重新定义 Reddit 子任务。
 
 ## 下一步
 

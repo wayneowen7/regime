@@ -17,7 +17,7 @@ tar -czf $ArchivePath docs pilot tests scripts data/raw/reddit_text_core_v0.json
 scp $ArchivePath "${Remote}:/tmp/$ArchiveName"
 ssh $Remote "mkdir -p $RemoteDir && tar -xzf /tmp/$ArchiveName -C $RemoteDir"
 
-Invoke-Remote "$EnvPython -m unittest tests.test_reddit_text_core -v" 300
+Invoke-Remote "$EnvPython -m unittest discover -s tests -p 'test_reddit_text_core.py' -v" 300
 
 $Runs = @(
     @("qwen2.5:7b", "qwen25_7b", 30),
