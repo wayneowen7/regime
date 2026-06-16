@@ -1,0 +1,25 @@
+{
+  "contains_raw_text": false,
+  "include_statuses": [
+    "error",
+    "missing",
+    "subreddit_mismatch"
+  ],
+  "include_unseen": true,
+  "label_filter": 1,
+  "output_path": "pilot/data/reddit_bao/reddit_bao_label1_priority_unseen_error_queue.jsonl",
+  "queue_path": "pilot/data/reddit_bao/reddit_bao_hydration_queue.jsonl",
+  "resolved_path": "data/raw/reddit_bao_pullpush_full_stream.jsonl",
+  "resolved_record_count": 2127,
+  "selected_count": 1498,
+  "selected_reason_counts": {
+    "error": 25,
+    "not_seen": 1473
+  },
+  "skipped_hydrated_count": 4,
+  "skipped_status_counts": {
+    "unavailable": 898
+  },
+  "source_queue_count": 2400,
+  "summary_path": "pilot/results/reddit_bao_label1_priority_unseen_error_queue_summary.json"
+}
