@@ -1,0 +1,112 @@
+{
+  "available_hydrated_by_subreddit_label": {
+    "futurology": {
+      "0": 73
+    },
+    "news": {
+      "0": 190,
+      "1": 1
+    },
+    "nfl": {
+      "0": 93
+    },
+    "science": {
+      "0": 190,
+      "1": 1
+    },
+    "space": {
+      "0": 25
+    },
+    "worldnews": {
+      "0": 90
+    }
+  },
+  "available_hydrated_count": 663,
+  "contains_raw_text": false,
+  "label_shortfalls": {
+    "futurology": {
+      "1": {
+        "available": 0,
+        "requested": 13,
+        "selected": 0
+      }
+    },
+    "news": {
+      "1": {
+        "available": 1,
+        "requested": 13,
+        "selected": 1
+      }
+    },
+    "nfl": {
+      "1": {
+        "available": 0,
+        "requested": 13,
+        "selected": 0
+      }
+    },
+    "science": {
+      "1": {
+        "available": 1,
+        "requested": 13,
+        "selected": 1
+      }
+    },
+    "space": {
+      "1": {
+        "available": 0,
+        "requested": 13,
+        "selected": 0
+      }
+    },
+    "worldnews": {
+      "1": {
+        "available": 0,
+        "requested": 13,
+        "selected": 0
+      }
+    }
+  },
+  "output_path": "data/raw/reddit_text_core_v0.jsonl",
+  "raw_path": "data/raw/reddit_bao_pullpush_full_stream.jsonl",
+  "requested_subreddits": [
+    "science",
+    "news",
+    "worldnews",
+    "space",
+    "futurology",
+    "nfl"
+  ],
+  "samples_per_subreddit": 25,
+  "seed": 20260616,
+  "selected_by_subreddit_label": {
+    "futurology": {
+      "0": 25
+    },
+    "news": {
+      "0": 24,
+      "1": 1
+    },
+    "nfl": {
+      "0": 25
+    },
+    "science": {
+      "0": 24,
+      "1": 1
+    },
+    "space": {
+      "0": 25
+    },
+    "worldnews": {
+      "0": 25
+    }
+  },
+  "selected_count": 150,
+  "source_record_count": 1316,
+  "source_status_counts": {
+    "error": 208,
+    "hydrated": 663,
+    "unavailable": 445
+  },
+  "summary_path": "pilot/results/reddit_text_core_v0_summary.json"
+}
