@@ -1,0 +1,34 @@
+{
+  "contains_raw_text": false,
+  "error_counts": {
+    "PullPush HTTP 429 for i14wqjz": 1,
+    "PullPush HTTP 429 for i4ifsnl": 1,
+    "PullPush HTTP 429 for i6vjkto": 1,
+    "PullPush body is deleted, removed, or empty": 7
+  },
+  "hydrated_count": 90,
+  "hydrated_rate": 0.9,
+  "max_retries": 2,
+  "output_path": "data/raw/reddit_bao_pullpush_smoke100.jsonl",
+  "record_count": 100,
+  "retrieval_source_counts": {
+    "pullpush": 100
+  },
+  "retrieved_at": "2026-06-16T03:09:16Z",
+  "status_by_subreddit": {
+    "science": {
+      "error": 3,
+      "hydrated": 90,
+      "unavailable": 7
+    }
+  },
+  "status_counts": {
+    "error": 3,
+    "hydrated": 90,
+    "unavailable": 7
+  },
+  "subreddit_counts": {
+    "science": 100
+  },
+  "summary_path": "pilot/results/reddit_bao_pullpush_smoke100_summary.json"
+}
