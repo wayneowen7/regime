@@ -1,0 +1,74 @@
+{
+  "contains_raw_text": false,
+  "error_counts": {
+    "PullPush HTTP 429 for i0ffyfk": 1,
+    "PullPush HTTP 429 for i0gs8nz": 1,
+    "PullPush HTTP 429 for i0ho0ky": 1,
+    "PullPush HTTP 429 for i0hskyd": 1,
+    "PullPush HTTP 429 for i0nyrrj": 1,
+    "PullPush HTTP 429 for i0p6o46": 1,
+    "PullPush HTTP 429 for i0p8v27": 1,
+    "PullPush HTTP 429 for i0uy1xc": 1,
+    "PullPush HTTP 429 for i0yc4js": 1,
+    "PullPush HTTP 429 for i1ipwa9": 1,
+    "PullPush HTTP 429 for i1jf121": 1,
+    "PullPush HTTP 429 for i1mdh2s": 1,
+    "PullPush HTTP 429 for i1pqpnc": 1,
+    "PullPush HTTP 429 for i2abuxm": 1,
+    "PullPush HTTP 429 for i2v9n0d": 1,
+    "PullPush HTTP 429 for i3f7hr7": 1,
+    "PullPush HTTP 429 for i3gwddd": 1,
+    "PullPush body is deleted, removed, or empty": 3
+  },
+  "hydrated_count": 100,
+  "hydrated_rate": 0.8333333333333334,
+  "max_retries": 2,
+  "output_path": "data/raw/reddit_bao_pullpush_balanced_600_chunk2.jsonl",
+  "record_count": 120,
+  "retrieval_source_counts": {
+    "pullpush": 120
+  },
+  "retrieved_at": "2026-06-16T03:52:51Z",
+  "status_by_subreddit": {
+    "futurology": {
+      "error": 2,
+      "hydrated": 18
+    },
+    "news": {
+      "error": 2,
+      "hydrated": 18
+    },
+    "nfl": {
+      "error": 1,
+      "hydrated": 19
+    },
+    "science": {
+      "error": 9,
+      "hydrated": 11
+    },
+    "space": {
+      "error": 2,
+      "hydrated": 17,
+      "unavailable": 1
+    },
+    "worldnews": {
+      "error": 1,
+      "hydrated": 17,
+      "unavailable": 2
+    }
+  },
+  "status_counts": {
+    "error": 17,
+    "hydrated": 100,
+    "unavailable": 3
+  },
+  "subreddit_counts": {
+    "futurology": 20,
+    "news": 20,
+    "nfl": 20,
+    "science": 20,
+    "space": 20,
+    "worldnews": 20
+  },
+  "summary_path": "pilot/results/reddit_bao_pullpush_balanced_600_chunk2_summary.json"
+}

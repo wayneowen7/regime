@@ -1,0 +1,108 @@
+{
+  "combined_raw_path": "data\\raw\\reddit_bao_pullpush_balanced_360.jsonl",
+  "contains_raw_text": false,
+  "error_counts": {
+    "PullPush HTTP 429 for hyh3mse": 1,
+    "PullPush HTTP 429 for i014qy8": 1,
+    "PullPush HTTP 429 for i0ffyfk": 1,
+    "PullPush HTTP 429 for i0gs8nz": 1,
+    "PullPush HTTP 429 for i0ho0ky": 1,
+    "PullPush HTTP 429 for i0hskyd": 1,
+    "PullPush HTTP 429 for i0nyrrj": 1,
+    "PullPush HTTP 429 for i0p6o46": 1,
+    "PullPush HTTP 429 for i0p8v27": 1,
+    "PullPush HTTP 429 for i0uy1xc": 1,
+    "PullPush HTTP 429 for i0yc4js": 1,
+    "PullPush HTTP 429 for i1ipwa9": 1,
+    "PullPush HTTP 429 for i1jf121": 1,
+    "PullPush HTTP 429 for i1mdh2s": 1,
+    "PullPush HTTP 429 for i1mdkd6": 1,
+    "PullPush HTTP 429 for i1pqpnc": 1,
+    "PullPush HTTP 429 for i27f2zm": 1,
+    "PullPush HTTP 429 for i287qvn": 1,
+    "PullPush HTTP 429 for i2abuxm": 1,
+    "PullPush HTTP 429 for i2fv60f": 1,
+    "PullPush HTTP 429 for i2v9n0d": 1,
+    "PullPush HTTP 429 for i328xln": 1,
+    "PullPush HTTP 429 for i33iv7d": 1,
+    "PullPush HTTP 429 for i35nktv": 1,
+    "PullPush HTTP 429 for i3f7hr7": 1,
+    "PullPush HTTP 429 for i3gwddd": 1,
+    "PullPush HTTP 429 for i4c5dgh": 1,
+    "PullPush HTTP 429 for i4t610p": 1,
+    "PullPush HTTP 429 for i4wab44": 1,
+    "PullPush HTTP 429 for i550ayy": 1,
+    "PullPush HTTP 429 for i5ebow7": 1,
+    "PullPush HTTP 429 for i624kaq": 1,
+    "PullPush HTTP 429 for i632ok3": 1,
+    "PullPush HTTP 429 for i6cl67c": 1,
+    "PullPush HTTP 429 for i6g03gw": 1,
+    "PullPush HTTP 429 for i6pjsnn": 1,
+    "PullPush HTTP 429 for i6w5o78": 1,
+    "PullPush HTTP 429 for i6wwf3d": 1,
+    "PullPush HTTP 429 for i73q194": 1,
+    "PullPush HTTP 429 for i7choj3": 1,
+    "PullPush HTTP 429 for i7ged1l": 1,
+    "PullPush HTTP 429 for i7gedvq": 1,
+    "PullPush HTTP 429 for i7q866u": 1,
+    "PullPush body is deleted, removed, or empty": 19
+  },
+  "hydrated_count": 298,
+  "hydrated_rate": 0.8277777777777777,
+  "hydrated_text_core_count": 298,
+  "record_count": 360,
+  "retrieval_source_counts": {
+    "pullpush": 360
+  },
+  "source_raw_paths": [
+    "data\\raw\\reddit_bao_pullpush_balanced_smoke120.jsonl",
+    "data\\raw\\reddit_bao_pullpush_balanced_600_chunk2.jsonl",
+    "data\\raw\\reddit_bao_pullpush_balanced_600_chunk3.jsonl"
+  ],
+  "status_by_subreddit": {
+    "futurology": {
+      "error": 3,
+      "hydrated": 53,
+      "unavailable": 4
+    },
+    "news": {
+      "error": 4,
+      "hydrated": 53,
+      "unavailable": 3
+    },
+    "nfl": {
+      "error": 17,
+      "hydrated": 41,
+      "unavailable": 2
+    },
+    "science": {
+      "error": 11,
+      "hydrated": 45,
+      "unavailable": 4
+    },
+    "space": {
+      "error": 4,
+      "hydrated": 54,
+      "unavailable": 2
+    },
+    "worldnews": {
+      "error": 4,
+      "hydrated": 52,
+      "unavailable": 4
+    }
+  },
+  "status_counts": {
+    "error": 43,
+    "hydrated": 298,
+    "unavailable": 19
+  },
+  "subreddit_counts": {
+    "futurology": 60,
+    "news": 60,
+    "nfl": 60,
+    "science": 60,
+    "space": 60,
+    "worldnews": 60
+  },
+  "text_core_path": "data\\raw\\reddit_bao_text_core_pullpush_balanced_360.jsonl"
+}

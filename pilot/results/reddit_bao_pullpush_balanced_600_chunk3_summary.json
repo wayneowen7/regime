@@ -1,0 +1,78 @@
+{
+  "contains_raw_text": false,
+  "error_counts": {
+    "PullPush HTTP 429 for i1mdkd6": 1,
+    "PullPush HTTP 429 for i2fv60f": 1,
+    "PullPush HTTP 429 for i328xln": 1,
+    "PullPush HTTP 429 for i33iv7d": 1,
+    "PullPush HTTP 429 for i35nktv": 1,
+    "PullPush HTTP 429 for i4c5dgh": 1,
+    "PullPush HTTP 429 for i4t610p": 1,
+    "PullPush HTTP 429 for i4wab44": 1,
+    "PullPush HTTP 429 for i550ayy": 1,
+    "PullPush HTTP 429 for i5ebow7": 1,
+    "PullPush HTTP 429 for i624kaq": 1,
+    "PullPush HTTP 429 for i632ok3": 1,
+    "PullPush HTTP 429 for i6cl67c": 1,
+    "PullPush HTTP 429 for i6g03gw": 1,
+    "PullPush HTTP 429 for i6pjsnn": 1,
+    "PullPush HTTP 429 for i6w5o78": 1,
+    "PullPush HTTP 429 for i6wwf3d": 1,
+    "PullPush HTTP 429 for i73q194": 1,
+    "PullPush HTTP 429 for i7choj3": 1,
+    "PullPush HTTP 429 for i7ged1l": 1,
+    "PullPush HTTP 429 for i7gedvq": 1,
+    "PullPush HTTP 429 for i7q866u": 1,
+    "PullPush body is deleted, removed, or empty": 3
+  },
+  "hydrated_count": 95,
+  "hydrated_rate": 0.7916666666666666,
+  "max_retries": 2,
+  "output_path": "data/raw/reddit_bao_pullpush_balanced_600_chunk3.jsonl",
+  "record_count": 120,
+  "retrieval_source_counts": {
+    "pullpush": 120
+  },
+  "retrieved_at": "2026-06-16T04:01:39Z",
+  "status_by_subreddit": {
+    "futurology": {
+      "error": 1,
+      "hydrated": 19
+    },
+    "news": {
+      "error": 2,
+      "hydrated": 16,
+      "unavailable": 2
+    },
+    "nfl": {
+      "error": 15,
+      "hydrated": 5
+    },
+    "science": {
+      "error": 2,
+      "hydrated": 18
+    },
+    "space": {
+      "hydrated": 19,
+      "unavailable": 1
+    },
+    "worldnews": {
+      "error": 2,
+      "hydrated": 18
+    }
+  },
+  "status_counts": {
+    "error": 22,
+    "hydrated": 95,
+    "unavailable": 3
+  },
+  "subreddit_counts": {
+    "futurology": 20,
+    "news": 20,
+    "nfl": 20,
+    "science": 20,
+    "space": 20,
+    "worldnews": 20
+  },
+  "summary_path": "pilot/results/reddit_bao_pullpush_balanced_600_chunk3_summary.json"
+}
