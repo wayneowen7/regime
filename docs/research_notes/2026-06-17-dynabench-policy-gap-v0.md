@@ -159,3 +159,55 @@ V2 的信号比旧版更健康：它同时保留了 qwen 上的明显收益，�
 - action rubric 把 policy boundary 绑定到操作动作后，提高 exact-action adherence。
 
 当前仍然只是 30-case smoke。下一步应在 DynaBench 上扩展到 100 cases，并加入对 `allow -> remove` 与 `remove -> allow` 两类错误的细分分析。
+
+## 100-case full v0
+
+远端环境：
+
+- host: `lenovo@10.147.18.151`
+- models: `qwen2.5:7b`, `llama3.2:latest`
+- each run: first 100 cases, `policy_only`, `top_k=0`
+- conditions: `abstract`, `boundary`, `action_rubric_v2`
+
+Text-free summary:
+
+- `pilot/results/dynabench_policy_gap_v0_action_rubric_v2_100case_summary.json`
+
+### 关键结果
+
+qwen2.5:7b：
+
+- abstract exact adherence: 0.4200; family adherence: 0.5600
+- boundary exact adherence: 0.3800; family adherence: 0.7800
+- action_rubric_v2 exact/family adherence: 0.7900
+- boundary family delta vs abstract: +0.2200
+- action_rubric_v2 exact delta vs abstract: +0.3700
+- action_rubric_v2 exact delta vs boundary: +0.4100
+
+llama3.2：
+
+- abstract exact adherence: 0.6300; family adherence: 0.6400
+- boundary exact adherence: 0.4400; family adherence: 0.7700
+- action_rubric_v2 exact adherence: 0.6800; family adherence: 0.7000
+- boundary family delta vs abstract: +0.1300
+- action_rubric_v2 exact delta vs abstract: +0.0500
+- action_rubric_v2 exact delta vs boundary: +0.2400
+
+### 解释
+
+100-case 结果比 30-case 更能支持我们当前的方法假设：
+
+- `boundary` 主要解决的是边界理解问题，所以它在两个模型上都提升了 decision-family adherence：qwen 从 0.5600 到 0.7800，llama 从 0.6400 到 0.7700。
+- 单独给出 boundary 仍然不能保证 exact action 对齐，因为模型会输出 `contextualize`、`restrict` 等非目标动作；这正是 policy-to-operation gap 的操作层表现。
+- `action_rubric_v2` 把 policy boundary 绑定到 `allow/remove` 动作空间后，显著提高 exact-action adherence：qwen 从 abstract 的 0.4200 到 0.7900，llama 从 boundary 的 0.4400 到 0.6800。
+- llama 上 action rubric 的 family adherence 相比 boundary 从 0.7700 降到 0.7000，但 exact adherence 从 0.4400 升到 0.6800。这说明 action rubric 的作用不是单纯提高粗粒度 family 判断，而是把模型从开放式审核建议拉回闭集操作动作。对论文表述来说，boundary clarification 和 action rubric 应分别服务于不同误差层级。
+
+### 当前判断
+
+这轮 100-case 不是为了证明我们能刷高 DynaBench 分数，而是为了验证一个机制链条：
+
+1. abstract policy 会触发模型默认审核偏置；
+2. boundary clarification 能改善 policy boundary 的粗粒度理解；
+3. action rubric 能把已理解的 boundary 进一步投影到目标动作空间，降低 exact-action error。
+
+因此，当前方向可以继续推进，但下一步不应立刻做更大模型堆叠。更关键的是把方法从人工写 rubric 推进为可复现的 policy compiler / gap diagnostic：输入自然语言 policy，自动发现缺失的 boundary 与 action binding，并输出可审计的 clarified policy。

@@ -1,0 +1,520 @@
+{
+  "action_rubric_version": "v2_balanced_allow_remove",
+  "by_model": {
+    "llama3.2:latest": {
+      "abstract": {
+        "decision_family_adherence_rate": 0.64,
+        "error_pairs": {
+          "allow->contextualize": 1,
+          "allow->escalate": 1,
+          "allow->remove": 27,
+          "allow->restrict": 6,
+          "remove->allow": 1,
+          "remove->parse_error": 1
+        },
+        "expected_decision_counts": {
+          "allow": 50,
+          "remove": 50
+        },
+        "expected_decision_family_counts": {
+          "intervention": 50,
+          "non_removal": 50
+        },
+        "family_error_pairs": {
+          "intervention->non_removal": 1,
+          "intervention->unknown": 1,
+          "non_removal->intervention": 34
+        },
+        "mean_invalid_used_precedents": 0.0,
+        "mean_stale_rationale_matches": 0.0,
+        "mean_unknown_used_precedents": 0.0,
+        "model_decision_counts": {
+          "allow": 16,
+          "contextualize": 1,
+          "escalate": 1,
+          "parse_error": 1,
+          "remove": 75,
+          "restrict": 6
+        },
+        "model_decision_family_counts": {
+          "intervention": 82,
+          "non_removal": 17,
+          "unknown": 1
+        },
+        "n": 100,
+        "parse_error_rate": 0.01,
+        "policy_adherence_rate": 0.63
+      },
+      "action_rubric_v2": {
+        "decision_family_adherence_rate": 0.7,
+        "error_pairs": {
+          "allow->contextualize": 2,
+          "allow->remove": 14,
+          "remove->allow": 16
+        },
+        "expected_decision_counts": {
+          "allow": 50,
+          "remove": 50
+        },
+        "expected_decision_family_counts": {
+          "intervention": 50,
+          "non_removal": 50
+        },
+        "family_error_pairs": {
+          "intervention->non_removal": 16,
+          "non_removal->intervention": 14
+        },
+        "mean_invalid_used_precedents": 0.0,
+        "mean_stale_rationale_matches": 0.0,
+        "mean_unknown_used_precedents": 0.0,
+        "model_decision_counts": {
+          "allow": 50,
+          "contextualize": 2,
+          "remove": 48
+        },
+        "model_decision_family_counts": {
+          "intervention": 48,
+          "non_removal": 52
+        },
+        "n": 100,
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.68
+      },
+      "boundary": {
+        "decision_family_adherence_rate": 0.77,
+        "error_pairs": {
+          "allow->contextualize": 29,
+          "allow->remove": 14,
+          "allow->restrict": 7,
+          "remove->contextualize": 2,
+          "remove->restrict": 4
+        },
+        "expected_decision_counts": {
+          "allow": 50,
+          "remove": 50
+        },
+        "expected_decision_family_counts": {
+          "intervention": 50,
+          "non_removal": 50
+        },
+        "family_error_pairs": {
+          "intervention->non_removal": 2,
+          "non_removal->intervention": 21
+        },
+        "mean_invalid_used_precedents": 0.0,
+        "mean_stale_rationale_matches": 0.0,
+        "mean_unknown_used_precedents": 0.0,
+        "model_decision_counts": {
+          "contextualize": 31,
+          "remove": 58,
+          "restrict": 11
+        },
+        "model_decision_family_counts": {
+          "intervention": 69,
+          "non_removal": 31
+        },
+        "n": 100,
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.44
+      }
+    },
+    "qwen2.5:7b": {
+      "abstract": {
+        "decision_family_adherence_rate": 0.56,
+        "error_pairs": {
+          "allow->contextualize": 14,
+          "allow->remove": 1,
+          "allow->restrict": 1,
+          "remove->allow": 34,
+          "remove->contextualize": 8
+        },
+        "expected_decision_counts": {
+          "allow": 50,
+          "remove": 50
+        },
+        "expected_decision_family_counts": {
+          "intervention": 50,
+          "non_removal": 50
+        },
+        "family_error_pairs": {
+          "intervention->non_removal": 42,
+          "non_removal->intervention": 2
+        },
+        "mean_invalid_used_precedents": 0.0,
+        "mean_stale_rationale_matches": 0.0,
+        "mean_unknown_used_precedents": 0.0,
+        "model_decision_counts": {
+          "allow": 68,
+          "contextualize": 22,
+          "remove": 9,
+          "restrict": 1
+        },
+        "model_decision_family_counts": {
+          "intervention": 10,
+          "non_removal": 90
+        },
+        "n": 100,
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.42
+      },
+      "action_rubric_v2": {
+        "decision_family_adherence_rate": 0.79,
+        "error_pairs": {
+          "allow->remove": 10,
+          "remove->allow": 11
+        },
+        "expected_decision_counts": {
+          "allow": 50,
+          "remove": 50
+        },
+        "expected_decision_family_counts": {
+          "intervention": 50,
+          "non_removal": 50
+        },
+        "family_error_pairs": {
+          "intervention->non_removal": 11,
+          "non_removal->intervention": 10
+        },
+        "mean_invalid_used_precedents": 0.0,
+        "mean_stale_rationale_matches": 0.0,
+        "mean_unknown_used_precedents": 0.0,
+        "model_decision_counts": {
+          "allow": 51,
+          "remove": 49
+        },
+        "model_decision_family_counts": {
+          "intervention": 49,
+          "non_removal": 51
+        },
+        "n": 100,
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.79
+      },
+      "boundary": {
+        "decision_family_adherence_rate": 0.78,
+        "error_pairs": {
+          "allow->contextualize": 35,
+          "allow->remove": 7,
+          "allow->restrict": 1,
+          "remove->allow": 6,
+          "remove->contextualize": 8,
+          "remove->restrict": 5
+        },
+        "expected_decision_counts": {
+          "allow": 50,
+          "remove": 50
+        },
+        "expected_decision_family_counts": {
+          "intervention": 50,
+          "non_removal": 50
+        },
+        "family_error_pairs": {
+          "intervention->non_removal": 14,
+          "non_removal->intervention": 8
+        },
+        "mean_invalid_used_precedents": 0.0,
+        "mean_stale_rationale_matches": 0.0,
+        "mean_unknown_used_precedents": 0.0,
+        "model_decision_counts": {
+          "allow": 13,
+          "contextualize": 43,
+          "remove": 38,
+          "restrict": 6
+        },
+        "model_decision_family_counts": {
+          "intervention": 44,
+          "non_removal": 56
+        },
+        "n": 100,
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.38
+      }
+    }
+  },
+  "conditions": [
+    "abstract",
+    "boundary",
+    "action_rubric_v2"
+  ],
+  "contains_raw_text": false,
+  "deltas": {
+    "llama3.2:latest": {
+      "action_rubric_exact_delta_vs_abstract": 0.050000000000000044,
+      "action_rubric_exact_delta_vs_boundary": 0.24000000000000005,
+      "action_rubric_family_delta_vs_abstract": 0.05999999999999994,
+      "action_rubric_family_delta_vs_boundary": -0.07000000000000006,
+      "boundary_exact_delta_vs_abstract": -0.19,
+      "boundary_family_delta_vs_abstract": 0.13
+    },
+    "qwen2.5:7b": {
+      "action_rubric_exact_delta_vs_abstract": 0.37000000000000005,
+      "action_rubric_exact_delta_vs_boundary": 0.41000000000000003,
+      "action_rubric_family_delta_vs_abstract": 0.22999999999999998,
+      "action_rubric_family_delta_vs_boundary": 0.010000000000000009,
+      "boundary_exact_delta_vs_abstract": -0.03999999999999998,
+      "boundary_family_delta_vs_abstract": 0.21999999999999997
+    }
+  },
+  "entries": [
+    {
+      "decision_family_adherence_rate": 0.64,
+      "error_pairs": {
+        "allow->contextualize": 1,
+        "allow->escalate": 1,
+        "allow->remove": 27,
+        "allow->restrict": 6,
+        "remove->allow": 1,
+        "remove->parse_error": 1
+      },
+      "expected_decision_counts": {
+        "allow": 50,
+        "remove": 50
+      },
+      "expected_decision_family_counts": {
+        "intervention": 50,
+        "non_removal": 50
+      },
+      "family_error_pairs": {
+        "intervention->non_removal": 1,
+        "intervention->unknown": 1,
+        "non_removal->intervention": 34
+      },
+      "file": "remote_20260617_dynabench_policy_gap_llama32_abstract_100case.json",
+      "mean_invalid_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "model": "llama3.2:latest",
+      "model_decision_counts": {
+        "allow": 16,
+        "contextualize": 1,
+        "escalate": 1,
+        "parse_error": 1,
+        "remove": 75,
+        "restrict": 6
+      },
+      "model_decision_family_counts": {
+        "intervention": 82,
+        "non_removal": 17,
+        "unknown": 1
+      },
+      "n": 100,
+      "parse_error_rate": 0.01,
+      "policy_adherence_rate": 0.63,
+      "policy_condition": "abstract"
+    },
+    {
+      "decision_family_adherence_rate": 0.77,
+      "error_pairs": {
+        "allow->contextualize": 29,
+        "allow->remove": 14,
+        "allow->restrict": 7,
+        "remove->contextualize": 2,
+        "remove->restrict": 4
+      },
+      "expected_decision_counts": {
+        "allow": 50,
+        "remove": 50
+      },
+      "expected_decision_family_counts": {
+        "intervention": 50,
+        "non_removal": 50
+      },
+      "family_error_pairs": {
+        "intervention->non_removal": 2,
+        "non_removal->intervention": 21
+      },
+      "file": "remote_20260617_dynabench_policy_gap_llama32_boundary_100case.json",
+      "mean_invalid_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "model": "llama3.2:latest",
+      "model_decision_counts": {
+        "contextualize": 31,
+        "remove": 58,
+        "restrict": 11
+      },
+      "model_decision_family_counts": {
+        "intervention": 69,
+        "non_removal": 31
+      },
+      "n": 100,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.44,
+      "policy_condition": "boundary"
+    },
+    {
+      "decision_family_adherence_rate": 0.7,
+      "error_pairs": {
+        "allow->contextualize": 2,
+        "allow->remove": 14,
+        "remove->allow": 16
+      },
+      "expected_decision_counts": {
+        "allow": 50,
+        "remove": 50
+      },
+      "expected_decision_family_counts": {
+        "intervention": 50,
+        "non_removal": 50
+      },
+      "family_error_pairs": {
+        "intervention->non_removal": 16,
+        "non_removal->intervention": 14
+      },
+      "file": "remote_20260617_dynabench_policy_gap_llama32_action_rubric_v2_100case.json",
+      "mean_invalid_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "model": "llama3.2:latest",
+      "model_decision_counts": {
+        "allow": 50,
+        "contextualize": 2,
+        "remove": 48
+      },
+      "model_decision_family_counts": {
+        "intervention": 48,
+        "non_removal": 52
+      },
+      "n": 100,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.68,
+      "policy_condition": "action_rubric_v2"
+    },
+    {
+      "decision_family_adherence_rate": 0.56,
+      "error_pairs": {
+        "allow->contextualize": 14,
+        "allow->remove": 1,
+        "allow->restrict": 1,
+        "remove->allow": 34,
+        "remove->contextualize": 8
+      },
+      "expected_decision_counts": {
+        "allow": 50,
+        "remove": 50
+      },
+      "expected_decision_family_counts": {
+        "intervention": 50,
+        "non_removal": 50
+      },
+      "family_error_pairs": {
+        "intervention->non_removal": 42,
+        "non_removal->intervention": 2
+      },
+      "file": "remote_20260617_dynabench_policy_gap_qwen25_7b_abstract_100case.json",
+      "mean_invalid_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "model": "qwen2.5:7b",
+      "model_decision_counts": {
+        "allow": 68,
+        "contextualize": 22,
+        "remove": 9,
+        "restrict": 1
+      },
+      "model_decision_family_counts": {
+        "intervention": 10,
+        "non_removal": 90
+      },
+      "n": 100,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.42,
+      "policy_condition": "abstract"
+    },
+    {
+      "decision_family_adherence_rate": 0.78,
+      "error_pairs": {
+        "allow->contextualize": 35,
+        "allow->remove": 7,
+        "allow->restrict": 1,
+        "remove->allow": 6,
+        "remove->contextualize": 8,
+        "remove->restrict": 5
+      },
+      "expected_decision_counts": {
+        "allow": 50,
+        "remove": 50
+      },
+      "expected_decision_family_counts": {
+        "intervention": 50,
+        "non_removal": 50
+      },
+      "family_error_pairs": {
+        "intervention->non_removal": 14,
+        "non_removal->intervention": 8
+      },
+      "file": "remote_20260617_dynabench_policy_gap_qwen25_7b_boundary_100case.json",
+      "mean_invalid_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "model": "qwen2.5:7b",
+      "model_decision_counts": {
+        "allow": 13,
+        "contextualize": 43,
+        "remove": 38,
+        "restrict": 6
+      },
+      "model_decision_family_counts": {
+        "intervention": 44,
+        "non_removal": 56
+      },
+      "n": 100,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.38,
+      "policy_condition": "boundary"
+    },
+    {
+      "decision_family_adherence_rate": 0.79,
+      "error_pairs": {
+        "allow->remove": 10,
+        "remove->allow": 11
+      },
+      "expected_decision_counts": {
+        "allow": 50,
+        "remove": 50
+      },
+      "expected_decision_family_counts": {
+        "intervention": 50,
+        "non_removal": 50
+      },
+      "family_error_pairs": {
+        "intervention->non_removal": 11,
+        "non_removal->intervention": 10
+      },
+      "file": "remote_20260617_dynabench_policy_gap_qwen25_7b_action_rubric_v2_100case.json",
+      "mean_invalid_used_precedents": 0.0,
+      "mean_stale_rationale_matches": 0.0,
+      "mean_unknown_used_precedents": 0.0,
+      "model": "qwen2.5:7b",
+      "model_decision_counts": {
+        "allow": 51,
+        "remove": 49
+      },
+      "model_decision_family_counts": {
+        "intervention": 49,
+        "non_removal": 51
+      },
+      "n": 100,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.79,
+      "policy_condition": "action_rubric_v2"
+    }
+  ],
+  "experiment": "dynabench_policy_gap_v0_action_rubric_v2_100case",
+  "interpretation": [
+    "llama3.2:latest: boundary family delta vs abstract = +0.1300; action_rubric_v2 exact delta vs abstract = +0.0500; action_rubric_v2 exact delta vs boundary = +0.2400",
+    "qwen2.5:7b: boundary family delta vs abstract = +0.2200; action_rubric_v2 exact delta vs abstract = +0.3700; action_rubric_v2 exact delta vs boundary = +0.4100"
+  ],
+  "method_readout": [
+    "Boundary clarification is evaluated primarily by decision-family adherence because it supplies the operative policy boundary but not a closed action set.",
+    "Action rubric is evaluated primarily by exact-action adherence because it binds the boundary to the benchmark action space.",
+    "Raw model rationales, policy text, and transcripts are intentionally excluded from this committed summary."
+  ],
+  "models": [
+    "llama3.2:latest",
+    "qwen2.5:7b"
+  ],
+  "n_per_run": [
+    100
+  ]
+}
