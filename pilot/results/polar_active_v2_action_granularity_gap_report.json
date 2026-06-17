@@ -1,0 +1,192 @@
+{
+  "artifact_type": "polar_active_gap_report",
+  "contains_raw_text": false,
+  "gap_count": 8,
+  "gaps": [
+    {
+      "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-010"
+      ],
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "candidate_cues": [
+        "unverified_report",
+        "counting_active",
+        "official_source_direction",
+        "no_final_result_claim",
+        "medium_confusion_risk"
+      ],
+      "confidence": 1.0,
+      "error_pairs": [
+        "contextualize->remove"
+      ],
+      "gap_id": "gap-0001",
+      "gap_type": "missing_boundary",
+      "harm_direction": "over_removal",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "counting_process"
+    },
+    {
+      "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-005"
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "candidate_cues": [
+        "clear_label",
+        "fictional_location",
+        "absurd_reason",
+        "no_real_current_instruction",
+        "low_confusion_risk"
+      ],
+      "confidence": 1.0,
+      "error_pairs": [
+        "allow->remove"
+      ],
+      "gap_id": "gap-0002",
+      "gap_type": "missing_boundary",
+      "harm_direction": "over_removal",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "satire"
+    },
+    {
+      "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-006"
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "candidate_cues": [
+        "parody_label",
+        "partial_official_format",
+        "no_real_location_change",
+        "medium_confusion_risk",
+        "no_current_cancellation"
+      ],
+      "confidence": 1.0,
+      "error_pairs": [
+        "contextualize->remove"
+      ],
+      "gap_id": "gap-0003",
+      "gap_type": "missing_boundary",
+      "harm_direction": "over_removal",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "satire"
+    },
+    {
+      "action_contrast": "contextualize_vs_remove",
+      "affected_case_ids": [
+        "AG-T-007"
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "candidate_cues": [
+        "official_looking_format",
+        "real_precinct",
+        "current_cancellation",
+        "weak_parody_label",
+        "high_confusion_risk"
+      ],
+      "confidence": 1.0,
+      "error_pairs": [
+        "remove->allow"
+      ],
+      "gap_id": "gap-0004",
+      "gap_type": "missing_boundary",
+      "harm_direction": "under_enforcement",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "satire"
+    },
+    {
+      "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-010"
+      ],
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "candidate_cues": [
+        "unverified_report",
+        "counting_active",
+        "official_source_direction",
+        "no_final_result_claim",
+        "medium_confusion_risk"
+      ],
+      "confidence": 1.0,
+      "error_pairs": [
+        "contextualize->allow"
+      ],
+      "gap_id": "gap-0005",
+      "gap_type": "missing_action_edge",
+      "harm_direction": "wrong_action_granularity",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "counting_process"
+    },
+    {
+      "action_contrast": "remove_vs_escalate",
+      "affected_case_ids": [
+        "AG-T-012"
+      ],
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "candidate_cues": [
+        "official_status_claim",
+        "false_certification",
+        "coordinated_distribution",
+        "mobilization_to_officials",
+        "active_counting"
+      ],
+      "confidence": 1.0,
+      "error_pairs": [
+        "escalate->remove"
+      ],
+      "gap_id": "gap-0006",
+      "gap_type": "missing_action_edge",
+      "harm_direction": "wrong_action_granularity",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "counting_process"
+    },
+    {
+      "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-006"
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "candidate_cues": [
+        "parody_label",
+        "partial_official_format",
+        "no_real_location_change",
+        "medium_confusion_risk",
+        "no_current_cancellation"
+      ],
+      "confidence": 1.0,
+      "error_pairs": [
+        "contextualize->allow"
+      ],
+      "gap_id": "gap-0007",
+      "gap_type": "missing_action_edge",
+      "harm_direction": "wrong_action_granularity",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "satire"
+    },
+    {
+      "action_contrast": "remove_vs_escalate",
+      "affected_case_ids": [
+        "AG-T-008"
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "candidate_cues": [
+        "official_looking_format",
+        "real_precincts",
+        "current_closure",
+        "coordinated_distribution",
+        "voters_should_go_home"
+      ],
+      "confidence": 1.0,
+      "error_pairs": [
+        "escalate->remove"
+      ],
+      "gap_id": "gap-0008",
+      "gap_type": "missing_action_edge",
+      "harm_direction": "wrong_action_granularity",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "satire"
+    }
+  ],
+  "policy_condition": "policy_only"
+}

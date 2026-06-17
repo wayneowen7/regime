@@ -1,0 +1,26 @@
+{
+  "applied_patch_count": 8,
+  "artifact_type": "polar_active_summary",
+  "case_count": 12,
+  "contains_raw_text": false,
+  "dropped_patch_count": 0,
+  "gap_count": 8,
+  "gap_type_counts": {
+    "missing_action_edge": 4,
+    "missing_boundary": 4
+  },
+  "harm_direction_counts": {
+    "over_removal": 3,
+    "under_enforcement": 1,
+    "wrong_action_granularity": 4
+  },
+  "patch_count": 8,
+  "patched_rule_count": 2,
+  "policy_condition": "policy_only",
+  "prompt_length": {
+    "avg_chars": 1436.0,
+    "length_budget_chars": 3600,
+    "max_chars": 3051
+  },
+  "result_row_count": 24
+}

@@ -1,0 +1,95 @@
+{
+  "applied_patch_count": 4,
+  "artifact_type": "polar_active_policy",
+  "contains_raw_text": false,
+  "dropped_patch_ids": [],
+  "length_budget_chars": 3600,
+  "patch_count": 4,
+  "patched_rule_count": 2,
+  "patches": [
+    {
+      "action_contrast": "allow_vs_contextualize",
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "expected_effect": "Reduce over_removal for prediction_opinion_vs_false_certification cases affected by contextualize->remove.",
+      "gap_id": "gap-0001",
+      "instruction": "If unverified_report + counting_active + official_source_direction + no_final_result_claim + medium_confusion_risk match prediction_opinion_vs_false_certification, choose contextualize over remove at the allow_vs_contextualize boundary.",
+      "patch_id": "patch-0001",
+      "patch_type": "add_boundary_variable",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "counting_process",
+      "selected_cues": [
+        "unverified_report",
+        "counting_active",
+        "official_source_direction",
+        "no_final_result_claim",
+        "medium_confusion_risk"
+      ],
+      "target_error_pairs": [
+        "contextualize->remove"
+      ]
+    },
+    {
+      "action_contrast": "allow_vs_contextualize",
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "expected_effect": "Reduce over_removal for obvious_satire_vs_deceptive_notice cases affected by allow->remove.",
+      "gap_id": "gap-0002",
+      "instruction": "If clear_label + fictional_location + absurd_reason + no_real_current_instruction + low_confusion_risk match obvious_satire_vs_deceptive_notice, choose allow over remove at the allow_vs_contextualize boundary.",
+      "patch_id": "patch-0002",
+      "patch_type": "add_boundary_variable",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "satire",
+      "selected_cues": [
+        "clear_label",
+        "fictional_location",
+        "absurd_reason",
+        "no_real_current_instruction",
+        "low_confusion_risk"
+      ],
+      "target_error_pairs": [
+        "allow->remove"
+      ]
+    },
+    {
+      "action_contrast": "allow_vs_contextualize",
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "expected_effect": "Reduce over_removal for obvious_satire_vs_deceptive_notice cases affected by contextualize->remove.",
+      "gap_id": "gap-0003",
+      "instruction": "If parody_label + partial_official_format + no_real_location_change + medium_confusion_risk + no_current_cancellation match obvious_satire_vs_deceptive_notice, choose contextualize over remove at the allow_vs_contextualize boundary.",
+      "patch_id": "patch-0003",
+      "patch_type": "add_boundary_variable",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "satire",
+      "selected_cues": [
+        "parody_label",
+        "partial_official_format",
+        "no_real_location_change",
+        "medium_confusion_risk",
+        "no_current_cancellation"
+      ],
+      "target_error_pairs": [
+        "contextualize->remove"
+      ]
+    },
+    {
+      "action_contrast": "contextualize_vs_remove",
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "expected_effect": "Reduce under_enforcement for obvious_satire_vs_deceptive_notice cases affected by remove->allow.",
+      "gap_id": "gap-0004",
+      "instruction": "If official_looking_format + real_precinct + current_cancellation + weak_parody_label + high_confusion_risk match obvious_satire_vs_deceptive_notice, choose remove over allow at the contextualize_vs_remove boundary.",
+      "patch_id": "patch-0004",
+      "patch_type": "add_boundary_variable",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "satire",
+      "selected_cues": [
+        "official_looking_format",
+        "real_precinct",
+        "current_cancellation",
+        "weak_parody_label",
+        "high_confusion_risk"
+      ],
+      "target_error_pairs": [
+        "remove->allow"
+      ]
+    }
+  ]
+}
