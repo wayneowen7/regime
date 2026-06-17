@@ -1,0 +1,113 @@
+{
+  "contains_raw_text": false,
+  "dataset_id": "tomg-group-umd/DynaBench",
+  "dataset_name": "dynabench",
+  "error": null,
+  "field_profiles": {
+    "base_id": {
+      "non_empty_count": 500,
+      "present_count": 500,
+      "role": "metadata",
+      "string_length": {
+        "max": 36,
+        "mean": 36.0,
+        "min": 36
+      },
+      "type_counts": {
+        "str": 500
+      }
+    },
+    "label": {
+      "non_empty_count": 500,
+      "present_count": 500,
+      "role": "label",
+      "string_length": {
+        "max": 4,
+        "mean": 4.0,
+        "min": 4
+      },
+      "top_values": {
+        "FAIL": 245,
+        "PASS": 255
+      },
+      "type_counts": {
+        "str": 500
+      }
+    },
+    "metadata": {
+      "non_empty_count": 500,
+      "present_count": 500,
+      "role": "metadata",
+      "string_length": {
+        "max": 1150,
+        "mean": 590.6,
+        "min": 370
+      },
+      "type_counts": {
+        "str": 500
+      }
+    },
+    "policy": {
+      "non_empty_count": 500,
+      "present_count": 500,
+      "role": "policy",
+      "string_length": {
+        "max": 25618,
+        "mean": 3812.96,
+        "min": 71
+      },
+      "type_counts": {
+        "str": 500
+      }
+    },
+    "transcript": {
+      "non_empty_count": 500,
+      "present_count": 500,
+      "role": "text",
+      "string_length": {
+        "max": 7205,
+        "mean": 1304.56,
+        "min": 142
+      },
+      "type_counts": {
+        "str": 500
+      }
+    }
+  },
+  "field_roles": {
+    "base_id": "metadata",
+    "label": "label",
+    "metadata": "metadata",
+    "policy": "policy",
+    "transcript": "text"
+  },
+  "fields": [
+    "base_id",
+    "label",
+    "metadata",
+    "policy",
+    "transcript"
+  ],
+  "fit": {
+    "has_action_signal": false,
+    "has_label": true,
+    "has_policy": true,
+    "has_text": true,
+    "native_policy_conditioned_candidate": true,
+    "policy_to_operation_candidate": true
+  },
+  "loader_errors": [],
+  "raw_output_path": "data\\raw\\dataset_bootstrap\\dynabench_sample500.jsonl",
+  "role_counts": {
+    "label": 1,
+    "metadata": 2,
+    "policy": 1,
+    "text": 1
+  },
+  "sample_count": 500,
+  "split_counts": {
+    "DynaBench:test": 500
+  },
+  "status": "ok",
+  "summary_output_path": "pilot\\results\\dataset_bootstrap\\dynabench_sample500_summary.json"
+}

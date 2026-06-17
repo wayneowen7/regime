@@ -1,0 +1,178 @@
+{
+  "contains_raw_text": false,
+  "dataset_id": "Plurai/BARRED",
+  "dataset_name": "barred",
+  "error": null,
+  "field_profiles": {
+    "original_task_output": {
+      "non_empty_count": 30,
+      "present_count": 30,
+      "role": "text",
+      "string_length": {
+        "max": 1330,
+        "mean": 916.53,
+        "min": 544
+      },
+      "type_counts": {
+        "str": 30
+      }
+    },
+    "predicate": {
+      "non_empty_count": 470,
+      "present_count": 470,
+      "role": "metadata",
+      "string_length": {
+        "max": 76,
+        "mean": 54.31,
+        "min": 44
+      },
+      "top_values": {
+        "A user repeats or rephrases the same message 3 times": 158,
+        "The AI agent disclosed the GPS coordinate locations of individual employees.": 112,
+        "The agent's response contains health advice.": 200
+      },
+      "type_counts": {
+        "str": 470
+      }
+    },
+    "predicate_label": {
+      "non_empty_count": 470,
+      "present_count": 470,
+      "role": "label",
+      "top_values": {
+        "0": 239,
+        "1": 231
+      },
+      "type_counts": {
+        "int": 470
+      }
+    },
+    "rule": {
+      "non_empty_count": 30,
+      "present_count": 30,
+      "role": "policy",
+      "string_length": {
+        "max": 210,
+        "mean": 210.0,
+        "min": 210
+      },
+      "type_counts": {
+        "str": 30
+      }
+    },
+    "task_input": {
+      "non_empty_count": 30,
+      "present_count": 30,
+      "role": "text",
+      "string_length": {
+        "max": 9314,
+        "mean": 8071.3,
+        "min": 7132
+      },
+      "type_counts": {
+        "str": 30
+      }
+    },
+    "transcript": {
+      "non_empty_count": 470,
+      "present_count": 470,
+      "role": "text",
+      "string_length": {
+        "max": 7231,
+        "mean": 891.69,
+        "min": 84
+      },
+      "type_counts": {
+        "str": 470
+      }
+    },
+    "violating_task_output": {
+      "non_empty_count": 30,
+      "present_count": 30,
+      "role": "text",
+      "string_length": {
+        "max": 1335,
+        "mean": 848.03,
+        "min": 5
+      },
+      "type_counts": {
+        "str": 30
+      }
+    },
+    "violation_type": {
+      "non_empty_count": 30,
+      "present_count": 30,
+      "role": "label",
+      "string_length": {
+        "max": 62,
+        "mean": 30.13,
+        "min": 18
+      },
+      "top_values": {
+        "<end_plan> in the middle": 1,
+        "<end_plan> miswritten": 1,
+        "<end_plan> written multiple times": 1,
+        "capital <end_plan>": 1,
+        "detailed tool calls": 3,
+        "jailbreaking add tool": 3,
+        "jailbreaking different tool name": 2,
+        "missing <end_plan>": 3,
+        "reference to missing tools (date formatter)": 1,
+        "reference to unavailable tools": 2,
+        "reference to unavailable tools (chat-gpt)": 1,
+        "reference to unavailable tools (crawler)": 1,
+        "reference to unavailable tools (javascript code)": 1,
+        "reference to unavailable tools (photoshop)": 1,
+        "reference to unavailable tools,detailed tool calls": 1
+      },
+      "type_counts": {
+        "str": 30
+      }
+    }
+  },
+  "field_roles": {
+    "original_task_output": "text",
+    "predicate": "metadata",
+    "predicate_label": "label",
+    "rule": "policy",
+    "task_input": "text",
+    "transcript": "text",
+    "violating_task_output": "text",
+    "violation_type": "label"
+  },
+  "fields": [
+    "original_task_output",
+    "predicate",
+    "predicate_label",
+    "rule",
+    "task_input",
+    "transcript",
+    "violating_task_output",
+    "violation_type"
+  ],
+  "fit": {
+    "has_action_signal": false,
+    "has_label": true,
+    "has_policy": true,
+    "has_text": true,
+    "native_policy_conditioned_candidate": true,
+    "policy_to_operation_candidate": true
+  },
+  "loader_errors": [],
+  "raw_output_path": "data\\raw\\dataset_bootstrap\\barred_sample500.jsonl",
+  "role_counts": {
+    "label": 2,
+    "metadata": 1,
+    "policy": 1,
+    "text": 4
+  },
+  "sample_count": 500,
+  "split_counts": {
+    "gps_disclosure:test": 112,
+    "healthe:test": 200,
+    "message_repetition:test": 158,
+    "plan_verification:test": 30
+  },
+  "status": "ok",
+  "summary_output_path": "pilot\\results\\dataset_bootstrap\\barred_sample500_summary.json"
+}

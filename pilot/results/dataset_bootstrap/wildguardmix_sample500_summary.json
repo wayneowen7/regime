@@ -1,0 +1,23 @@
+{
+  "contains_raw_text": false,
+  "dataset_id": "allenai/wildguardmix",
+  "dataset_name": "wildguardmix",
+  "error": "RuntimeError: default:train: DatasetNotFoundError: Dataset 'allenai/wildguardmix' is a gated dataset on the Hub. You must be authenticated to access it.",
+  "field_profiles": {},
+  "field_roles": {},
+  "fields": [],
+  "fit": {
+    "has_action_signal": false,
+    "has_label": false,
+    "has_policy": false,
+    "has_text": false,
+    "native_policy_conditioned_candidate": false,
+    "policy_to_operation_candidate": false
+  },
+  "raw_output_path": "data\\raw\\dataset_bootstrap\\wildguardmix_sample500.jsonl",
+  "role_counts": {},
+  "sample_count": 0,
+  "split_counts": {},
+  "status": "failed",
+  "summary_output_path": "pilot\\results\\dataset_bootstrap\\wildguardmix_sample500_summary.json"
+}

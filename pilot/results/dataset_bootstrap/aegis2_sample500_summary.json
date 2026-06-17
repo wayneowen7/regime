@@ -1,0 +1,201 @@
+{
+  "contains_raw_text": false,
+  "dataset_id": "nvidia/Aegis-AI-Content-Safety-Dataset-2.0",
+  "dataset_name": "aegis2",
+  "error": null,
+  "field_profiles": {
+    "id": {
+      "non_empty_count": 500,
+      "present_count": 500,
+      "role": "metadata",
+      "string_length": {
+        "max": 32,
+        "mean": 32.0,
+        "min": 32
+      },
+      "type_counts": {
+        "str": 500
+      }
+    },
+    "prompt": {
+      "non_empty_count": 500,
+      "present_count": 500,
+      "role": "text",
+      "string_length": {
+        "max": 18504,
+        "mean": 354.6,
+        "min": 6
+      },
+      "type_counts": {
+        "str": 500
+      }
+    },
+    "prompt_label": {
+      "non_empty_count": 500,
+      "present_count": 500,
+      "role": "label",
+      "string_length": {
+        "max": 6,
+        "mean": 5.02,
+        "min": 4
+      },
+      "top_values": {
+        "safe": 246,
+        "unsafe": 254
+      },
+      "type_counts": {
+        "str": 500
+      }
+    },
+    "prompt_label_source": {
+      "non_empty_count": 500,
+      "present_count": 500,
+      "role": "label",
+      "string_length": {
+        "max": 5,
+        "mean": 5.0,
+        "min": 5
+      },
+      "top_values": {
+        "human": 500
+      },
+      "type_counts": {
+        "str": 500
+      }
+    },
+    "reconstruction_id_if_redacted": {
+      "non_empty_count": 14,
+      "present_count": 500,
+      "role": "metadata",
+      "top_values": {
+        "242897": 1,
+        "254049": 1,
+        "254322": 1,
+        "254499": 1,
+        "254601": 1,
+        "256428": 1,
+        "256631": 1,
+        "256836": 1,
+        "257157": 1,
+        "257622": 1,
+        "42": 1,
+        "460": 1,
+        "537": 1,
+        "651": 1,
+        "None": 486
+      },
+      "type_counts": {
+        "int": 14,
+        "null": 486
+      }
+    },
+    "response": {
+      "non_empty_count": 204,
+      "present_count": 500,
+      "role": "text",
+      "string_length": {
+        "max": 1404,
+        "mean": 535.45,
+        "min": 0
+      },
+      "type_counts": {
+        "null": 284,
+        "str": 216
+      }
+    },
+    "response_label": {
+      "non_empty_count": 216,
+      "present_count": 500,
+      "role": "label",
+      "string_length": {
+        "max": 6,
+        "mean": 4.63,
+        "min": 4
+      },
+      "top_values": {
+        "None": 284,
+        "safe": 148,
+        "unsafe": 68
+      },
+      "type_counts": {
+        "null": 284,
+        "str": 216
+      }
+    },
+    "response_label_source": {
+      "non_empty_count": 216,
+      "present_count": 500,
+      "role": "label",
+      "string_length": {
+        "max": 8,
+        "mean": 6.74,
+        "min": 5
+      },
+      "top_values": {
+        "None": 284,
+        "human": 91,
+        "llm_jury": 125
+      },
+      "type_counts": {
+        "null": 284,
+        "str": 216
+      }
+    },
+    "violated_categories": {
+      "non_empty_count": 306,
+      "present_count": 500,
+      "role": "label",
+      "string_length": {
+        "max": 120,
+        "mean": 19.19,
+        "min": 0
+      },
+      "type_counts": {
+        "str": 500
+      }
+    }
+  },
+  "field_roles": {
+    "id": "metadata",
+    "prompt": "text",
+    "prompt_label": "label",
+    "prompt_label_source": "label",
+    "reconstruction_id_if_redacted": "metadata",
+    "response": "text",
+    "response_label": "label",
+    "response_label_source": "label",
+    "violated_categories": "label"
+  },
+  "fields": [
+    "id",
+    "prompt",
+    "prompt_label",
+    "prompt_label_source",
+    "reconstruction_id_if_redacted",
+    "response",
+    "response_label",
+    "response_label_source",
+    "violated_categories"
+  ],
+  "fit": {
+    "has_action_signal": false,
+    "has_label": true,
+    "has_policy": false,
+    "has_text": true,
+    "native_policy_conditioned_candidate": false,
+    "policy_to_operation_candidate": true
+  },
+  "loader_errors": [],
+  "raw_output_path": "data\\raw\\dataset_bootstrap\\aegis2_sample500.jsonl",
+  "role_counts": {
+    "label": 5,
+    "metadata": 2,
+    "text": 2
+  },
+  "sample_count": 500,
+  "split_counts": {
+    "default:train": 500
+  },
+  "status": "ok",
+  "summary_output_path": "pilot\\results\\dataset_bootstrap\\aegis2_sample500_summary.json"
+}
