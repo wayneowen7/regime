@@ -112,3 +112,50 @@ llama3.2：
 2. 校准 action rubric，避免对 llama 这种模型产生 “all remove” 偏置。
 
 如果 DynaBench 30-50 case 仍显示 boundary/rubric 层次有稳定收益，再扩展到 BARRED 做外部对照。
+
+## Action Rubric V2 校准
+
+旧版 action rubric 的问题是只强调 `FAIL -> remove`，容易让某些模型把严格 policy 理解成默认高压删除。10-case smoke 中，llama3.2 在 action rubric 下预测为全 `remove`，说明 rubric 本身会诱发 over-removal。
+
+V2 改动：
+
+- 明确本 benchmark 只使用 `allow` / `remove` 两个动作；
+- 显式写出 `PASS -> allow` 与 `FAIL -> remove` 的对称映射；
+- 增加保护条件：不要因为 policy 严格、内容复杂、或者保守选择看起来更安全就删除；
+- 要求模型先识别具体满足或违反的 policy requirement，再选择动作。
+
+### 30-case smoke
+
+远端环境：
+
+- host: `lenovo@10.147.18.151`
+- models: `qwen2.5:7b`, `llama3.2:latest`
+- each run: first 30 cases, `policy_only`, `top_k=0`
+
+Text-free summary:
+
+- `pilot/results/dynabench_policy_gap_v0_action_rubric_v2_30case_summary.json`
+
+qwen2.5:7b：
+
+- abstract exact adherence: 0.4333
+- boundary exact adherence: 0.2667; family adherence: 0.7000
+- action_rubric_v2 exact/family adherence: 0.7333
+- interpretation: v2 相比 abstract 的 exact adherence 提升 +0.3000。
+
+llama3.2：
+
+- abstract exact/family adherence: 0.5000
+- boundary exact adherence: 0.3667; family adherence: 0.6667
+- action_rubric_v2 exact/family adherence: 0.6333
+- interpretation: v2 相比 abstract 的 exact adherence 提升 +0.1333，并且不再出现旧版 action rubric 的 all-remove 行为。
+
+### 当前判断
+
+V2 的信号比旧版更健康：它同时保留了 qwen 上的明显收益，并缓解了 llama 的全删除偏置。更重要的是，结果符合我们的方法假设：
+
+- abstract policy 容易诱发模型默认策略偏置；
+- boundary policy 帮助模型理解 policy，但可能仍输出非目标动作，如 `contextualize` 或 `restrict`；
+- action rubric 把 policy boundary 绑定到操作动作后，提高 exact-action adherence。
+
+当前仍然只是 30-case smoke。下一步应在 DynaBench 上扩展到 100 cases，并加入对 `allow -> remove` 与 `remove -> allow` 两类错误的细分分析。

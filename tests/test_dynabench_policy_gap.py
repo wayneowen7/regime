@@ -55,9 +55,18 @@ class DynaBenchPolicyGapTests(unittest.TestCase):
             "FAIL maps to remove",
             policies["action_rubric"][pass_case["active_regime_id"]]["rules"][pass_case["policy_rule"]],
         )
+        self.assertIn(
+            "PASS maps to allow",
+            policies["action_rubric"][pass_case["active_regime_id"]]["rules"][pass_case["policy_rule"]],
+        )
+        self.assertIn(
+            "Do not remove a transcript merely because the policy is strict",
+            policies["action_rubric"][pass_case["active_regime_id"]]["rules"][pass_case["policy_rule"]],
+        )
 
         serialized_summary = json.dumps(summary, ensure_ascii=False)
         self.assertFalse(summary["contains_raw_text"])
+        self.assertEqual(summary["action_rubric_version"], "v2_balanced_allow_remove")
         self.assertNotIn("sample transcript", serialized_summary)
         self.assertNotIn("must not invent discounts", serialized_summary)
         self.assertEqual(summary["label_counts"], {"FAIL": 1, "PASS": 1})

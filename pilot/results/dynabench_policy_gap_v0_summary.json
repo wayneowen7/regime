@@ -1,4 +1,5 @@
 {
+  "action_rubric_version": "v2_balanced_allow_remove",
   "contains_raw_text": false,
   "domain_counts": {
     "code": 4,
