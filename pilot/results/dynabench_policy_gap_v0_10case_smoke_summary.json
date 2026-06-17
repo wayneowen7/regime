@@ -1,0 +1,186 @@
+{
+  "by_model": {
+    "llama3.2:latest": {
+      "abstract": {
+        "decision_family_adherence_rate": 0.7,
+        "model_decision_counts": {
+          "allow": 1,
+          "remove": 9
+        },
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.7
+      },
+      "action_rubric": {
+        "decision_family_adherence_rate": 0.6,
+        "model_decision_counts": {
+          "remove": 10
+        },
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.6
+      },
+      "boundary": {
+        "decision_family_adherence_rate": 0.8,
+        "model_decision_counts": {
+          "contextualize": 2,
+          "remove": 7,
+          "restrict": 1
+        },
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.6
+      }
+    },
+    "qwen2.5:7b": {
+      "abstract": {
+        "decision_family_adherence_rate": 0.4,
+        "model_decision_counts": {
+          "allow": 10
+        },
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.4
+      },
+      "action_rubric": {
+        "decision_family_adherence_rate": 0.8,
+        "model_decision_counts": {
+          "allow": 2,
+          "remove": 8
+        },
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.8
+      },
+      "boundary": {
+        "decision_family_adherence_rate": 0.6,
+        "model_decision_counts": {
+          "allow": 3,
+          "contextualize": 3,
+          "remove": 3,
+          "restrict": 1
+        },
+        "parse_error_rate": 0.0,
+        "policy_adherence_rate": 0.2
+      }
+    }
+  },
+  "conditions": [
+    "abstract",
+    "boundary",
+    "action_rubric"
+  ],
+  "contains_raw_text": false,
+  "entries": [
+    {
+      "decision_family_adherence_rate": 0.7,
+      "expected_decision_counts": {
+        "allow": 4,
+        "remove": 6
+      },
+      "file": "remote_20260617_dynabench_policy_gap_llama32_abstract_10case.json",
+      "model": "llama3.2:latest",
+      "model_decision_counts": {
+        "allow": 1,
+        "remove": 9
+      },
+      "n": 10,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.7,
+      "policy_condition": "abstract"
+    },
+    {
+      "decision_family_adherence_rate": 0.8,
+      "expected_decision_counts": {
+        "allow": 4,
+        "remove": 6
+      },
+      "file": "remote_20260617_dynabench_policy_gap_llama32_boundary_10case.json",
+      "model": "llama3.2:latest",
+      "model_decision_counts": {
+        "contextualize": 2,
+        "remove": 7,
+        "restrict": 1
+      },
+      "n": 10,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.6,
+      "policy_condition": "boundary"
+    },
+    {
+      "decision_family_adherence_rate": 0.6,
+      "expected_decision_counts": {
+        "allow": 4,
+        "remove": 6
+      },
+      "file": "remote_20260617_dynabench_policy_gap_llama32_action_rubric_10case.json",
+      "model": "llama3.2:latest",
+      "model_decision_counts": {
+        "remove": 10
+      },
+      "n": 10,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.6,
+      "policy_condition": "action_rubric"
+    },
+    {
+      "decision_family_adherence_rate": 0.4,
+      "expected_decision_counts": {
+        "allow": 4,
+        "remove": 6
+      },
+      "file": "remote_20260617_dynabench_policy_gap_qwen25_7b_abstract_10case.json",
+      "model": "qwen2.5:7b",
+      "model_decision_counts": {
+        "allow": 10
+      },
+      "n": 10,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.4,
+      "policy_condition": "abstract"
+    },
+    {
+      "decision_family_adherence_rate": 0.6,
+      "expected_decision_counts": {
+        "allow": 4,
+        "remove": 6
+      },
+      "file": "remote_20260617_dynabench_policy_gap_qwen25_7b_boundary_10case.json",
+      "model": "qwen2.5:7b",
+      "model_decision_counts": {
+        "allow": 3,
+        "contextualize": 3,
+        "remove": 3,
+        "restrict": 1
+      },
+      "n": 10,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.2,
+      "policy_condition": "boundary"
+    },
+    {
+      "decision_family_adherence_rate": 0.8,
+      "expected_decision_counts": {
+        "allow": 4,
+        "remove": 6
+      },
+      "file": "remote_20260617_dynabench_policy_gap_qwen25_7b_action_rubric_10case.json",
+      "model": "qwen2.5:7b",
+      "model_decision_counts": {
+        "allow": 2,
+        "remove": 8
+      },
+      "n": 10,
+      "parse_error_rate": 0.0,
+      "policy_adherence_rate": 0.8,
+      "policy_condition": "action_rubric"
+    }
+  ],
+  "experiment": "dynabench_policy_gap_v0_10case_smoke",
+  "input_cases": "data/raw/dynabench_policy_gap_v0/dynabench_policy_gap_cases_v0.jsonl",
+  "interpretation": [
+    "This is a smoke test, not a paper-scale result.",
+    "qwen2.5:7b improved from abstract to action_rubric on exact action and decision family adherence.",
+    "llama3.2 showed an over-removal tendency under action_rubric, so the rubric needs further calibration before scaling."
+  ],
+  "models": [
+    "llama3.2:latest",
+    "qwen2.5:7b"
+  ],
+  "n_per_run": 10
+}

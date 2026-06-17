@@ -1,0 +1,91 @@
+{
+  "contains_raw_text": false,
+  "domain_counts": {
+    "code": 4,
+    "customer_service": 3,
+    "ecommerce": 7,
+    "education": 1,
+    "entertainment": 11,
+    "healthcare": 3,
+    "hospitality": 17,
+    "law": 1,
+    "manufacturing": 4,
+    "media": 9,
+    "medicine": 8,
+    "sales": 19,
+    "science": 13
+  },
+  "expected_decision_counts": {
+    "allow": 50,
+    "remove": 50
+  },
+  "failure_mode_counts": {
+    "IFF_logic": 1,
+    "anti_safety": 1,
+    "code": 2,
+    "context_length": 13,
+    "counting": 4,
+    "distractions": 10,
+    "factual_knowledge": 16,
+    "jailbreak": 3,
+    "math": 2,
+    "multiple_mode_challenge": 12,
+    "number_of_hops": 1,
+    "number_of_rules": 6,
+    "number_of_turns": 12,
+    "rule_complexity": 14,
+    "semantic_understanding": 1,
+    "ultra_safety": 1,
+    "user_agent_confusion": 1
+  },
+  "label_counts": {
+    "FAIL": 50,
+    "PASS": 50
+  },
+  "notes": [
+    "DynaBench is used because each record has policy text, transcript text, and PASS/FAIL label.",
+    "Raw transcripts and policy text are written only under data/raw.",
+    "PASS is projected to allow; FAIL is projected to remove for v0 exact-action evaluation."
+  ],
+  "output_paths": {
+    "abstract_policies": "data\\raw\\dynabench_policy_gap_v0\\dynabench_policy_gap_policies_abstract.json",
+    "action_rubric_policies": "data\\raw\\dynabench_policy_gap_v0\\dynabench_policy_gap_policies_action_rubric.json",
+    "boundary_policies": "data\\raw\\dynabench_policy_gap_v0\\dynabench_policy_gap_policies_boundary.json",
+    "cases": "data\\raw\\dynabench_policy_gap_v0\\dynabench_policy_gap_cases_v0.jsonl",
+    "precedents": "data\\raw\\dynabench_policy_gap_v0\\dynabench_policy_gap_empty_precedents.jsonl"
+  },
+  "policy_rule_counts": {
+    "code:code": 2,
+    "code:counting": 2,
+    "ecommerce:counting": 2,
+    "ecommerce:number_of_rules": 2,
+    "entertainment:factual_knowledge": 6,
+    "entertainment:rule_complexity": 3,
+    "hospitality:multiple_mode_challenge": 8,
+    "hospitality:number_of_rules": 2,
+    "hospitality:number_of_turns": 2,
+    "hospitality:rule_complexity": 4,
+    "media:context_length": 6,
+    "medicine:distractions": 3,
+    "medicine:factual_knowledge": 2,
+    "medicine:rule_complexity": 2,
+    "sales:multiple_mode_challenge": 4,
+    "sales:number_of_turns": 10,
+    "sales:rule_complexity": 3,
+    "science:context_length": 3,
+    "science:distractions": 5,
+    "science:factual_knowledge": 4
+  },
+  "policy_view_counts": {
+    "abstract": 86,
+    "action_rubric": 86,
+    "boundary": 86
+  },
+  "raw_output_dir": "data\\raw\\dynabench_policy_gap_v0",
+  "sample_size": 100,
+  "seed": 20260617,
+  "selected_count": 100,
+  "source_record_count": 500,
+  "summary_path": "pilot/results/dynabench_policy_gap_v0_summary.json",
+  "valid_record_count": 500
+}
