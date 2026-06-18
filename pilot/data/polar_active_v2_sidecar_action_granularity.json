@@ -9,6 +9,9 @@
   "patches": [
     {
       "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-010"
+      ],
       "boundary_family": "prediction_opinion_vs_false_certification",
       "expected_effect": "Reduce over_removal for prediction_opinion_vs_false_certification cases affected by contextualize->remove.",
       "gap_id": "gap-0001",
@@ -30,6 +33,9 @@
     },
     {
       "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-005"
+      ],
       "boundary_family": "obvious_satire_vs_deceptive_notice",
       "expected_effect": "Reduce over_removal for obvious_satire_vs_deceptive_notice cases affected by allow->remove.",
       "gap_id": "gap-0002",
@@ -51,6 +57,9 @@
     },
     {
       "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-006"
+      ],
       "boundary_family": "obvious_satire_vs_deceptive_notice",
       "expected_effect": "Reduce over_removal for obvious_satire_vs_deceptive_notice cases affected by contextualize->remove.",
       "gap_id": "gap-0003",
@@ -72,6 +81,9 @@
     },
     {
       "action_contrast": "contextualize_vs_remove",
+      "affected_case_ids": [
+        "AG-T-007"
+      ],
       "boundary_family": "obvious_satire_vs_deceptive_notice",
       "expected_effect": "Reduce under_enforcement for obvious_satire_vs_deceptive_notice cases affected by remove->allow.",
       "gap_id": "gap-0004",
@@ -93,6 +105,9 @@
     },
     {
       "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-010"
+      ],
       "boundary_family": "prediction_opinion_vs_false_certification",
       "expected_effect": "Reduce wrong_action_granularity for prediction_opinion_vs_false_certification cases affected by contextualize->allow.",
       "gap_id": "gap-0005",
@@ -114,6 +129,9 @@
     },
     {
       "action_contrast": "remove_vs_escalate",
+      "affected_case_ids": [
+        "AG-T-012"
+      ],
       "boundary_family": "prediction_opinion_vs_false_certification",
       "expected_effect": "Reduce wrong_action_granularity for prediction_opinion_vs_false_certification cases affected by escalate->remove.",
       "gap_id": "gap-0006",
@@ -135,6 +153,9 @@
     },
     {
       "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-006"
+      ],
       "boundary_family": "obvious_satire_vs_deceptive_notice",
       "expected_effect": "Reduce wrong_action_granularity for obvious_satire_vs_deceptive_notice cases affected by contextualize->allow.",
       "gap_id": "gap-0007",
@@ -156,6 +177,9 @@
     },
     {
       "action_contrast": "remove_vs_escalate",
+      "affected_case_ids": [
+        "AG-T-008"
+      ],
       "boundary_family": "obvious_satire_vs_deceptive_notice",
       "expected_effect": "Reduce wrong_action_granularity for obvious_satire_vs_deceptive_notice cases affected by escalate->remove.",
       "gap_id": "gap-0008",

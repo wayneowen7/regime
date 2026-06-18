@@ -37,6 +37,7 @@ class IRPatch:
     rule_id: str
     boundary_family: str
     action_contrast: str
+    affected_case_ids: list[str]
     selected_cues: list[str]
     target_error_pairs: list[str]
     instruction: str
@@ -250,6 +251,7 @@ def propose_patches(
                 rule_id=gap.rule_id,
                 boundary_family=gap.boundary_family,
                 action_contrast=gap.action_contrast,
+                affected_case_ids=list(gap.affected_case_ids),
                 selected_cues=selected_cues,
                 target_error_pairs=list(gap.error_pairs),
                 instruction=instruction,
@@ -335,6 +337,61 @@ def apply_patches_to_policies(
     return compiled, sidecar
 
 
+def compile_single_patch_policy_collection(
+    policies: dict[str, Any],
+    patches: list[IRPatch],
+    length_budget_chars: int = 3600,
+) -> dict[str, dict[str, Any]]:
+    collection: dict[str, dict[str, Any]] = {}
+    for patch in patches:
+        compiled, sidecar = apply_patches_to_policies(
+            policies,
+            [patch],
+            length_budget_chars=length_budget_chars,
+        )
+        collection[patch.patch_id] = {
+            "policies": compiled,
+            "sidecar": sidecar,
+        }
+    return collection
+
+
+def _patch_file_stem(patch_id: str) -> str:
+    return patch_id.replace("-", "_")
+
+
+def write_single_patch_policy_collection(
+    collection: dict[str, dict[str, Any]],
+    output_dir: str | Path,
+    manifest_path: str | Path,
+) -> dict[str, Any]:
+    output_root = Path(output_dir)
+    output_root.mkdir(parents=True, exist_ok=True)
+    manifest_entries = []
+    for patch_id, artifact in sorted(collection.items()):
+        stem = _patch_file_stem(patch_id)
+        policy_path = output_root / f"{stem}_policy.json"
+        sidecar_path = output_root / f"{stem}_sidecar.json"
+        _write_json(policy_path, artifact["policies"])
+        _write_json(sidecar_path, artifact["sidecar"])
+        manifest_entries.append(
+            {
+                "patch_id": patch_id,
+                "policy_path": str(policy_path),
+                "sidecar_path": str(sidecar_path),
+            }
+        )
+
+    manifest = {
+        "artifact_type": "polar_verify_candidate_manifest",
+        "contains_raw_text": False,
+        "candidate_count": len(manifest_entries),
+        "candidates": manifest_entries,
+    }
+    _write_json(manifest_path, manifest)
+    return manifest
+
+
 def _condition_from_result(data: dict[str, Any], fallback: str) -> str:
     conditions = data.get("conditions", [])
     if isinstance(conditions, list) and conditions:
@@ -366,6 +423,126 @@ def load_result_rows(paths: list[str | Path], policy_condition: str) -> list[dic
 
 def _gap_to_dict(gap: GapReport) -> dict[str, Any]:
     return gap.__dict__
+
+
+VERIFY_METRICS = (
+    ("policy_only_exact_action_error_rate", "exact_error_harm"),
+    ("policy_only_decision_family_error_rate", "family_error_harm"),
+    ("boundary_instability_rate", "instability_harm"),
+)
+
+
+def _analysis_metric(analysis: dict[str, Any], metric: str) -> float:
+    value = analysis.get(metric, 0.0)
+    return float(value) if isinstance(value, int | float) else 0.0
+
+
+def _case_exact_correct(analysis: dict[str, Any], case_id: str) -> bool | None:
+    value = analysis.get("per_case", {}).get(case_id, {}).get("policy_only_exact_correct")
+    return value if isinstance(value, bool) else None
+
+
+def _target_rescue_count(
+    patch: IRPatch,
+    baseline_analysis: dict[str, Any],
+    candidate_analysis: dict[str, Any],
+) -> int:
+    rescued = 0
+    for case_id in patch.affected_case_ids:
+        baseline_correct = _case_exact_correct(baseline_analysis, case_id)
+        candidate_correct = _case_exact_correct(candidate_analysis, case_id)
+        if baseline_correct is False and candidate_correct is True:
+            rescued += 1
+    return rescued
+
+
+def _non_target_harm_count(
+    patch: IRPatch,
+    baseline_analysis: dict[str, Any],
+    candidate_analysis: dict[str, Any],
+) -> int:
+    target_ids = set(patch.affected_case_ids)
+    harmed = 0
+    for case_id in baseline_analysis.get("per_case", {}):
+        if case_id in target_ids:
+            continue
+        baseline_correct = _case_exact_correct(baseline_analysis, case_id)
+        candidate_correct = _case_exact_correct(candidate_analysis, case_id)
+        if baseline_correct is True and candidate_correct is False:
+            harmed += 1
+    return harmed
+
+
+def verify_patch_candidates(
+    patches: list[IRPatch],
+    baseline_analysis: dict[str, Any],
+    candidate_analyses: dict[str, dict[str, Any]],
+    max_exact_error_delta: float = 0.0,
+    max_family_error_delta: float = 0.0,
+    max_instability_delta: float = 0.0,
+) -> dict[str, Any]:
+    thresholds = {
+        "policy_only_exact_action_error_rate": max_exact_error_delta,
+        "policy_only_decision_family_error_rate": max_family_error_delta,
+        "boundary_instability_rate": max_instability_delta,
+    }
+    patch_decisions: list[dict[str, Any]] = []
+
+    for patch in patches:
+        candidate = candidate_analyses.get(patch.patch_id)
+        rejection_reasons: list[str] = []
+        metric_deltas: dict[str, float] = {}
+        target_rescue_count = 0
+        non_target_harm_count = 0
+
+        if candidate is None:
+            rejection_reasons.append("missing_candidate_analysis")
+        else:
+            target_rescue_count = _target_rescue_count(patch, baseline_analysis, candidate)
+            non_target_harm_count = _non_target_harm_count(patch, baseline_analysis, candidate)
+            if target_rescue_count == 0:
+                rejection_reasons.append("no_target_rescue")
+            if non_target_harm_count > 0:
+                rejection_reasons.append("non_target_harm")
+
+            for metric, reason in VERIFY_METRICS:
+                delta = round(
+                    _analysis_metric(candidate, metric) - _analysis_metric(baseline_analysis, metric),
+                    12,
+                )
+                metric_deltas[metric] = delta
+                if delta > thresholds[metric]:
+                    rejection_reasons.append(reason)
+
+        accepted = not rejection_reasons
+        patch_decisions.append(
+            {
+                "patch_id": patch.patch_id,
+                "gap_id": patch.gap_id,
+                "regime_id": patch.regime_id,
+                "rule_id": patch.rule_id,
+                "patch_type": patch.patch_type,
+                "affected_case_ids": list(patch.affected_case_ids),
+                "accepted": accepted,
+                "target_rescue_count": target_rescue_count,
+                "non_target_harm_count": non_target_harm_count,
+                "metric_deltas": metric_deltas,
+                "rejection_reasons": rejection_reasons,
+            }
+        )
+
+    accepted_patch_ids = [item["patch_id"] for item in patch_decisions if item["accepted"]]
+    rejected_patch_ids = [item["patch_id"] for item in patch_decisions if not item["accepted"]]
+    return {
+        "artifact_type": "polar_verify_summary",
+        "contains_raw_text": False,
+        "patch_count": len(patches),
+        "accepted_patch_count": len(accepted_patch_ids),
+        "rejected_patch_count": len(rejected_patch_ids),
+        "accepted_patch_ids": accepted_patch_ids,
+        "rejected_patch_ids": rejected_patch_ids,
+        "patch_decisions": patch_decisions,
+    }
 
 
 def _write_json(path: str | Path, value: Any) -> None:
@@ -434,6 +611,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output-sidecar", required=True)
     parser.add_argument("--output-gap-report", required=True)
     parser.add_argument("--output-summary", required=True)
+    parser.add_argument("--output-candidate-dir")
+    parser.add_argument("--output-candidate-manifest")
     parser.add_argument("--max-patches", type=int, default=8)
     parser.add_argument("--length-budget-chars", type=int, default=3600)
     args = parser.parse_args(argv)
@@ -453,6 +632,25 @@ def main(argv: list[str] | None = None) -> int:
     _write_json(args.output_sidecar, sidecar)
     _write_json(args.output_gap_report, gap_report)
     _write_json(args.output_summary, summary)
+    if args.output_candidate_dir:
+        manifest_path = args.output_candidate_manifest or str(
+            Path(args.output_candidate_dir) / "candidate_manifest.json"
+        )
+        candidate_collection = compile_single_patch_policy_collection(
+            policies,
+            [
+                IRPatch(**patch)
+                for patch in sidecar.get("patches", [])
+            ],
+            length_budget_chars=args.length_budget_chars,
+        )
+        manifest = write_single_patch_policy_collection(
+            candidate_collection,
+            output_dir=args.output_candidate_dir,
+            manifest_path=manifest_path,
+        )
+        summary["candidate_policy_count"] = manifest["candidate_count"]
+        _write_json(args.output_summary, summary)
     print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
     return 0
 

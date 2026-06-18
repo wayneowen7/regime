@@ -1,0 +1,34 @@
+{
+  "applied_patch_count": 1,
+  "artifact_type": "polar_active_policy",
+  "dropped_patch_ids": [],
+  "length_budget_chars": 3600,
+  "patch_count": 1,
+  "patched_rule_count": 1,
+  "patches": [
+    {
+      "action_contrast": "remove_vs_escalate",
+      "affected_case_ids": [
+        "AG-T-012"
+      ],
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "expected_effect": "Reduce wrong_action_granularity for prediction_opinion_vs_false_certification cases affected by escalate->remove.",
+      "gap_id": "gap-0006",
+      "instruction": "If the decision family is right but the action is unstable, use official_status_claim + false_certification + coordinated_distribution + mobilization_to_officials + active_counting to choose escalate over remove.",
+      "patch_id": "patch-0006",
+      "patch_type": "add_action_edge",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "counting_process",
+      "selected_cues": [
+        "official_status_claim",
+        "false_certification",
+        "coordinated_distribution",
+        "mobilization_to_officials",
+        "active_counting"
+      ],
+      "target_error_pairs": [
+        "escalate->remove"
+      ]
+    }
+  ]
+}

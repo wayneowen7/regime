@@ -1,6 +1,7 @@
 {
   "applied_patch_count": 8,
   "artifact_type": "polar_active_summary",
+  "candidate_policy_count": 8,
   "case_count": 12,
   "contains_raw_text": false,
   "dropped_patch_count": 0,

@@ -1,0 +1,47 @@
+{
+  "artifact_type": "polar_verify_candidate_manifest",
+  "candidate_count": 8,
+  "candidates": [
+    {
+      "patch_id": "patch-0001",
+      "policy_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0001_policy.json",
+      "sidecar_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0001_sidecar.json"
+    },
+    {
+      "patch_id": "patch-0002",
+      "policy_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0002_policy.json",
+      "sidecar_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0002_sidecar.json"
+    },
+    {
+      "patch_id": "patch-0003",
+      "policy_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0003_policy.json",
+      "sidecar_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0003_sidecar.json"
+    },
+    {
+      "patch_id": "patch-0004",
+      "policy_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0004_policy.json",
+      "sidecar_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0004_sidecar.json"
+    },
+    {
+      "patch_id": "patch-0005",
+      "policy_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0005_policy.json",
+      "sidecar_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0005_sidecar.json"
+    },
+    {
+      "patch_id": "patch-0006",
+      "policy_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0006_policy.json",
+      "sidecar_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0006_sidecar.json"
+    },
+    {
+      "patch_id": "patch-0007",
+      "policy_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0007_policy.json",
+      "sidecar_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0007_sidecar.json"
+    },
+    {
+      "patch_id": "patch-0008",
+      "policy_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0008_policy.json",
+      "sidecar_path": "pilot\\data\\polar_verify_candidates_action_granularity\\patch_0008_sidecar.json"
+    }
+  ],
+  "contains_raw_text": false
+}

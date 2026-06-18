@@ -1,0 +1,34 @@
+{
+  "applied_patch_count": 1,
+  "artifact_type": "polar_active_policy",
+  "dropped_patch_ids": [],
+  "length_budget_chars": 3600,
+  "patch_count": 1,
+  "patched_rule_count": 1,
+  "patches": [
+    {
+      "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-005"
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "expected_effect": "Reduce over_removal for obvious_satire_vs_deceptive_notice cases affected by allow->remove.",
+      "gap_id": "gap-0002",
+      "instruction": "If clear_label + fictional_location + absurd_reason + no_real_current_instruction + low_confusion_risk match obvious_satire_vs_deceptive_notice, choose allow over remove at the allow_vs_contextualize boundary.",
+      "patch_id": "patch-0002",
+      "patch_type": "add_boundary_variable",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "satire",
+      "selected_cues": [
+        "clear_label",
+        "fictional_location",
+        "absurd_reason",
+        "no_real_current_instruction",
+        "low_confusion_risk"
+      ],
+      "target_error_pairs": [
+        "allow->remove"
+      ]
+    }
+  ]
+}

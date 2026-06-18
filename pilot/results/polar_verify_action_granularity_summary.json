@@ -1,0 +1,199 @@
+{
+  "accepted_patch_count": 1,
+  "accepted_patch_ids": [
+    "patch-0001"
+  ],
+  "artifact_type": "polar_verify_summary",
+  "contains_raw_text": false,
+  "patch_count": 8,
+  "patch_decisions": [
+    {
+      "accepted": true,
+      "affected_case_ids": [
+        "AG-T-010"
+      ],
+      "gap_id": "gap-0001",
+      "metric_deltas": {
+        "boundary_instability_rate": -0.083333333333,
+        "policy_only_decision_family_error_rate": -0.041666666667,
+        "policy_only_exact_action_error_rate": -0.041666666667
+      },
+      "non_target_harm_count": 0,
+      "patch_id": "patch-0001",
+      "patch_type": "add_boundary_variable",
+      "regime_id": "election_integrity_period_v2",
+      "rejection_reasons": [],
+      "rule_id": "counting_process",
+      "target_rescue_count": 1
+    },
+    {
+      "accepted": false,
+      "affected_case_ids": [
+        "AG-T-005"
+      ],
+      "gap_id": "gap-0002",
+      "metric_deltas": {
+        "boundary_instability_rate": 0.0,
+        "policy_only_decision_family_error_rate": 0.0,
+        "policy_only_exact_action_error_rate": 0.125
+      },
+      "non_target_harm_count": 1,
+      "patch_id": "patch-0002",
+      "patch_type": "add_boundary_variable",
+      "regime_id": "election_integrity_period_v2",
+      "rejection_reasons": [
+        "no_target_rescue",
+        "non_target_harm",
+        "exact_error_harm"
+      ],
+      "rule_id": "satire",
+      "target_rescue_count": 0
+    },
+    {
+      "accepted": false,
+      "affected_case_ids": [
+        "AG-T-006"
+      ],
+      "gap_id": "gap-0003",
+      "metric_deltas": {
+        "boundary_instability_rate": -0.083333333333,
+        "policy_only_decision_family_error_rate": -0.041666666667,
+        "policy_only_exact_action_error_rate": 0.041666666667
+      },
+      "non_target_harm_count": 0,
+      "patch_id": "patch-0003",
+      "patch_type": "add_boundary_variable",
+      "regime_id": "election_integrity_period_v2",
+      "rejection_reasons": [
+        "no_target_rescue",
+        "exact_error_harm"
+      ],
+      "rule_id": "satire",
+      "target_rescue_count": 0
+    },
+    {
+      "accepted": false,
+      "affected_case_ids": [
+        "AG-T-007"
+      ],
+      "gap_id": "gap-0004",
+      "metric_deltas": {
+        "boundary_instability_rate": 0.083333333333,
+        "policy_only_decision_family_error_rate": 0.041666666667,
+        "policy_only_exact_action_error_rate": 0.083333333333
+      },
+      "non_target_harm_count": 0,
+      "patch_id": "patch-0004",
+      "patch_type": "add_boundary_variable",
+      "regime_id": "election_integrity_period_v2",
+      "rejection_reasons": [
+        "no_target_rescue",
+        "exact_error_harm",
+        "family_error_harm",
+        "instability_harm"
+      ],
+      "rule_id": "satire",
+      "target_rescue_count": 0
+    },
+    {
+      "accepted": false,
+      "affected_case_ids": [
+        "AG-T-010"
+      ],
+      "gap_id": "gap-0005",
+      "metric_deltas": {
+        "boundary_instability_rate": 0.0,
+        "policy_only_decision_family_error_rate": 0.0,
+        "policy_only_exact_action_error_rate": 0.0
+      },
+      "non_target_harm_count": 0,
+      "patch_id": "patch-0005",
+      "patch_type": "add_action_edge",
+      "regime_id": "election_integrity_period_v2",
+      "rejection_reasons": [
+        "no_target_rescue"
+      ],
+      "rule_id": "counting_process",
+      "target_rescue_count": 0
+    },
+    {
+      "accepted": false,
+      "affected_case_ids": [
+        "AG-T-012"
+      ],
+      "gap_id": "gap-0006",
+      "metric_deltas": {
+        "boundary_instability_rate": 0.083333333333,
+        "policy_only_decision_family_error_rate": 0.041666666667,
+        "policy_only_exact_action_error_rate": 0.083333333333
+      },
+      "non_target_harm_count": 1,
+      "patch_id": "patch-0006",
+      "patch_type": "add_action_edge",
+      "regime_id": "election_integrity_period_v2",
+      "rejection_reasons": [
+        "no_target_rescue",
+        "non_target_harm",
+        "exact_error_harm",
+        "family_error_harm",
+        "instability_harm"
+      ],
+      "rule_id": "counting_process",
+      "target_rescue_count": 0
+    },
+    {
+      "accepted": false,
+      "affected_case_ids": [
+        "AG-T-006"
+      ],
+      "gap_id": "gap-0007",
+      "metric_deltas": {
+        "boundary_instability_rate": 0.0,
+        "policy_only_decision_family_error_rate": 0.0,
+        "policy_only_exact_action_error_rate": 0.041666666667
+      },
+      "non_target_harm_count": 1,
+      "patch_id": "patch-0007",
+      "patch_type": "add_action_edge",
+      "regime_id": "election_integrity_period_v2",
+      "rejection_reasons": [
+        "non_target_harm",
+        "exact_error_harm"
+      ],
+      "rule_id": "satire",
+      "target_rescue_count": 1
+    },
+    {
+      "accepted": false,
+      "affected_case_ids": [
+        "AG-T-008"
+      ],
+      "gap_id": "gap-0008",
+      "metric_deltas": {
+        "boundary_instability_rate": -0.083333333333,
+        "policy_only_decision_family_error_rate": -0.041666666667,
+        "policy_only_exact_action_error_rate": 0.041666666667
+      },
+      "non_target_harm_count": 0,
+      "patch_id": "patch-0008",
+      "patch_type": "add_action_edge",
+      "regime_id": "election_integrity_period_v2",
+      "rejection_reasons": [
+        "no_target_rescue",
+        "exact_error_harm"
+      ],
+      "rule_id": "satire",
+      "target_rescue_count": 0
+    }
+  ],
+  "rejected_patch_count": 7,
+  "rejected_patch_ids": [
+    "patch-0002",
+    "patch-0003",
+    "patch-0004",
+    "patch-0005",
+    "patch-0006",
+    "patch-0007",
+    "patch-0008"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "applied_patch_count": 1,
+  "artifact_type": "polar_active_policy",
+  "dropped_patch_ids": [],
+  "length_budget_chars": 3600,
+  "patch_count": 1,
+  "patched_rule_count": 1,
+  "patches": [
+    {
+      "action_contrast": "remove_vs_escalate",
+      "affected_case_ids": [
+        "AG-T-008"
+      ],
+      "boundary_family": "obvious_satire_vs_deceptive_notice",
+      "expected_effect": "Reduce wrong_action_granularity for obvious_satire_vs_deceptive_notice cases affected by escalate->remove.",
+      "gap_id": "gap-0008",
+      "instruction": "If the decision family is right but the action is unstable, use official_looking_format + real_precincts + current_closure + coordinated_distribution + voters_should_go_home to choose escalate over remove.",
+      "patch_id": "patch-0008",
+      "patch_type": "add_action_edge",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "satire",
+      "selected_cues": [
+        "official_looking_format",
+        "real_precincts",
+        "current_closure",
+        "coordinated_distribution",
+        "voters_should_go_home"
+      ],
+      "target_error_pairs": [
+        "escalate->remove"
+      ]
+    }
+  ]
+}

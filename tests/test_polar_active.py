@@ -1,10 +1,13 @@
 import unittest
 
 from regime_pilot.polar_active import (
+    IRPatch,
     apply_patches_to_policies,
+    compile_single_patch_policy_collection,
     localize_gaps_from_rows,
     parse_case_metadata,
     propose_patches,
+    verify_patch_candidates,
 )
 
 
@@ -118,6 +121,7 @@ class PolarActiveTests(unittest.TestCase):
         self.assertEqual(patches[0].patch_type, "add_boundary_variable")
         self.assertEqual(patches[0].regime_id, "unknown")
         self.assertEqual(patches[0].rule_id, "satire")
+        self.assertEqual(patches[0].affected_case_ids, ["c1"])
         self.assertIn("official_format", patches[0].selected_cues)
 
     def test_apply_patches_adds_polar_active_section_without_case_text(self):
@@ -220,6 +224,129 @@ class PolarActiveTests(unittest.TestCase):
         self.assertNotIn("POLAR-Active patches:", compiled["normal"]["rules"]["satire"])
         self.assertIn("POLAR-Active patches:", compiled["election"]["rules"]["satire"])
         self.assertEqual(sidecar["patched_rule_count"], 1)
+
+    def test_verify_patch_candidates_accepts_rescue_without_no_harm_violation(self):
+        patches = [
+            IRPatch(
+                patch_id="patch-0001",
+                gap_id="gap-0001",
+                regime_id="election",
+                patch_type="add_boundary_variable",
+                rule_id="satire",
+                boundary_family="satire",
+                action_contrast="allow_vs_contextualize",
+                affected_case_ids=["c1"],
+                selected_cues=["parody_label"],
+                target_error_pairs=["contextualize->remove"],
+                instruction="choose contextualize over remove",
+                expected_effect="rescue c1",
+            ),
+            IRPatch(
+                patch_id="patch-0002",
+                gap_id="gap-0002",
+                regime_id="election",
+                patch_type="add_action_edge",
+                rule_id="satire",
+                boundary_family="satire",
+                action_contrast="remove_vs_escalate",
+                affected_case_ids=["c2"],
+                selected_cues=["coordination"],
+                target_error_pairs=["escalate->remove"],
+                instruction="choose escalate over remove",
+                expected_effect="rescue c2",
+            ),
+        ]
+        baseline = {
+            "policy_only_exact_action_error_rate": 0.50,
+            "policy_only_decision_family_error_rate": 0.25,
+            "boundary_instability_rate": 0.25,
+            "per_case": {
+                "c1": {"policy_only_exact_correct": False},
+                "c2": {"policy_only_exact_correct": False},
+            },
+        }
+        candidate_analyses = {
+            "patch-0001": {
+                "policy_only_exact_action_error_rate": 0.50,
+                "policy_only_decision_family_error_rate": 0.25,
+                "boundary_instability_rate": 0.25,
+                "per_case": {
+                    "c1": {"policy_only_exact_correct": True},
+                    "c2": {"policy_only_exact_correct": False},
+                },
+            },
+            "patch-0002": {
+                "policy_only_exact_action_error_rate": 0.75,
+                "policy_only_decision_family_error_rate": 0.25,
+                "boundary_instability_rate": 0.25,
+                "per_case": {
+                    "c1": {"policy_only_exact_correct": False},
+                    "c2": {"policy_only_exact_correct": True},
+                },
+            },
+        }
+
+        summary = verify_patch_candidates(patches, baseline, candidate_analyses)
+
+        self.assertEqual(summary["accepted_patch_ids"], ["patch-0001"])
+        self.assertEqual(summary["rejected_patch_ids"], ["patch-0002"])
+        decisions = {item["patch_id"]: item for item in summary["patch_decisions"]}
+        self.assertTrue(decisions["patch-0001"]["accepted"])
+        self.assertEqual(decisions["patch-0001"]["target_rescue_count"], 1)
+        self.assertFalse(decisions["patch-0002"]["accepted"])
+        self.assertIn("exact_error_harm", decisions["patch-0002"]["rejection_reasons"])
+
+    def test_compile_single_patch_policy_collection_outputs_one_policy_per_patch(self):
+        policies = {
+            "election": {
+                "name": "Election",
+                "description": "Election policy",
+                "rules": {
+                    "satire": "Satire rule",
+                    "counting": "Counting rule",
+                },
+            }
+        }
+        patches = [
+            IRPatch(
+                patch_id="patch-0001",
+                gap_id="gap-0001",
+                regime_id="election",
+                patch_type="add_boundary_variable",
+                rule_id="satire",
+                boundary_family="satire",
+                action_contrast="allow_vs_contextualize",
+                affected_case_ids=["c1"],
+                selected_cues=["parody_label"],
+                target_error_pairs=["contextualize->remove"],
+                instruction="choose contextualize over remove",
+                expected_effect="rescue c1",
+            ),
+            IRPatch(
+                patch_id="patch-0002",
+                gap_id="gap-0002",
+                regime_id="election",
+                patch_type="add_action_edge",
+                rule_id="counting",
+                boundary_family="counting",
+                action_contrast="remove_vs_escalate",
+                affected_case_ids=["c2"],
+                selected_cues=["coordination"],
+                target_error_pairs=["escalate->remove"],
+                instruction="choose escalate over remove",
+                expected_effect="rescue c2",
+            ),
+        ]
+
+        collection = compile_single_patch_policy_collection(policies, patches)
+
+        self.assertEqual(sorted(collection), ["patch-0001", "patch-0002"])
+        patch_1_policy = collection["patch-0001"]["policies"]
+        patch_2_policy = collection["patch-0002"]["policies"]
+        self.assertIn("patch-0001", patch_1_policy["election"]["rules"]["satire"])
+        self.assertNotIn("patch-0002", patch_1_policy["election"]["rules"]["counting"])
+        self.assertIn("patch-0002", patch_2_policy["election"]["rules"]["counting"])
+        self.assertEqual(collection["patch-0001"]["sidecar"]["patch_count"], 1)
 
 
 if __name__ == "__main__":

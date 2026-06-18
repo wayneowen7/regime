@@ -1,0 +1,34 @@
+{
+  "applied_patch_count": 1,
+  "artifact_type": "polar_active_policy",
+  "dropped_patch_ids": [],
+  "length_budget_chars": 3600,
+  "patch_count": 1,
+  "patched_rule_count": 1,
+  "patches": [
+    {
+      "action_contrast": "allow_vs_contextualize",
+      "affected_case_ids": [
+        "AG-T-010"
+      ],
+      "boundary_family": "prediction_opinion_vs_false_certification",
+      "expected_effect": "Reduce wrong_action_granularity for prediction_opinion_vs_false_certification cases affected by contextualize->allow.",
+      "gap_id": "gap-0005",
+      "instruction": "If the decision family is right but the action is unstable, use unverified_report + counting_active + official_source_direction + no_final_result_claim + medium_confusion_risk to choose contextualize over allow.",
+      "patch_id": "patch-0005",
+      "patch_type": "add_action_edge",
+      "regime_id": "election_integrity_period_v2",
+      "rule_id": "counting_process",
+      "selected_cues": [
+        "unverified_report",
+        "counting_active",
+        "official_source_direction",
+        "no_final_result_claim",
+        "medium_confusion_risk"
+      ],
+      "target_error_pairs": [
+        "contextualize->allow"
+      ]
+    }
+  ]
+}
